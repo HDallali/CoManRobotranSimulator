@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+   <FileVersion major="1" minor="6" />
+   <Project>
+      <Option title="GEN_STATE_VAR" />
+      <Option makefile_is_custom="1" />
+      <Option compiler="gcc" />
+      <Option virtualFolders="CMake Files\;CMake Files\src\;CMake Files\src\other\;CMake Files\src\other\varState\;CMake Files\src\other\conf\;" />
+      <Build>
+      <Target title="all">
+         <Option working_dir="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/Makefile&quot;  VERBOSE=1 all" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="Gen_state_var">
+         <Option output="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/Gen_state_var" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DCMEX" />
+            <Add option="-DLOAD_XML" />
+            <Add option="-DDIRDYNARED" />
+            <Add option="-DUNIX" />
+            <Add directory="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/conf" />
+            <Add directory="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/src" />
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/c++/4.7" />
+            <Add directory="/usr/include/c++/4.7/backward" />
+            <Add directory="/usr/include/c++/4.7/x86_64-linux-gnu" />
+            <Add directory="/usr/include/libxml2" />
+            <Add directory="/usr/include/libxml2/libxml" />
+            <Add directory="/usr/include/x86_64-linux-gnu" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.4.7/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.4.7/include-fixed" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.7/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.7/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/Makefile&quot;  VERBOSE=1 Gen_state_var" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="Gen_state_var/fast">
+         <Option output="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/Gen_state_var" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DCMEX" />
+            <Add option="-DLOAD_XML" />
+            <Add option="-DDIRDYNARED" />
+            <Add option="-DUNIX" />
+            <Add directory="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/conf" />
+            <Add directory="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/src" />
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/c++/4.7" />
+            <Add directory="/usr/include/c++/4.7/backward" />
+            <Add directory="/usr/include/c++/4.7/x86_64-linux-gnu" />
+            <Add directory="/usr/include/libxml2" />
+            <Add directory="/usr/include/libxml2/libxml" />
+            <Add directory="/usr/include/x86_64-linux-gnu" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.4.7/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.4.7/include-fixed" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.7/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.7/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/Makefile&quot;  VERBOSE=1 Gen_state_var/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      </Build>
+      <Unit filename="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/src/main.c">
+      </Unit>
+      <Unit filename="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/src/print_c_files.c">
+      </Unit>
+      <Unit filename="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/src/print_matlab.c">
+      </Unit>
+      <Unit filename="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/src/read_ctrl_functions.c">
+      </Unit>
+      <Unit filename="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/src/read_simu_functions.c">
+      </Unit>
+      <Unit filename="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/src/useful_functions.c">
+      </Unit>
+      <Unit filename="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/src/print_c_files.h">
+      </Unit>
+      <Unit filename="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/src/print_matlab.h">
+      </Unit>
+      <Unit filename="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/src/read_ctrl_functions.h">
+      </Unit>
+      <Unit filename="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/src/read_simu_functions.h">
+      </Unit>
+      <Unit filename="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/src/useful_functions.h">
+      </Unit>
+      <Unit filename="/home/hdallali/CoManRobotranSimulator/Standalone/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\" />
+      </Unit>
+      <Unit filename="/home/hdallali/CoManRobotranSimulator/Standalone/src/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\src\" />
+      </Unit>
+      <Unit filename="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\src\other\varState\" />
+      </Unit>
+      <Unit filename="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/varState/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\src\other\varState\" />
+      </Unit>
+      <Unit filename="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/conf/FindLibxml2.cmake">
+          <Option virtualFolder="CMake Files\src\other\conf\" />
+      </Unit>
+      <Unit filename="/home/hdallali/CoManRobotranSimulator/Standalone/src/other/conf/cmake_config.h.in">
+          <Option virtualFolder="CMake Files\src\other\conf\" />
+      </Unit>
+   </Project>
+</CodeBlocks_project_file>

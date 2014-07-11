@@ -1,0 +1,502 @@
+
+##############################################################
+#	file9b.gen 11/07/2014 12:29:53    messages
+##############################################################
+ ------------------------------- 
+  ROBOTRAN - Symbolic Generator 
+  Version 6.6 (build : february 22, 2008) 
+  Pr. Paul FISETTE - 1990..1994 
+  Dr. Tony POSTIAU - 2000..2004 
+ ------------------------------- 
+Symbolic generation file : /usr/local/robotran/users/walkman/upload/file9b.gen
+Project : /usr/local/robotran/users/walkman/upload/CoMan_Legs_7DofArm.mbs
+F 6 : Sensors Kinematical Informations (sens) 
+Symbolic Equations Generation...Done
+Equations list processing... 
+Selecting usefull equations 
+Building result equations list... 
+Removing useless equations... 
+4188 useless equations removed 
+4188 Equations removed from memory 
+Substitution of variables with a single occurence 
+Counting operations ... 
+Building hierarchical structure... 
+Equations list processing...Done 
+Printing Equations... 
+Printing Equations...Done 
+Deallocating Memory...  
+11651 Equations removed from memory 
+Removing 211241 expressions... 
+0 expressions remaining in memory 
+
+--
+Done
+
+##############################################################
+#	file3.gen 11/07/2014 12:29:53    messages
+##############################################################
+ ------------------------------- 
+  ROBOTRAN - Symbolic Generator 
+  Version 6.6 (build : february 22, 2008) 
+  Pr. Paul FISETTE - 1990..1994 
+  Dr. Tony POSTIAU - 2000..2004 
+ ------------------------------- 
+Symbolic generation file : /usr/local/robotran/users/walkman/upload/file3.gen
+Project : /usr/local/robotran/users/walkman/upload/CoMan_Legs_7DofArm.mbs
+F 8 : Constraints Vector (h) and Jacobian Matrix (Jac) 
+Symbolic Equations Generation Aborted !!
+Deallocating Memory...  
+64 Equations removed from memory 
+Removing 1293 expressions... 
+0 expressions remaining in memory 
+
+--
+Done
+
+##############################################################
+#	file7.gen 11/07/2014 12:29:53    messages
+##############################################################
+ ------------------------------- 
+  ROBOTRAN - Symbolic Generator 
+  Version 6.6 (build : february 22, 2008) 
+  Pr. Paul FISETTE - 1990..1994 
+  Dr. Tony POSTIAU - 2000..2004 
+ ------------------------------- 
+Symbolic generation file : /usr/local/robotran/users/walkman/upload/file7.gen
+Project : /usr/local/robotran/users/walkman/upload/CoMan_Legs_7DofArm.mbs
+F 2 : Inverse Dynamics : RNEA
+Symbolic Equations Generation...Done
+Equations list processing... 
+Selecting usefull equations 
+Building result equations list... 
+Removing useless equations... 
+17 useless equations removed 
+17 Equations removed from memory 
+Substitution of variables with a single occurence 
+Counting operations ... 
+Building hierarchical structure... 
+Equations list processing...Done 
+Printing Equations... 
+Printing Equations...Done 
+Deallocating Memory...  
+965 Equations removed from memory 
+Removing 14982 expressions... 
+0 expressions remaining in memory 
+
+--
+Done
+
+##############################################################
+#	file4.gen 11/07/2014 12:29:53    messages
+##############################################################
+ ------------------------------- 
+  ROBOTRAN - Symbolic Generator 
+  Version 6.6 (build : february 22, 2008) 
+  Pr. Paul FISETTE - 1990..1994 
+  Dr. Tony POSTIAU - 2000..2004 
+ ------------------------------- 
+Symbolic generation file : /usr/local/robotran/users/walkman/upload/file4.gen
+Project : /usr/local/robotran/users/walkman/upload/CoMan_Legs_7DofArm.mbs
+F18 : Constraints Quadratic Velocity Terms (Jdqd)
+Symbolic Equations Generation Aborted !!
+Deallocating Memory...  
+64 Equations removed from memory 
+Removing 1293 expressions... 
+0 expressions remaining in memory 
+
+--
+Done
+
+##############################################################
+#	file1b.gen 11/07/2014 12:29:55    messages
+##############################################################
+ ------------------------------- 
+  ROBOTRAN - Symbolic Generator 
+  Version 6.6 (build : february 22, 2008) 
+  Pr. Paul FISETTE - 1990..1994 
+  Dr. Tony POSTIAU - 2000..2004 
+ ------------------------------- 
+Symbolic generation file : /usr/local/robotran/users/walkman/upload/file1b.gen
+Project : /usr/local/robotran/users/walkman/upload/CoMan_Legs_7DofArm.mbs
+F 6 : Sensors Kinematical Informations (sens) 
+Symbolic Equations Generation...Done
+Equations list processing... 
+Selecting usefull equations 
+Building result equations list... 
+Removing useless equations... 
+4188 useless equations removed 
+4188 Equations removed from memory 
+Substitution of variables with a single occurence 
+Counting operations ... 
+Building hierarchical structure... 
+Equations list processing...Done 
+Printing Equations... 
+Printing Equations...Done 
+Deallocating Memory...  
+11651 Equations removed from memory 
+Removing 211241 expressions... 
+0 expressions remaining in memory 
+
+--
+Done
+
+##############################################################
+#	file10.gen 11/07/2014 12:29:55    messages
+##############################################################
+ ------------------------------- 
+  ROBOTRAN - Symbolic Generator 
+  Version 6.6 (build : february 22, 2008) 
+  Pr. Paul FISETTE - 1990..1994 
+  Dr. Tony POSTIAU - 2000..2004 
+ ------------------------------- 
+Symbolic generation file : /usr/local/robotran/users/walkman/upload/file10.gen
+Project : /usr/local/robotran/users/walkman/upload/CoMan_Legs_7DofArm.mbs
+F 7 : Point to point Link Forces (frc,trq,Flnk) 
+Symbolic Equations Generation Aborted !!
+Deallocating Memory...  
+64 Equations removed from memory 
+Removing 1293 expressions... 
+0 expressions remaining in memory 
+
+--
+Done
+
+##############################################################
+#	file0.gen 11/07/2014 12:29:56    messages
+##############################################################
+ ------------------------------- 
+  ROBOTRAN - Symbolic Generator 
+  Version 6.6 (build : february 22, 2008) 
+  Pr. Paul FISETTE - 1990..1994 
+  Dr. Tony POSTIAU - 2000..2004 
+ ------------------------------- 
+Symbolic generation file : /usr/local/robotran/users/walkman/upload/file0.gen
+Project : /usr/local/robotran/users/walkman/upload/CoMan_Legs_7DofArm.mbs
+F 1 : Direct Dynamics (Semi-Explicit formulation) : RNEA
+Generating the forward kinematics equations 
+Generating the backward dynamics equations 
+Symbolic Equations Generation...Done
+Equations list processing... 
+Selecting usefull equations 
+Building result equations list... 
+Removing useless equations... 
+342 useless equations removed 
+342 Equations removed from memory 
+Substitution of variables with a single occurence 
+Counting operations ... 
+Building hierarchical structure... 
+Equations list processing...Done 
+Printing Equations... 
+Printing Equations...Done 
+Deallocating Memory...  
+4977 Equations removed from memory 
+Removing 112499 expressions... 
+0 expressions remaining in memory 
+
+--
+Done
+
+##############################################################
+#	file6.gen 11/07/2014 12:29:56    messages
+##############################################################
+ ------------------------------- 
+  ROBOTRAN - Symbolic Generator 
+  Version 6.6 (build : february 22, 2008) 
+  Pr. Paul FISETTE - 1990..1994 
+  Dr. Tony POSTIAU - 2000..2004 
+ ------------------------------- 
+Symbolic generation file : /usr/local/robotran/users/walkman/upload/file6.gen
+Project : /usr/local/robotran/users/walkman/upload/CoMan_Legs_7DofArm.mbs
+F27 : Point to point Link3D Forces (frc,trq,Flink3D) 
+Symbolic Equations Generation Aborted !!
+Deallocating Memory...  
+64 Equations removed from memory 
+Removing 1293 expressions... 
+0 expressions remaining in memory 
+
+--
+Done
+
+##############################################################
+#	file11.gen 11/07/2014 12:29:56    messages
+##############################################################
+ ------------------------------- 
+  ROBOTRAN - Symbolic Generator 
+  Version 6.6 (build : february 22, 2008) 
+  Pr. Paul FISETTE - 1990..1994 
+  Dr. Tony POSTIAU - 2000..2004 
+ ------------------------------- 
+Symbolic generation file : /usr/local/robotran/users/walkman/upload/file11.gen
+Project : /usr/local/robotran/users/walkman/upload/CoMan_Legs_7DofArm.mbs
+F 8 : Constraints Vector (h) and Jacobian Matrix (Jac) 
+Symbolic Equations Generation Aborted !!
+Deallocating Memory...  
+64 Equations removed from memory 
+Removing 1293 expressions... 
+0 expressions remaining in memory 
+
+--
+Done
+
+##############################################################
+#	file9.gen 11/07/2014 12:29:57    messages
+##############################################################
+ ------------------------------- 
+  ROBOTRAN - Symbolic Generator 
+  Version 6.6 (build : february 22, 2008) 
+  Pr. Paul FISETTE - 1990..1994 
+  Dr. Tony POSTIAU - 2000..2004 
+ ------------------------------- 
+Symbolic generation file : /usr/local/robotran/users/walkman/upload/file9.gen
+Project : /usr/local/robotran/users/walkman/upload/CoMan_Legs_7DofArm.mbs
+F 6 : Sensors Kinematical Informations (sens) 
+Symbolic Equations Generation...Done
+Equations list processing... 
+Selecting usefull equations 
+Building result equations list... 
+Removing useless equations... 
+3699 useless equations removed 
+3699 Equations removed from memory 
+Substitution of variables with a single occurence 
+Counting operations ... 
+Building hierarchical structure... 
+Equations list processing...Done 
+Printing Equations... 
+Printing Equations...Done 
+Deallocating Memory...  
+4287 Equations removed from memory 
+Removing 73404 expressions... 
+0 expressions remaining in memory 
+
+--
+Done
+
+##############################################################
+#	file15.gen 11/07/2014 12:29:57    messages
+##############################################################
+ ------------------------------- 
+  ROBOTRAN - Symbolic Generator 
+  Version 6.6 (build : february 22, 2008) 
+  Pr. Paul FISETTE - 1990..1994 
+  Dr. Tony POSTIAU - 2000..2004 
+ ------------------------------- 
+Symbolic generation file : /usr/local/robotran/users/walkman/upload/file15.gen
+Project : /usr/local/robotran/users/walkman/upload/CoMan_Legs_7DofArm.mbs
+F 2 : Inverse Dynamics : RNEA
+Symbolic Equations Generation...Done
+Equations list processing... 
+Selecting usefull equations 
+Building result equations list... 
+Removing useless equations... 
+17 useless equations removed 
+17 Equations removed from memory 
+Substitution of variables with a single occurence 
+Counting operations ... 
+Building hierarchical structure... 
+Equations list processing...Done 
+Printing Equations... 
+Printing Equations...Done 
+Deallocating Memory...  
+965 Equations removed from memory 
+Removing 14982 expressions... 
+0 expressions remaining in memory 
+
+--
+Done
+
+##############################################################
+#	file5.gen 11/07/2014 12:29:57    messages
+##############################################################
+ ------------------------------- 
+  ROBOTRAN - Symbolic Generator 
+  Version 6.6 (build : february 22, 2008) 
+  Pr. Paul FISETTE - 1990..1994 
+  Dr. Tony POSTIAU - 2000..2004 
+ ------------------------------- 
+Symbolic generation file : /usr/local/robotran/users/walkman/upload/file5.gen
+Project : /usr/local/robotran/users/walkman/upload/CoMan_Legs_7DofArm.mbs
+F19 : External Forces
+Symbolic Equations Generation...Done
+Equations list processing... 
+Selecting usefull equations 
+Building result equations list... 
+Removing useless equations... 
+2439 useless equations removed 
+2439 Equations removed from memory 
+Substitution of variables with a single occurence 
+Counting operations ... 
+Building hierarchical structure... 
+Equations list processing...Done 
+Printing Equations... 
+Printing Equations...Done 
+Deallocating Memory...  
+2531 Equations removed from memory 
+Removing 55152 expressions... 
+0 expressions remaining in memory 
+
+--
+Done
+
+##############################################################
+#	file2.gen 11/07/2014 12:29:57    messages
+##############################################################
+ ------------------------------- 
+  ROBOTRAN - Symbolic Generator 
+  Version 6.6 (build : february 22, 2008) 
+  Pr. Paul FISETTE - 1990..1994 
+  Dr. Tony POSTIAU - 2000..2004 
+ ------------------------------- 
+Symbolic generation file : /usr/local/robotran/users/walkman/upload/file2.gen
+Project : /usr/local/robotran/users/walkman/upload/CoMan_Legs_7DofArm.mbs
+F 7 : Point to point Link Forces (frc,trq,Flnk) 
+Symbolic Equations Generation Aborted !!
+Deallocating Memory...  
+64 Equations removed from memory 
+Removing 1293 expressions... 
+0 expressions remaining in memory 
+
+--
+Done
+
+##############################################################
+#	file12.gen 11/07/2014 12:29:57    messages
+##############################################################
+ ------------------------------- 
+  ROBOTRAN - Symbolic Generator 
+  Version 6.6 (build : february 22, 2008) 
+  Pr. Paul FISETTE - 1990..1994 
+  Dr. Tony POSTIAU - 2000..2004 
+ ------------------------------- 
+Symbolic generation file : /usr/local/robotran/users/walkman/upload/file12.gen
+Project : /usr/local/robotran/users/walkman/upload/CoMan_Legs_7DofArm.mbs
+F18 : Constraints Quadratic Velocity Terms (Jdqd)
+Symbolic Equations Generation Aborted !!
+Deallocating Memory...  
+64 Equations removed from memory 
+Removing 1293 expressions... 
+0 expressions remaining in memory 
+
+--
+Done
+
+##############################################################
+#	file8.gen 11/07/2014 12:29:58    messages
+##############################################################
+ ------------------------------- 
+  ROBOTRAN - Symbolic Generator 
+  Version 6.6 (build : february 22, 2008) 
+  Pr. Paul FISETTE - 1990..1994 
+  Dr. Tony POSTIAU - 2000..2004 
+ ------------------------------- 
+Symbolic generation file : /usr/local/robotran/users/walkman/upload/file8.gen
+Project : /usr/local/robotran/users/walkman/upload/CoMan_Legs_7DofArm.mbs
+F 1 : Direct Dynamics (Semi-Explicit formulation) : RNEA
+Generating the forward kinematics equations 
+Generating the backward dynamics equations 
+Symbolic Equations Generation...Done
+Equations list processing... 
+Selecting usefull equations 
+Building result equations list... 
+Removing useless equations... 
+342 useless equations removed 
+342 Equations removed from memory 
+Substitution of variables with a single occurence 
+Counting operations ... 
+Building hierarchical structure... 
+Equations list processing...Done 
+Printing Equations... 
+Printing Equations...Done 
+Deallocating Memory...  
+4977 Equations removed from memory 
+Removing 112499 expressions... 
+0 expressions remaining in memory 
+
+--
+Done
+
+##############################################################
+#	file1.gen 11/07/2014 12:29:59    messages
+##############################################################
+ ------------------------------- 
+  ROBOTRAN - Symbolic Generator 
+  Version 6.6 (build : february 22, 2008) 
+  Pr. Paul FISETTE - 1990..1994 
+  Dr. Tony POSTIAU - 2000..2004 
+ ------------------------------- 
+Symbolic generation file : /usr/local/robotran/users/walkman/upload/file1.gen
+Project : /usr/local/robotran/users/walkman/upload/CoMan_Legs_7DofArm.mbs
+F 6 : Sensors Kinematical Informations (sens) 
+Symbolic Equations Generation...Done
+Equations list processing... 
+Selecting usefull equations 
+Building result equations list... 
+Removing useless equations... 
+3699 useless equations removed 
+3699 Equations removed from memory 
+Substitution of variables with a single occurence 
+Counting operations ... 
+Building hierarchical structure... 
+Equations list processing...Done 
+Printing Equations... 
+Printing Equations...Done 
+Deallocating Memory...  
+4287 Equations removed from memory 
+Removing 73404 expressions... 
+0 expressions remaining in memory 
+
+--
+Done
+
+##############################################################
+#	file13.gen 11/07/2014 12:30:00    messages
+##############################################################
+ ------------------------------- 
+  ROBOTRAN - Symbolic Generator 
+  Version 6.6 (build : february 22, 2008) 
+  Pr. Paul FISETTE - 1990..1994 
+  Dr. Tony POSTIAU - 2000..2004 
+ ------------------------------- 
+Symbolic generation file : /usr/local/robotran/users/walkman/upload/file13.gen
+Project : /usr/local/robotran/users/walkman/upload/CoMan_Legs_7DofArm.mbs
+F19 : External Forces
+Symbolic Equations Generation...Done
+Equations list processing... 
+Selecting usefull equations 
+Building result equations list... 
+Removing useless equations... 
+2439 useless equations removed 
+2439 Equations removed from memory 
+Substitution of variables with a single occurence 
+Counting operations ... 
+Building hierarchical structure... 
+Equations list processing...Done 
+Printing Equations... 
+Printing Equations...Done 
+Deallocating Memory...  
+2531 Equations removed from memory 
+Removing 55152 expressions... 
+0 expressions remaining in memory 
+
+--
+Done
+
+##############################################################
+#	file14.gen 11/07/2014 12:30:00    messages
+##############################################################
+ ------------------------------- 
+  ROBOTRAN - Symbolic Generator 
+  Version 6.6 (build : february 22, 2008) 
+  Pr. Paul FISETTE - 1990..1994 
+  Dr. Tony POSTIAU - 2000..2004 
+ ------------------------------- 
+Symbolic generation file : /usr/local/robotran/users/walkman/upload/file14.gen
+Project : /usr/local/robotran/users/walkman/upload/CoMan_Legs_7DofArm.mbs
+F27 : Point to point Link3D Forces (frc,trq,Flink3D) 
+Symbolic Equations Generation Aborted !!
+Deallocating Memory...  
+64 Equations removed from memory 
+Removing 1293 expressions... 
+0 expressions remaining in memory 
+
+--
+Done
