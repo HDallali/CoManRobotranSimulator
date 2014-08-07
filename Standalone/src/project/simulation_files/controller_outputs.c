@@ -7,43 +7,61 @@
 
 void controller_outputs(MBSdataStruct *MBSdata)
 {
-	int id = 0;
-	UserIOStruct *uvs;
-    uvs = MBSdata->user_IO;
+	 int id = 0;
+	// UserIOStruct *uvs;
+ //    uvs = MBSdata->user_IO;
 
-	// Front right leg
-	id = R2_FR;
+	// // Front right leg
+	// id = R2_FR;
 
-	MBSdata->q[id]    	= uvs->cvs->Outputs->q_ref[0];
-	MBSdata->qd[id]     = uvs->cvs->Outputs->qd_ref[0];
-	MBSdata->qdd[id]    = uvs->cvs->Outputs->qdd_ref[0];
+	// MBSdata->q[id]    	= uvs->cvs->Outputs->q_ref[0];
+	// MBSdata->qd[id]     = uvs->cvs->Outputs->qd_ref[0];
+	// MBSdata->qdd[id]    = uvs->cvs->Outputs->qdd_ref[0];
 
-	// Front left leg
-	id = R2_FL;
+	// // Front left leg
+	// id = R2_FL;
 
-	MBSdata->q[id]    	= uvs->cvs->Outputs->q_ref[1];
-	MBSdata->qd[id]     = uvs->cvs->Outputs->qd_ref[1];
-	MBSdata->qdd[id]    = uvs->cvs->Outputs->qdd_ref[1];
+	// MBSdata->q[id]    	= uvs->cvs->Outputs->q_ref[1];
+	// MBSdata->qd[id]     = uvs->cvs->Outputs->qd_ref[1];
+	// MBSdata->qdd[id]    = uvs->cvs->Outputs->qdd_ref[1];
 
-    //Rear Right Leg
-    id = R2_RR;
+ //    //Rear Right Leg
+ //    id = R2_RR;
 
-	MBSdata->q[id]    	= uvs->cvs->Outputs->q_ref[2];
-	MBSdata->qd[id]     = uvs->cvs->Outputs->qd_ref[2];
-	MBSdata->qdd[id]    = uvs->cvs->Outputs->qdd_ref[2];
+	// MBSdata->q[id]    	= uvs->cvs->Outputs->q_ref[2];
+	// MBSdata->qd[id]     = uvs->cvs->Outputs->qd_ref[2];
+	// MBSdata->qdd[id]    = uvs->cvs->Outputs->qdd_ref[2];
 
-    //Rear Left Leg
-    id = R2_RL;
+ //    //Rear Left Leg
+ //    id = R2_RL;
 
-	MBSdata->q[id]    	= uvs->cvs->Outputs->q_ref[3];
-	MBSdata->qd[id]     = uvs->cvs->Outputs->qd_ref[3];
-	MBSdata->qdd[id]    = uvs->cvs->Outputs->qdd_ref[3];
+	// MBSdata->q[id]    	= uvs->cvs->Outputs->q_ref[3];
+	// MBSdata->qd[id]     = uvs->cvs->Outputs->qd_ref[3];
+	// MBSdata->qdd[id]    = uvs->cvs->Outputs->qdd_ref[3];
 
     // Sending voltage to the motors:
-    uvs->Voltage[M_FR]=10.0;
-    uvs->Voltage[M_FL]=10.0;
-    uvs->Voltage[M_RR]=10.0;
-    uvs->Voltage[M_RL]=10.0;
+    // uvs->Voltage[M_FR]=10.0;
+    // uvs->Voltage[M_FL]=10.0;
+    // uvs->Voltage[M_RR]=10.0;
+    // uvs->Voltage[M_RL]=10.0;
+
+	for(id=7; id<=35; id++)
+	{
+	    MBSdata->q[id]    	= 0.0;
+		MBSdata->qd[id]     = 0.0;
+		MBSdata->qdd[id]    = 0.0;
+	}
+
+	MBSdata->q[30]    	= -1.4;  // arm in a more stable initial position
+	MBSdata->q[23]    	= 1.4;
+
+	MBSdata->q[3]    	= 0.5268;
+	MBSdata->q[1]    	= 0.;
+	MBSdata->q[2]    	= 0.;
+	MBSdata->q[4]    	= 0.;
+	MBSdata->q[5]    	= 0.;
+	MBSdata->q[6]    	= 0.;
+
 
 }
 

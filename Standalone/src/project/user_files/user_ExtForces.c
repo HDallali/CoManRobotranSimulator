@@ -86,8 +86,12 @@ double* user_ExtForces(double PxF[4], double RxF[4][4],
 	SWr[9] = dxF[3];
 
 	#ifdef GCM_MT
-		// Compute thing resultant forces and moments from the ground
-		point_contact_model(PxF, RxF, VxF, OMxF, MBSdata, tsim, ixF, dxF, SWr);
+
+		if(ixF <= 6)  //unclean and temporay way to avoid the chest force sensor
+		{
+			// Compute thing resultant forces and moments from the ground
+			point_contact_model(PxF, RxF, VxF, OMxF, MBSdata, tsim, ixF, dxF, SWr);
+		}
 	#endif
 	
 
@@ -104,10 +108,10 @@ void point_contact_model(double PxF[4], double RxF[4][4],
 	double Mx=0.0, My=0.0, Mz=0.0;
 
 
-	if(PxF[3] < 0)
+	if( ((PxF[3]<=-0.000001) && (ixF<14)) )
 	{
-		Fz = 10000.0*(-PxF[3]) - 100.0*VxF[3];
-		Fx = (-2000.9)*VxF[1];
+		Fz = 10000.0*(-PxF[3]) - 0.0*VxF[3];
+		Fx = (-0.)*VxF[1];
 	}
 
 	SWr[1] = Fx;
