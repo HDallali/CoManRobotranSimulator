@@ -12,8 +12,6 @@
 void user_Derivative(MBSdataStruct *MBSdata)
 {
 
-/*
-
     UserIOStruct *uvs;
 
     int i;
@@ -161,8 +159,6 @@ void user_Derivative(MBSdataStruct *MBSdata)
            break;
             }
     }
-
-*/
 
 }
 

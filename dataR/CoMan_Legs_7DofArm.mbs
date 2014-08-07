@@ -441,7 +441,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/asm0001_vrml_20_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/asm0001_vrml_20_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -576,7 +576,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/asm0001_vrml_19_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/asm0001_vrml_19_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -714,7 +714,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/asm0001_vrml_18_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/asm0001_vrml_18_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -854,7 +854,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/asm0001_vrml_17_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/asm0001_vrml_17_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -977,7 +977,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/asm0001_vrml_16_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/asm0001_vrml_16_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -1185,7 +1185,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/asm0001_vrml_15_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/asm0001_vrml_15_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -1308,7 +1308,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/asm0001_vrml_06_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/asm0001_vrml_06_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -1444,7 +1444,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/asm0001_vrml_05_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/asm0001_vrml_05_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -1582,7 +1582,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/asm0001_vrml_04_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/asm0001_vrml_04_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -1719,7 +1719,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/asm0001_vrml_03_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/asm0001_vrml_03_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -1841,7 +1841,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/asm0001_vrml_02_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/asm0001_vrml_02_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -2049,7 +2049,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/asm0001_vrml_01_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/asm0001_vrml_01_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -2184,7 +2184,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/asm0001_vrml_09_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/asm0001_vrml_09_prt.wrl</url>
             </inline>
             <inline>
               <name>New_Shape</name>
@@ -2205,7 +2205,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/asm0001_vrml_08_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/asm0001_vrml_08_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -2507,7 +2507,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/asm0001_vrml_10_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/asm0001_vrml_10_prt.wrl</url>
             </inline>
             <inline>
               <name>New_Shape</name>
@@ -2528,7 +2528,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/COMAN_head.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/COMAN_head.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -2654,7 +2654,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/asm0001_vrml_24_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/asm0001_vrml_24_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -2792,7 +2792,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/asm0001_vrml_23_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/asm0001_vrml_23_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -2928,7 +2928,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/asm0001_vrml_22_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/asm0001_vrml_22_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -3063,7 +3063,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 1/1020_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 1/1020_prt.wrl</url>
             </inline>
             <inline>
               <name>New_Shape</name>
@@ -3084,7 +3084,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 1/802-01_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 1/802-01_prt.wrl</url>
             </inline>
             <inline>
               <name>New_Shape</name>
@@ -3105,7 +3105,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 1/0803_01_01_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 1/0803_01_01_prt.wrl</url>
             </inline>
             <inline>
               <name>New_Shape</name>
@@ -3126,7 +3126,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 1/1021_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 1/1021_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -3242,7 +3242,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 2/second_cover_p1_prt2.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 2/second_cover_p1_prt2.wrl</url>
             </inline>
             <inline>
               <name>New_Shape</name>
@@ -3263,7 +3263,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 2/765_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 2/765_prt.wrl</url>
             </inline>
             <inline>
               <name>New_Shape</name>
@@ -3284,7 +3284,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 2/765_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 2/765_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -3381,7 +3381,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 3/mp0781_01_01_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 3/mp0781_01_01_prt.wrl</url>
             </inline>
             <inline>
               <name>New_Shape</name>
@@ -3402,7 +3402,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 3/mp0782_01_01_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 3/mp0782_01_01_prt.wrl</url>
             </inline>
             <inline>
               <name>New_Shape</name>
@@ -3423,7 +3423,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 3/mp0784_01_01_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 3/mp0784_01_01_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -3522,7 +3522,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 4/mp1024_01_01_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 4/mp1024_01_01_prt.wrl</url>
             </inline>
             <inline>
               <name>New_Shape</name>
@@ -3543,7 +3543,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 4/mp1022_01_01_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 4/mp1022_01_01_prt.wrl</url>
             </inline>
             <inline>
               <name>New_Shape</name>
@@ -3564,7 +3564,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 4/mp1023_01_01_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 4/mp1023_01_01_prt.wrl</url>
             </inline>
             <inline>
               <name>New_Shape</name>
@@ -3585,7 +3585,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 4/mp0789_01_02_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 4/mp0789_01_02_prt.wrl</url>
             </inline>
             <box>
               <name>New_Shape</name>
@@ -3656,7 +3656,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/LeftFist.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/LeftFist.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -3782,7 +3782,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/asm0001_vrml_14_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/asm0001_vrml_14_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -3917,7 +3917,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/asm0001_vrml_13_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/asm0001_vrml_13_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -4055,7 +4055,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/asm0001_vrml_12_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/asm0001_vrml_12_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -4190,7 +4190,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 1/802-01_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 1/802-01_prt.wrl</url>
             </inline>
             <inline>
               <name>New_Shape</name>
@@ -4211,7 +4211,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 1/0803_01_01_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 1/0803_01_01_prt.wrl</url>
             </inline>
             <inline>
               <name>New_Shape</name>
@@ -4232,7 +4232,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 1/1021_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 1/1021_prt.wrl</url>
             </inline>
             <inline>
               <name>New_Shape</name>
@@ -4253,7 +4253,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 1/1020_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 1/1020_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -4369,7 +4369,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 2/second_cover_p1_prt2.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 2/second_cover_p1_prt2.wrl</url>
             </inline>
             <inline>
               <name>New_Shape</name>
@@ -4390,7 +4390,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 2/765_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 2/765_prt.wrl</url>
             </inline>
             <inline>
               <name>New_Shape</name>
@@ -4411,7 +4411,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 2/765_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 2/765_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -4508,7 +4508,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 3/mp0781_01_01_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 3/mp0781_01_01_prt.wrl</url>
             </inline>
             <inline>
               <name>New_Shape</name>
@@ -4529,7 +4529,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 3/mp0782_01_01_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 3/mp0782_01_01_prt.wrl</url>
             </inline>
             <inline>
               <name>New_Shape</name>
@@ -4550,7 +4550,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 3/mp0784_01_01_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 3/mp0784_01_01_prt.wrl</url>
             </inline>
           </x3D_shapes>
         </x3D>
@@ -4649,7 +4649,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 4/mp1024_01_01_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 4/mp1024_01_01_prt.wrl</url>
             </inline>
             <inline>
               <name>New_Shape</name>
@@ -4670,7 +4670,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 4/mp1022_01_01_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 4/mp1022_01_01_prt.wrl</url>
             </inline>
             <inline>
               <name>New_Shape</name>
@@ -4691,7 +4691,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 4/mp1023_01_01_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 4/mp1023_01_01_prt.wrl</url>
             </inline>
             <inline>
               <name>New_Shape</name>
@@ -4712,7 +4712,7 @@
               </rotation>
               <color R="0" G="0" B="0" />
               <transparency>0.0</transparency>
-              <url>PRJPATH/CoMan_Legs_7DofArm/animationR/vrml/Part 4/mp0789_01_02_prt.wrl</url>
+              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/Part 4/mp0789_01_02_prt.wrl</url>
             </inline>
             <box>
               <name>New_Shape</name>

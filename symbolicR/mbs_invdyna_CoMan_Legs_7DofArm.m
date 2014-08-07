@@ -11,7 +11,7 @@
 %	1348 Louvain-la-Neuve 
 %	http://www.robotran.be// 
 %
-%	==> Generation Date : Fri Jul 11 12:29:53 2014
+%	==> Generation Date : Wed Aug  6 17:32:23 2014
 %
 %	==> Project name : CoMan_Legs_7DofArm
 %	==> using XML input file 
@@ -22,8 +22,8 @@
 %	==> Flops complexity : 6772
 %
 %	==> All Parameter Symbols included
-%	==> Generation Time :  0.080 seconds
-%	==> Post-Processing :  0.060 seconds
+%	==> Generation Time :  0.090 seconds
+%	==> Post-Processing :  0.040 seconds
 %
 %-------------------------------------------------------------
 %

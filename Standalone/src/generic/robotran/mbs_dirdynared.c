@@ -274,7 +274,6 @@ int dirdynared(LocalDataStruct *lds,MBSdataStruct *s)
 		lds->Fr[i] = -(lds->Fruc[i] + term);
 	}
 
-
 	// calcul des accelerations reduites : 'resolution' du systeme ODE = Mr*qddu = Fr;
 	choldc(lds->Mr,s->nqu,lds->p_Mr);
 	cholsl(lds->Mr,s->nqu,lds->p_Mr,lds->Fr,s->qddu);

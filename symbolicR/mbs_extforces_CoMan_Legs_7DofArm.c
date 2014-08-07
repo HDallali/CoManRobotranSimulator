@@ -11,7 +11,7 @@
 //	1348 Louvain-la-Neuve 
 //	http://www.robotran.be// 
 //
-//	==> Generation Date : Fri Jul 11 12:29:59 2014
+//	==> Generation Date : Wed Aug  6 17:32:29 2014
 //
 //	==> Project name : CoMan_Legs_7DofArm
 //	==> using XML input file 

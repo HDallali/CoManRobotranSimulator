@@ -36,7 +36,6 @@ Shape {
 appearance DEF TEX__10 Appearance {
 material Material {}
 texture ImageTexture {
-url ["_10.jpg"]
 }
 }
 geometry IndexedFaceSet {
@@ -41562,7 +41561,6 @@ Shape {
 appearance DEF TEX__14 Appearance {
 material Material {}
 texture ImageTexture {
-url ["_14.jpg"]
 }
 }
 geometry IndexedFaceSet {

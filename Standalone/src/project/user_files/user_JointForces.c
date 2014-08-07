@@ -11,8 +11,7 @@
 
 double* user_JointForces(MBSdataStruct *MBSdata, double tsim)
 {
-    /*
-     *
+    
     int i;
     double K = 0.0;
     double rho = MBSdata->user_IO->actuatorsStruct->acs[0]->GearRatio;
@@ -21,10 +20,10 @@ double* user_JointForces(MBSdataStruct *MBSdata, double tsim)
     double Ks = MBSdata->user_IO->actuatorsStruct->acs[0]->SeriesSpring;
     double Ds = MBSdata->user_IO->actuatorsStruct->acs[0]->SeriesDamping;
 
-	MBSdata->Qq[Spring_FR] = -K * MBSdata->q[Spring_FR];
-	MBSdata->Qq[Spring_FL] = -K * MBSdata->q[Spring_FL];
-	MBSdata->Qq[Spring_RR] = -K * MBSdata->q[Spring_RR];
-	MBSdata->Qq[Spring_RL] = -K * MBSdata->q[Spring_RL];
+	// MBSdata->Qq[Spring_FR] = -K * MBSdata->q[Spring_FR];
+	// MBSdata->Qq[Spring_FL] = -K * MBSdata->q[Spring_FL];
+	// MBSdata->Qq[Spring_RR] = -K * MBSdata->q[Spring_RR];
+	// MBSdata->Qq[Spring_RL] = -K * MBSdata->q[Spring_RL];
 
 
     // Actuated Joints:
@@ -34,10 +33,10 @@ double* user_JointForces(MBSdataStruct *MBSdata, double tsim)
         switch (Act_order) {
           case 1:
             justElectrical:
-//            MBSdata->Qq[R2_FR] = rho* KT * MBSdata->ux[M_FR];
-//            MBSdata->Qq[R2_FL] = rho* KT * MBSdata->ux[M_FL];
-//            MBSdata->Qq[R2_RR] = rho* KT * MBSdata->ux[M_RR];
-//            MBSdata->Qq[R2_RL] = rho* KT * MBSdata->ux[M_RL];
+            MBSdata->Qq[R2_FR] = rho* KT * MBSdata->ux[M_FR];
+            MBSdata->Qq[R2_FL] = rho* KT * MBSdata->ux[M_FL];
+            MBSdata->Qq[R2_RR] = rho* KT * MBSdata->ux[M_RR];
+            MBSdata->Qq[R2_RL] = rho* KT * MBSdata->ux[M_RL];
           break;
 
           case 2:
@@ -61,14 +60,6 @@ double* user_JointForces(MBSdataStruct *MBSdata, double tsim)
           break;
         }
     }
-
-    for (i=0; i<=35; i++)
-    {
-        printf("The joint postions are %2.4f \n\n", MBSdata->q[i]);
-        printf("The joint torques are %2.4f \n\n", MBSdata->Qq[i]);
-    }
-*/
-
 
    	return MBSdata->Qq;
 
