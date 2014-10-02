@@ -54,7 +54,6 @@
         </base_body>
       </x2D>
       <x3D>
-        <x3D_frame />
         <x3D_shapes>
           <box>
             <name>New_Shape</name>
@@ -96,7 +95,12 @@
       <joint>
         <jointname>Joint_0</jointname>
         <type>T1</type>
-        <nature>independent</nature>
+        <nature>driven</nature>
+        <symbols>
+          <q />
+          <qd />
+          <qdd />
+        </symbols>
         <graphics>
           <x2D>
             <position>
@@ -110,7 +114,12 @@
       <joint>
         <jointname>Joint_1</jointname>
         <type>T2</type>
-        <nature>independent</nature>
+        <nature>driven</nature>
+        <symbols>
+          <q />
+          <qd />
+          <qdd />
+        </symbols>
         <graphics>
           <x2D>
             <position>
@@ -124,10 +133,15 @@
       <joint>
         <jointname>Joint_2</jointname>
         <type>T3</type>
-        <nature>independent</nature>
+        <nature>driven</nature>
         <initialvalue>
           <q>0.54</q>
         </initialvalue>
+        <symbols>
+          <q />
+          <qd />
+          <qdd />
+        </symbols>
         <graphics>
           <x2D>
             <position>
@@ -141,7 +155,12 @@
       <joint>
         <jointname>Joint_3</jointname>
         <type>R1</type>
-        <nature>independent</nature>
+        <nature>driven</nature>
+        <symbols>
+          <q />
+          <qd />
+          <qdd />
+        </symbols>
         <graphics>
           <x2D>
             <position>
@@ -155,7 +174,12 @@
       <joint>
         <jointname>Joint_4</jointname>
         <type>R2</type>
-        <nature>independent</nature>
+        <nature>driven</nature>
+        <symbols>
+          <q />
+          <qd />
+          <qdd />
+        </symbols>
         <graphics>
           <x2D>
             <position>
@@ -169,7 +193,12 @@
       <joint>
         <jointname>Joint_5</jointname>
         <type>R3</type>
-        <nature>independent</nature>
+        <nature>driven</nature>
+        <symbols>
+          <q />
+          <qd />
+          <qdd />
+        </symbols>
         <graphics>
           <x2D>
             <position>
@@ -2064,8 +2093,13 @@
       <joint>
         <jointname>WaistLat</jointname>
         <type>R1</type>
-        <nature>independent</nature>
+        <nature>driven</nature>
         <actuated />
+        <symbols>
+          <q />
+          <qd />
+          <qdd />
+        </symbols>
         <graphics>
           <x2D>
             <position>
@@ -2220,8 +2254,13 @@
       <joint>
         <jointname>WaistSag</jointname>
         <type>R2</type>
-        <nature>independent</nature>
+        <nature>driven</nature>
         <actuated />
+        <symbols>
+          <q />
+          <qd />
+          <qdd />
+        </symbols>
         <graphics>
           <x2D>
             <position>
@@ -2331,8 +2370,13 @@
       <joint>
         <jointname>WaistYaw</jointname>
         <type>R3</type>
-        <nature>independent</nature>
+        <nature>driven</nature>
         <actuated />
+        <symbols>
+          <q />
+          <qd />
+          <qdd />
+        </symbols>
         <graphics>
           <x2D>
             <position>
@@ -2543,8 +2587,13 @@
       <joint>
         <jointname>RShSag</jointname>
         <type>R2</type>
-        <nature>independent</nature>
+        <nature>driven</nature>
         <actuated />
+        <symbols>
+          <q />
+          <qd />
+          <qdd />
+        </symbols>
         <graphics>
           <x2D>
             <position>
@@ -2669,8 +2718,13 @@
       <joint>
         <jointname>RShLat</jointname>
         <type>R1</type>
-        <nature>independent</nature>
+        <nature>driven</nature>
         <actuated />
+        <symbols>
+          <q />
+          <qd />
+          <qdd />
+        </symbols>
         <graphics>
           <x2D>
             <position>
@@ -3637,27 +3691,6 @@
                 <z>0.025</z>
               </size>
             </box>
-            <inline>
-              <name>New_Shape</name>
-              <position>
-                <x>1.0</x>
-                <y>1.0</y>
-                <z>1.0</z>
-              </position>
-              <scale>
-                <x>0.001</x>
-                <y>0.001</y>
-                <z>0.001</z>
-              </scale>
-              <rotation>
-                <x>0.0</x>
-                <y>0.0</y>
-                <z>0.0</z>
-              </rotation>
-              <color R="0" G="0" B="0" />
-              <transparency>0.0</transparency>
-              <url>PRJPATH/CoManRobotranSimulator/animationR/vrml/LeftFist.wrl</url>
-            </inline>
           </x3D_shapes>
         </x3D>
       </graphics>
@@ -5317,7 +5350,7 @@
           <z>0.0</z>
         </direction>
       </directionalLight>
-      <spotLight>
+      <pointLight>
         <name>New_Light</name>
         <joint>base</joint>
         <active />
@@ -5329,16 +5362,9 @@
         <attenuation>
           <cst>0.0</cst>
           <lin>1.0</lin>
-          <quad>0.0</quad>
+          <quad>2.0</quad>
         </attenuation>
-        <direction>
-          <x>0.0</x>
-          <y>0.0</y>
-          <z>-1.0</z>
-        </direction>
-        <angle>3.1415927</angle>
-        <concentration>0.0</concentration>
-      </spotLight>
+      </pointLight>
       <directionalLight>
         <name>New_Light</name>
         <joint>base</joint>
