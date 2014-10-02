@@ -33,9 +33,9 @@ void get_screen_sdl_functions(double *y_vec, MBSdataStruct *MBSdata)
      * -> Assigns the variable to plot
      */
 
-     y_vec[0] = MBSdata->user_IO->refs[M_FR];
-     y_vec[1] = MBSdata->ux[M_FR];
-     y_vec[2] = MBSdata->Qq[R2_FR];
+     y_vec[0] = MBSdata->user_IO->refs[Waist_m];
+     y_vec[1] = MBSdata->Qq[Waist_m];
+     y_vec[2] = MBSdata->q[Waist_m];
     
 }
 
@@ -66,13 +66,13 @@ Screen_sdl* configure_screen_sdl(int init_t_sec, int init_t_usec)
 
 	// number of curves
 
-	nb_curves        = 1; // curves to plot
-	nb_legend_curves = 2; // legends (with scaling) to show
+    nb_curves        = 3; // curves to plot
+    nb_legend_curves = 3; // legends (with scaling) to show
 
 	// initial y bounds
 
-	y_min_init = -1.0; // y min value
-	y_max_init =  1.0; // y max value
+    y_min_init = -1.5; // y min value
+    y_max_init =  1.5; // y max value
 
 	// labels of the curves
 	label_curves[0] = " ";

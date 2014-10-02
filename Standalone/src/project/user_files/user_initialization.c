@@ -9,6 +9,7 @@
 
 #include "simu_def.h"
 
+int i;
 // User parameters initialization
 #ifndef CMEX
 void user_initialization(SimStruct *S, MBSdataStruct *MBSdata, LocalDataStruct *lds)
@@ -17,6 +18,9 @@ void user_initialization(SimStruct *S, MBSdataStruct *MBSdata, LocalDataStruct *
 int user_initialization(MBSdataStruct *MBSdata, LocalDataStruct *lds)
 #endif
 {
+
+    for (i=0; i<=29; i++)
+         MBSdata->ux[i]= MBSdata->q[i+6];
 
 	// inputs of the controller
 	controller_inputs(MBSdata);

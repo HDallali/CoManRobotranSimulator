@@ -60,14 +60,14 @@ void init_SEActuatorStruct(SEActuatorStruct **acs)
         switch (type) {
           case 1:
             (*acs[i]).Resistance=0.70;
-            (*acs[i]).GearRatio=10;
+            (*acs[i]).GearRatio=100;
             (*acs[i]).Damping=1;
             (*acs[i]).Inductance=0.000265;
             (*acs[i]).Inertia= 0.01;
             (*acs[i]).Kbemf= 0.00261;
-            (*acs[i]).SeriesDamping=0.1;
+            (*acs[i]).SeriesDamping=0.0;
             (*acs[i]).SeriesSpring=1000.0;
-            (*acs[i]).TrqConst=0.00261;
+            (*acs[i]).TrqConst=1.0;
             (*acs[i]).Isaturation=50;
             (*acs[i]).Vsaturation=40;
             //sprintf((*acs[i]).type,"Medium");

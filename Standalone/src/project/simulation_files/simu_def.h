@@ -41,10 +41,10 @@
 
 
 // motor indices
-#define  Waist_m 1
-#define  DWL_m   2
-#define  DWS_m 	 3
-#define  M_RL 4
+#define  Waist_m 13
+#define  DWL_m   14
+#define  DWS_m 	 15
+//#define  M_RL 4
 
 #define  M_FR Waist_m
 #define  M_FL DWL_m

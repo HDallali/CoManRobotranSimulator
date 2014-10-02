@@ -24,6 +24,7 @@
 #include "MBSdataStruct.h"
 #include "simu_def.h"
 
+#include <common.h>
 
 const double ROBOT_POSITION_TOLERANCE = 0.9;
 

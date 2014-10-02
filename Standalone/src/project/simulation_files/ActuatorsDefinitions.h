@@ -1,5 +1,0 @@
-
-
-#define NB_ACTUATED_JOINTS_TMP 4
-
-#define ACTUATOR_TYPE_ARRAY {1, 1, 1, 1}

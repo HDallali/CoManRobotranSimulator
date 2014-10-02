@@ -15,7 +15,7 @@
 #include "SimbodyStruct.h"
 #include "ActuatorStruct.h"
 
-#define NB_ACTUATED_JOINTS 4  //to be removed!
+#define NB_ACTUATED_JOINTS 29  //to be removed!
 
 /*--------------------*/
 #endif

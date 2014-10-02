@@ -19,14 +19,14 @@ double* user_JointForces(MBSdataStruct *MBSdata, double tsim)
     double Ks = MBSdata->user_IO->actuatorsStruct->acs[0]->SeriesSpring;
     double Ds = MBSdata->user_IO->actuatorsStruct->acs[0]->SeriesDamping;
 
-
+    double *ref = MBSdata->user_IO->refs;
 
     // default no actuator model
     for (i=1; i<=29; i++)
-            MBSdata->Qq[i+6]=-200*MBSdata->q[i+6]-10*MBSdata->qd[i+6];
+        MBSdata->Qq[i+6]=-200*(MBSdata->q[i+6]-0.0)-10*MBSdata->qd[i+6];
 
-    MBSdata->Qq[30]=-500*(MBSdata->q[30]+1.4) -10*MBSdata->qd[30];
-    MBSdata->Qq[23]=-500*(MBSdata->q[23]-1.4) -10*MBSdata->qd[23];
+    MBSdata->Qq[30]=-200*(MBSdata->q[30]+1.4) -10*MBSdata->qd[30];
+    MBSdata->Qq[23]=-200*(MBSdata->q[23]-1.4) -10*MBSdata->qd[23];
 
 
     // Actuated Joints:
@@ -39,7 +39,6 @@ double* user_JointForces(MBSdataStruct *MBSdata, double tsim)
             MBSdata->Qq[R2_FR] = rho* KT * MBSdata->ux[M_FR];
             MBSdata->Qq[R2_FL] = rho* KT * MBSdata->ux[M_FL];
             MBSdata->Qq[R2_RR] = rho* KT * MBSdata->ux[M_RR];
-            //MBSdata->Qq[R2_RL] = rho* KT * MBSdata->ux[M_RL];
           break;
 
           case 2:
@@ -48,7 +47,6 @@ double* user_JointForces(MBSdataStruct *MBSdata, double tsim)
             MBSdata->Qq[R2_FR]=Ks*(MBSdata->ux[M_FR]-MBSdata->q[R2_FR])+Ds*(MBSdata->uxd[M_FR]-MBSdata->qd[R2_FR]);
             MBSdata->Qq[R2_FL]=Ks*(MBSdata->ux[M_FL]-MBSdata->q[R2_FL])+Ds*(MBSdata->uxd[M_FL]-MBSdata->qd[R2_FL]);
             MBSdata->Qq[R2_RR]=Ks*(MBSdata->ux[M_RR]-MBSdata->q[R2_RR])+Ds*(MBSdata->uxd[M_RR]-MBSdata->qd[R2_RR]);
-            //MBSdata->Qq[R2_RL]=Ks*(MBSdata->ux[M_RL]-MBSdata->q[R2_RL])+Ds*(MBSdata->uxd[M_RL]-MBSdata->qd[R2_RL]);
 
             
           break;

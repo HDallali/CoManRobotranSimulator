@@ -9,7 +9,7 @@ include_directories(${YARP_INCLUDE_DIRS})
 set(robotranMotionControlPlugin_source src/RobotranMotionControlBoard.cpp)
 set(robotranForceTorquePlugin_source src/ForceTorqueDriver.cpp)
 
-set(robotranMotionControlPlugin_header include/RobotranMotionControlBoard.h)
+set(robotranMotionControlPlugin_header include/RobotranMotionControlBoard.h include/common.h)
 set(robotranForceTorquePlugin_header include/ForceTorqueDriver.h)
 
 set(ROBOTRAN_PLUGINS_SRC    ../robotran_plugins/yarp_files.h
