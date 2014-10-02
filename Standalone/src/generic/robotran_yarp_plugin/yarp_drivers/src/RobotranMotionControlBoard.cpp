@@ -128,7 +128,7 @@ bool RobotranYarpMotionControl::open(yarp::os::Searchable& config)
     controlMode.resize(numberOfJoints);
     for(int i=0; i< numberOfJoints; i++)
     {
-        controlMode[i] = POSITION_CTRL;  //by default init to pos control
+        controlMode[i] = VOCAB_CM_POSITION;  //by default init to pos control
     }
 
 
@@ -156,7 +156,7 @@ bool RobotranYarpMotionControl::open(yarp::os::Searchable& config)
     std::cout << "\nUSING WRAPPERS!\n" << std::endl;
 
     yarp::dev::IMultipleWrapper* iWrap;
-    yarp::dev::PolyDriver* wrap = new yarp::dev::PolyDriver();
+    wrap = new yarp::dev::PolyDriver();
     yarp::os::Property wrapProp;
     wrapProp.fromString(config.toString());
     yarp::os::ConstString partName, robotName, wholeName;
@@ -210,6 +210,8 @@ bool RobotranYarpMotionControl::open(yarp::os::Searchable& config)
 bool RobotranYarpMotionControl::close()
 {
     std::cout << "RobotranYarpMotionControl::close" << std::endl;
+    if(wrap)
+        wrap->close();
     return true;
 }
 
@@ -437,7 +439,7 @@ bool RobotranYarpMotionControl::velocityMove(const double *sp) //NOT TESTED
 
 bool RobotranYarpMotionControl::setPositionMode(int j)  //TO BE TESTED
 {
-    controlMode[j] = POSITION_CTRL;
+    controlMode[j] = VOCAB_CM_POSITION;// POSITION_CTRL;
 }
 
 /////////////////////////////////////
@@ -458,7 +460,8 @@ bool RobotranYarpMotionControl::getEncoders(double *encs) //TO BE TESTED
 {
     std::cout << "robotran motionControl: getEncoders " << std::endl;
     if (!encs) return false;
-    for (unsigned int i = 0; i < numberOfJoints; ++i) {
+    for (unsigned int i = 0; i < numberOfJoints; ++i)
+    {
         encs[i] = pos[i];  //should we just use memcopy here?
     }
     return true;
@@ -466,13 +469,6 @@ bool RobotranYarpMotionControl::getEncoders(double *encs) //TO BE TESTED
 
 bool RobotranYarpMotionControl::getEncodersTimed(double *encs, double *time) //TO BE TESTED
 {
-    static int getEncodersTimedCounter = 0;
-    if((getEncodersTimedCounter % 100) == 0)
-    {
-        std::cout << "robotran motionControl: getEncodersTimed " << std::endl;
-    }
-    getEncodersTimedCounter++;
-return true;
     if (!encs) return false;
     for (unsigned int i = 0; i <numberOfJoints; ++i) {
         encs[i] = pos[i];  //should we just use memcopy here?
