@@ -33,7 +33,9 @@ void get_screen_sdl_functions(double *y_vec, MBSdataStruct *MBSdata)
      * -> Assigns the variable to plot
      */
 
-     y_vec[0] = 0;
+     y_vec[0] = MBSdata->user_IO->refs[M_FR];
+     y_vec[1] = MBSdata->ux[M_FR];
+     y_vec[2] = MBSdata->Qq[R2_FR];
     
 }
 

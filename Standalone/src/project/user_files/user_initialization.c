@@ -21,7 +21,8 @@ int user_initialization(MBSdataStruct *MBSdata, LocalDataStruct *lds)
 	// inputs of the controller
 	controller_inputs(MBSdata);
 
-
+    // init GCM (Ground Contact Model)
+    init_GCM(MBSdata);
 
 	//  controller initialization
     controller_init(MBSdata->user_IO->cvs);

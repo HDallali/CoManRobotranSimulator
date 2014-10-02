@@ -18,15 +18,77 @@
 
 # NONE
 
+% Ground contact model (GCM)
+GRF_r             double   3
+GRF_l             double   3
+GRM_r             double   3
+GRM_l             double   3
+GRF_r_dist        double   3
+GRF_l_dist        double   3
+GRM_r_dist        double   3
+GRM_l_dist        double   3
+mu_grf            double   1
+F_left_leg        double   1
+F_right_leg       double   1
+
+Msize_GCM         int      1
+Msize_GCM_prox    int      1
+Msize_GCM_dist    int      1
+
+rn_left_x         double   200
+rn_left_y         double   200
+rn_left_z         double   200
+rn_right_x        double   200
+rn_right_y        double   200
+rn_right_z        double   200
+temp_grfx_left    double   200
+temp_grfy_left    double   200
+temp_grfx_right   double   200
+temp_grfy_right   double   200
+flag_grfx_left    int      200
+flag_grfy_left    int      200
+flag_grfx_right   int      200
+flag_grfy_right   int      200
+
+rn_left_prox_x         double   150
+rn_left_prox_y         double   150
+rn_left_prox_z         double   150
+rn_right_prox_x        double   150
+rn_right_prox_y        double   150
+rn_right_prox_z        double   150
+temp_grfx_left_prox    double   150
+temp_grfy_left_prox    double   150
+temp_grfx_right_prox   double   150
+temp_grfy_right_prox   double   150
+flag_grfx_left_prox    int      150
+flag_grfy_left_prox    int      150
+flag_grfx_right_prox   int      150
+flag_grfy_right_prox   int      150
+
+rn_left_dist_x         double   60
+rn_left_dist_y         double   60
+rn_left_dist_z         double   60
+rn_right_dist_x        double   60
+rn_right_dist_y        double   60
+rn_right_dist_z        double   60
+temp_grfx_left_dist    double   60
+temp_grfy_left_dist    double   60
+temp_grfx_right_dist   double   60
+temp_grfy_right_dist   double   60
+flag_grfx_left_dist    int      60
+flag_grfy_left_dist    int      60
+flag_grfx_right_dist   int      60
+flag_grfy_right_dist   int      60
+
 # IN
 
 # OUT
 tsim_out1   double   1
 output1   double   29
 output2   double   29
-Voltage   double   6
-refs   double   6
-servo_type   int   6  
+Voltage   double   29
+refs   double   29
+servo_type   int   29  
 
 # STRUCT
 cvs   ControllerStruct   1 

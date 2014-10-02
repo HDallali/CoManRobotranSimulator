@@ -92,8 +92,7 @@ if (FLAG_YARP)
     set(SOURCE_FILES_CPP ${SOURCE_FILES_CPP} ${ROBOTRAN_PLUGINS_SRC})
     set(SOURCE_FILES_C ${SOURCE_FILES_C} ${ROBOTRAN_PLUGINS_SRC})
 
-message(INFO " SOURCE_FILES_CPP is ${SOURCE_FILES_CPP} !!!!!!!!!!!!!!!!!!!")
-message(INFO " SOURCE_FILES_C is ${SOURCE_FILES_C} !!!!!!!!!!!!!!!!!!!")
+
 
     TARGET_LINK_LIBRARIES(${Executable} ${YARP_LIBRARIES} ${ACE_LIBRARIES} robotranMotionControlPlugin robotranForceTorquePlugin)
 

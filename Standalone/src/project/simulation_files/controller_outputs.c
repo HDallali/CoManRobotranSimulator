@@ -45,22 +45,22 @@ void controller_outputs(MBSdataStruct *MBSdata)
     // uvs->Voltage[M_RR]=10.0;
     // uvs->Voltage[M_RL]=10.0;
 
-	for(id=7; id<=35; id++)
-	{
-	    MBSdata->q[id]    	= 0.0;
-		MBSdata->qd[id]     = 0.0;
-		MBSdata->qdd[id]    = 0.0;
-	}
+//	for(id=7; id<=35; id++)
+//	{
+//	    MBSdata->q[id]    	= 0.0;
+//		MBSdata->qd[id]     = 0.0;
+//		MBSdata->qdd[id]    = 0.0;
+//	}
 
-	MBSdata->q[30]    	= -1.4;  // arm in a more stable initial position
-	MBSdata->q[23]    	= 1.4;
+//    MBSdata->q[30]    	= -1.4;  // arm in a more stable initial position
+//    MBSdata->q[23]    	= 1.4;
 
-	MBSdata->q[3]    	= 0.5268;
-	MBSdata->q[1]    	= 0.;
-	MBSdata->q[2]    	= 0.;
-	MBSdata->q[4]    	= 0.;
-	MBSdata->q[5]    	= 0.;
-	MBSdata->q[6]    	= 0.;
+    //MBSdata->q[3]    	= 0.5268;
+    //MBSdata->q[1]    	= 0.;
+    //MBSdata->q[2]    	= 0.;
+//        MBSdata->q[4]    	= 0.;
+//        MBSdata->q[5]    	= 0.;
+//        MBSdata->q[6]    	= 0.;
 
 
 }
