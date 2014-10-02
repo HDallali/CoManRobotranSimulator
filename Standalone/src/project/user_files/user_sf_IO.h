@@ -26,9 +26,9 @@ typedef struct UserIOStruct
     double tsim_out1;
     double output1[29+1];
     double output2[29+1];
-    double Voltage[6+1];
-    double refs[6+1];
-    int servo_type[6+1];
+    double Voltage[29+1];
+    double refs[29+1];
+    int servo_type[29+1];
     ControllerStruct *cvs;
     SimbodyStruct *simbodyStruct;
     ActuatorsStruct *actuatorsStruct;

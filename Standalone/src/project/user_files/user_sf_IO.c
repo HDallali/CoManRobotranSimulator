@@ -45,19 +45,19 @@ UserIOStruct * initUserIO(MBSdataStruct *s)
     }
 
     // Voltage //
-    for (i=1;i<=6;i++)
+    for (i=1;i<=29;i++)
     {
         uvs->Voltage[i] = 0.0;
     }
 
     // refs //
-    for (i=1;i<=6;i++)
+    for (i=1;i<=29;i++)
     {
         uvs->refs[i] = 0.0;
     }
 
     // servo_type //
-    for (i=1;i<=6;i++)
+    for (i=1;i<=29;i++)
     {
         uvs->servo_type[i] = 0;
     }
