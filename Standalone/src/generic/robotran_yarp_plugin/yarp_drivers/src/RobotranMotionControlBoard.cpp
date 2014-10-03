@@ -26,7 +26,7 @@ void RobotranYarpMotionControl::updateToYarp(const MBSdataStruct * MBSdata)
     //update the vector pos
     for(unsigned int i=0; i<pos.size();i++)
     {
-        pos[i] = convertRadiansToDegrees(MBSdata->q[jointID_map[i]]);
+        pos[i] = encoder[i] * convertRadiansToDegrees(MBSdata->q[jointID_map[i]]);
     }
 
     //update time
@@ -39,7 +39,7 @@ void RobotranYarpMotionControl::updateFromYarp(MBSdataStruct *MBSdata)
     for(unsigned int i=0; i<numberOfJoints; i++)
     {
         //std::cout << "index " << i << " ref " << desiredPosition[i] << std::endl;
-        MBSdata->user_IO->refs[motorID_map[i]]  = convertDegreesToRadians(desiredPosition[i]);
+        MBSdata->user_IO->refs[motorID_map[i]]  = encoder[i] * convertDegreesToRadians(desiredPosition[i]);
         MBSdata->user_IO->servo_type[motorID_map[i]] = controlMode[i];
     }
 
@@ -105,6 +105,21 @@ bool RobotranYarpMotionControl::open(yarp::os::Searchable& config)
         motorID_map[i] = motorID.get(i+1).asInt();
         printf("motorID_map[%d] = %d \n", i, motorID_map[i]);
     }
+
+    // encoder sign and value
+    if(!config.check("encoder"))
+    {
+        std::cout << "robotran encoder joints values not specified in config file " << std::endl;
+        return false;
+    }
+    yarp::os::Bottle & encoderBottle = config.findGroup("encoder");
+    encoder.resize(numberOfJoints);
+    for(int i=0; i< encoderBottle.size()-1; i++)
+    {
+        encoder[i] = encoderBottle.get(i+1).asInt();
+        printf("encoder[%d] = %d \n", i, encoder[i]);
+    }
+
 
     // Get max/min joints limits
     if(!config.check("max") || !config.check("min"))
