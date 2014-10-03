@@ -201,6 +201,7 @@ private:
     yarp::sig::VectorOf<int> jointID_map;
     yarp::sig::VectorOf<int> motorID_map;
     yarp::sig::VectorOf<int> encoder;
+    yarp::sig::VectorOf<int> zero;
     yarp::sig::Vector max_pos, min_pos;
     double simu_time;
     yarp::sig::VectorOf<int> controlMode;
