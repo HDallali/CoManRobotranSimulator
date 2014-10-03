@@ -55,6 +55,7 @@
 #define RWrj1_m  21
 #define RWrj2_m  22
 
+// Left Arm
 #define LShSag_m 23
 #define LShLat_m 24
 #define LShYaw_m 25
@@ -62,6 +63,14 @@
 #define LForearmPlate_m 27
 #define LWrj1_m  28
 #define LWrj2_m  29
+
+// Right Leg
+#define RHipSag_m 1
+#define RHipLat_m 2
+#define RHipYaw_m 3
+#define RKneeSag_m 4
+#define RAnkLat_m 5
+#define RAnkSag_m 6
 
 // ---- Actuated Joints Indices ---- //
 
@@ -88,6 +97,13 @@
 #define LWrj1_id  34
 #define LWrj2_id  35
 
+// Right Leg
+#define RHipSag_id 7
+#define RHipLat_id 8
+#define RHipYaw_id 9
+#define RKneeSag_id 10
+#define RAnkLat_id 11
+#define RAnkSag_id 12
 
 
 

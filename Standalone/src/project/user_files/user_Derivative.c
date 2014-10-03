@@ -57,7 +57,6 @@ void user_Derivative(MBSdataStruct *MBSdata)
         voltage[DWS_m]      = Kp*(ref[DWS_m]-MBSdata->q[DWS_id])-Kd*MBSdata->qd[DWS_id];
 
         // Right Arm
-
         Kp=5;
         Kd=0.0; //0.1;
 
@@ -70,7 +69,6 @@ void user_Derivative(MBSdataStruct *MBSdata)
         voltage[RWrj2_m]            = Kp*(ref[RWrj2_m]-MBSdata->q[RWrj2_id])-Kd*MBSdata->qd[RWrj2_id];
 
         // Left Arm
-
         Kp=5;
         Kd=0.0; //0.1;
 
@@ -81,6 +79,17 @@ void user_Derivative(MBSdataStruct *MBSdata)
         voltage[LForearmPlate_m]    = Kp*(ref[LForearmPlate_m]-MBSdata->q[LForearmPlate_id])-Kd*MBSdata->qd[LForearmPlate_id];
         voltage[LWrj1_m]            = Kp*(ref[LWrj1_m]-MBSdata->q[LWrj1_id])-Kd*MBSdata->qd[LWrj1_id];
         voltage[LWrj2_m]            = Kp*(ref[LWrj2_m]-MBSdata->q[LWrj2_id])-Kd*MBSdata->qd[LWrj2_id];
+
+        // Right Leg
+        Kp=5;
+        Kd=0.0; //0.1;
+
+        voltage[RHipSag_m]           = Kp*(ref[RHipSag_m]-MBSdata->q[RHipSag_id])-Kd*MBSdata->qd[RHipSag_id];
+        voltage[RHipLat_m]           = Kp*(ref[RHipLat_m]-MBSdata->q[RHipLat_id])-Kd*MBSdata->qd[RHipLat_id];
+        voltage[RHipYaw_m]           = Kp*(ref[RHipYaw_m]-MBSdata->q[RHipYaw_id])-Kd*MBSdata->qd[RHipYaw_id];
+        voltage[RKneeSag_m]          = Kp*(ref[RKneeSag_m]-MBSdata->q[RKneeSag_id])-Kd*MBSdata->qd[RKneeSag_id];
+        voltage[RAnkLat_m]           = Kp*(ref[RAnkLat_m]-MBSdata->q[RAnkLat_id])-Kd*MBSdata->qd[RAnkLat_id];
+        voltage[RAnkSag_m]           = Kp*(ref[RAnkSag_m]-MBSdata->q[RAnkSag_id])-Kd*MBSdata->qd[RAnkSag_id];
 
 
 
@@ -93,7 +102,6 @@ void user_Derivative(MBSdataStruct *MBSdata)
             // ux:current, uxd: current derivatives:
 
             // Torso
-
             rho = 100;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->GearRatio;
             R_M = 1;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Resistance;
             K_W = 0.04; //MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Kbemf;
@@ -104,7 +112,6 @@ void user_Derivative(MBSdataStruct *MBSdata)
             MBSdata->uxd[DWS_m]     = (1.0/L_M)*(voltage[DWS_m] - R_M*MBSdata->ux[DWS_m]-K_W*rho* MBSdata->qd[DWS_id]);
 
             // Right Arm
-
             rho = 100;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->GearRatio;
             R_M = 1;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Resistance;
             K_W = 0.004; //MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Kbemf;
@@ -120,7 +127,6 @@ void user_Derivative(MBSdataStruct *MBSdata)
 
 
             // Left Arm
-
             rho = 100;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->GearRatio;
             R_M = 1;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Resistance;
             K_W = 0.004; //MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Kbemf;
@@ -133,6 +139,23 @@ void user_Derivative(MBSdataStruct *MBSdata)
             MBSdata->uxd[LForearmPlate_m]   = (1.0/L_M)*(voltage[LForearmPlate_m] - R_M*MBSdata->ux[LForearmPlate_m]-K_W*rho*MBSdata->qd[LForearmPlate_id]);
             MBSdata->uxd[LWrj1_m]   = (1.0/L_M)*(voltage[LWrj1_m] - R_M*MBSdata->ux[LWrj1_m]-K_W*rho*MBSdata->qd[LWrj1_id]);
             MBSdata->uxd[LWrj2_m]   = (1.0/L_M)*(voltage[LWrj2_m] - R_M*MBSdata->ux[LWrj2_m]-K_W*rho*MBSdata->qd[LWrj2_id]);
+
+            // Right Leg
+            rho = 100;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->GearRatio;
+            R_M = 1;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Resistance;
+            K_W = 0.004; //MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Kbemf;
+            L_M = 0.0001; //MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Inductance;
+
+            MBSdata->uxd[RHipSag_m]  = (1.0/L_M)*(voltage[RHipSag_m] - R_M*MBSdata->ux[RHipSag_m]-K_W*rho*MBSdata->qd[RHipSag_id]);
+            MBSdata->uxd[RHipLat_m]  = (1.0/L_M)*(voltage[RHipLat_m] - R_M*MBSdata->ux[RHipLat_m]-K_W*rho*MBSdata->qd[RHipLat_id]);
+            MBSdata->uxd[RHipYaw_m]  = (1.0/L_M)*(voltage[RHipYaw_m] - R_M*MBSdata->ux[RHipYaw_m]-K_W*rho*MBSdata->qd[RHipYaw_id]);
+            MBSdata->uxd[RKneeSag_m] = (1.0/L_M)*(voltage[RKneeSag_m] - R_M*MBSdata->ux[RKneeSag_m]-K_W*rho*MBSdata->qd[RKneeSag_id]);
+            MBSdata->uxd[RAnkLat_m]  = (1.0/L_M)*(voltage[RAnkLat_m] - R_M*MBSdata->ux[RAnkLat_m]-K_W*rho*MBSdata->qd[RAnkLat_id]);
+            MBSdata->uxd[RAnkSag_m]  = (1.0/L_M)*(voltage[RAnkSag_m] - R_M*MBSdata->ux[RAnkSag_m]-K_W*rho*MBSdata->qd[RAnkSag_id]);
+
+
+
+
 
            break;
 //            case 2:

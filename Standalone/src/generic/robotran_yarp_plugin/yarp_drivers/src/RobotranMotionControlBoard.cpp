@@ -26,7 +26,7 @@ void RobotranYarpMotionControl::updateToYarp(const MBSdataStruct * MBSdata)
     //update the vector pos
     for(unsigned int i=0; i<pos.size();i++)
     {
-        pos[i] = MBSdata->q[jointID_map[i]];
+        pos[i] = convertRadiansToDegrees(MBSdata->q[jointID_map[i]]);
     }
 
     //update time

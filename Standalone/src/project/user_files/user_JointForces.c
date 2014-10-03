@@ -60,6 +60,14 @@ double* user_JointForces(MBSdataStruct *MBSdata, double tsim)
             MBSdata->Qq[LWrj1_id]   = rho* KT * MBSdata->ux[LWrj1_m];
             MBSdata->Qq[LWrj2_id]   = rho* KT * MBSdata->ux[LWrj2_m];
 
+            // Right Leg
+            MBSdata->Qq[RHipSag_id]  = rho* KT * MBSdata->ux[RHipSag_m];
+            MBSdata->Qq[RHipLat_id]  = rho* KT * MBSdata->ux[RHipLat_m];
+            MBSdata->Qq[RHipYaw_id]  = rho* KT * MBSdata->ux[RHipYaw_m];
+            MBSdata->Qq[RKneeSag_id] = rho* KT * MBSdata->ux[RKneeSag_m];
+            MBSdata->Qq[RAnkLat_id]  = rho* KT * MBSdata->ux[RAnkLat_m];
+            MBSdata->Qq[RAnkSag_id]  = rho* KT * MBSdata->ux[RAnkSag_m];
+
 
           break;
 
