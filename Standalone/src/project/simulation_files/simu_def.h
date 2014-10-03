@@ -55,6 +55,14 @@
 #define RWrj1_m  21
 #define RWrj2_m  22
 
+#define LShSag_m 23
+#define LShLat_m 24
+#define LShYaw_m 25
+#define LElbj_m  26
+#define LForearmPlate_m 27
+#define LWrj1_m  28
+#define LWrj2_m  29
+
 // ---- Actuated Joints Indices ---- //
 
 // Torso

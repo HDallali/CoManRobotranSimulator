@@ -69,6 +69,19 @@ void user_Derivative(MBSdataStruct *MBSdata)
         voltage[RWrj1_m]            = Kp*(ref[RWrj1_m]-MBSdata->q[RWrj1_id])-Kd*MBSdata->qd[RWrj1_id];
         voltage[RWrj2_m]            = Kp*(ref[RWrj2_m]-MBSdata->q[RWrj2_id])-Kd*MBSdata->qd[RWrj2_id];
 
+        // Left Arm
+
+        Kp=5;
+        Kd=0.0; //0.1;
+
+        voltage[LShSag_m]           = Kp*(ref[LShSag_m]-MBSdata->q[LShSag_id])-Kd*MBSdata->qd[LShSag_id];
+        voltage[LShLat_m]           = Kp*(ref[LShLat_m]-MBSdata->q[LShLat_id])-Kd*MBSdata->qd[LShLat_id];
+        voltage[LShYaw_m]           = Kp*(ref[LShYaw_m]-MBSdata->q[LShYaw_id])-Kd*MBSdata->qd[LShYaw_id];
+        voltage[LElbj_m]            = Kp*(ref[LElbj_m]-MBSdata->q[LElbj_id])-Kd*MBSdata->qd[LElbj_id];
+        voltage[LForearmPlate_m]    = Kp*(ref[LForearmPlate_m]-MBSdata->q[LForearmPlate_id])-Kd*MBSdata->qd[LForearmPlate_id];
+        voltage[LWrj1_m]            = Kp*(ref[LWrj1_m]-MBSdata->q[LWrj1_id])-Kd*MBSdata->qd[LWrj1_id];
+        voltage[LWrj2_m]            = Kp*(ref[LWrj2_m]-MBSdata->q[LWrj2_id])-Kd*MBSdata->qd[LWrj2_id];
+
 
 
 
@@ -105,6 +118,21 @@ void user_Derivative(MBSdataStruct *MBSdata)
             MBSdata->uxd[RWrj1_m]   = (1.0/L_M)*(voltage[RWrj1_m] - R_M*MBSdata->ux[RWrj1_m]-K_W*rho*MBSdata->qd[RWrj1_id]);
             MBSdata->uxd[RWrj2_m]   = (1.0/L_M)*(voltage[RWrj2_m] - R_M*MBSdata->ux[RWrj2_m]-K_W*rho*MBSdata->qd[RWrj2_id]);
 
+
+            // Left Arm
+
+            rho = 100;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->GearRatio;
+            R_M = 1;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Resistance;
+            K_W = 0.004; //MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Kbemf;
+            L_M = 0.0001; //MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Inductance;
+
+            MBSdata->uxd[LShSag_m]  = (1.0/L_M)*(voltage[LShSag_m] - R_M*MBSdata->ux[LShSag_m]-K_W*rho*MBSdata->qd[LShSag_id]);
+            MBSdata->uxd[LShLat_m]  = (1.0/L_M)*(voltage[LShLat_m] - R_M*MBSdata->ux[LShLat_m]-K_W*rho*MBSdata->qd[LShLat_id]);
+            MBSdata->uxd[LShYaw_m]  = (1.0/L_M)*(voltage[LShYaw_m] - R_M*MBSdata->ux[LShYaw_m]-K_W*rho*MBSdata->qd[LShYaw_id]);
+            MBSdata->uxd[LElbj_m]   = (1.0/L_M)*(voltage[LElbj_m] - R_M*MBSdata->ux[LElbj_m]-K_W*rho*MBSdata->qd[RElbj_id]);
+            MBSdata->uxd[LForearmPlate_m]   = (1.0/L_M)*(voltage[LForearmPlate_m] - R_M*MBSdata->ux[LForearmPlate_m]-K_W*rho*MBSdata->qd[LForearmPlate_id]);
+            MBSdata->uxd[LWrj1_m]   = (1.0/L_M)*(voltage[LWrj1_m] - R_M*MBSdata->ux[LWrj1_m]-K_W*rho*MBSdata->qd[LWrj1_id]);
+            MBSdata->uxd[LWrj2_m]   = (1.0/L_M)*(voltage[LWrj2_m] - R_M*MBSdata->ux[LWrj2_m]-K_W*rho*MBSdata->qd[LWrj2_id]);
 
            break;
 //            case 2:
