@@ -72,6 +72,14 @@
 #define RAnkLat_m 5
 #define RAnkSag_m 6
 
+// Left Leg
+#define LHipSag_m 7
+#define LHipLat_m 8
+#define LHipYaw_m 9
+#define LKneeSag_m 10
+#define LAnkLat_m 11
+#define LAnkSag_m 12
+
 // ---- Actuated Joints Indices ---- //
 
 // Torso
@@ -104,6 +112,14 @@
 #define RKneeSag_id 10
 #define RAnkLat_id 11
 #define RAnkSag_id 12
+
+// Left Leg
+#define LHipSag_id 13
+#define LHipLat_id 14
+#define LHipYaw_id 15
+#define LKneeSag_id 16
+#define LAnkLat_id 17
+#define LAnkSag_id 18
 
 
 
