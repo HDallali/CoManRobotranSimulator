@@ -394,20 +394,27 @@ bool RobotranYarpMotionControl::setPositionDirectMode() //NOT IMPLEMENTED -> Is 
 
 bool RobotranYarpMotionControl::setPosition(int j, double ref)
 {
-    std::cout << "robotran motionControl: setPosition " << std::endl;
-    return false;
+    return positionMove(j, ref);
 }
 
 bool RobotranYarpMotionControl::setPositions(const int n_joint, const int *joints, double *refs)
 {
-    std::cout << "robotran motionControl: setPositions " << std::endl;
-    return false;
+    bool ret = true;
+    for(int i=0; i<n_joint; i++)
+    {
+        ret = ret && positionMove(joints[i], refs[i]);
+    }
+    return ret;
 }
 
 bool RobotranYarpMotionControl::setPositions(const double *refs)
 {
-    std::cout << "robotran motionControl: setPositions " << std::endl;
-    return false;
+    bool ret = true;
+    for(int i=0; i<numberOfJoints; i++)
+    {
+        ret = ret && positionMove(i, refs[i]);
+    }
+    return ret;
 }
 
 /////////////////////////////////////
@@ -448,7 +455,6 @@ bool RobotranYarpMotionControl::setPositionMode(int j)  //TO BE TESTED
 
 bool RobotranYarpMotionControl::getEncoder(int j, double *v) //TO BE TESTED
 {
-    std::cout << "robotran motionControl: getEncoder " << std::endl;
     if (v && j >= 0 && j < (int)numberOfJoints) {
         *v = pos[j];
         return true;
@@ -458,7 +464,6 @@ bool RobotranYarpMotionControl::getEncoder(int j, double *v) //TO BE TESTED
 
 bool RobotranYarpMotionControl::getEncoders(double *encs) //TO BE TESTED
 {
-    std::cout << "robotran motionControl: getEncoders " << std::endl;
     if (!encs) return false;
     for (unsigned int i = 0; i < numberOfJoints; ++i)
     {
@@ -480,12 +485,8 @@ bool RobotranYarpMotionControl::getEncodersTimed(double *encs, double *time) //T
 
 bool RobotranYarpMotionControl::getEncoderTimed(int j, double *enc, double *time) //TO BE TESTED
 {
-    static int getEncodersTimedCounter2 = 0;
-    if((getEncodersTimedCounter2 % 100) == 0)
+    if (time && enc && j >= 0 && j < (int)numberOfJoints)
     {
-        std::cout << "robotran motionControl: getEncodersTimed " << std::endl;
-    }
-    getEncodersTimedCounter2++;    if (time && enc && j >= 0 && j < (int)numberOfJoints) {
         *enc = pos[j];
         *time = simu_time;
         return true;
