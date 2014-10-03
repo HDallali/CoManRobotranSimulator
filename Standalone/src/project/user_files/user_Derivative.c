@@ -46,9 +46,31 @@ void user_Derivative(MBSdataStruct *MBSdata)
     if (Act_type==1) //SEA
     {
         // PD control law
-        voltage[Waist_m] = Kp*(ref[Waist_m]-MBSdata->q[Waist_id])-Kd*MBSdata->qd[Waist_id];
-        voltage[DWL_m] = Kp*(ref[DWL_m]-MBSdata->q[DWL_id])-Kd*MBSdata->qd[DWL_id];
-        voltage[DWS_m] = Kp*(ref[DWS_m]-MBSdata->q[DWS_id])-Kd*MBSdata->qd[DWS_id];
+
+        // Torso
+
+        Kp=20;
+        Kd=1;
+
+        voltage[Waist_m]    = Kp*(ref[Waist_m]-MBSdata->q[Waist_id])-Kd*MBSdata->qd[Waist_id];
+        voltage[DWL_m]      = Kp*(ref[DWL_m]-MBSdata->q[DWL_id])-Kd*MBSdata->qd[DWL_id];
+        voltage[DWS_m]      = Kp*(ref[DWS_m]-MBSdata->q[DWS_id])-Kd*MBSdata->qd[DWS_id];
+
+        // Right Arm
+
+        Kp=5;
+        Kd=0.0; //0.1;
+
+        voltage[RShSag_m]           = Kp*(ref[RShSag_m]-MBSdata->q[RShSag_id])-Kd*MBSdata->qd[RShSag_id];
+        voltage[RShLat_m]           = Kp*(ref[RShLat_m]-MBSdata->q[RShLat_id])-Kd*MBSdata->qd[RShLat_id];
+        voltage[RShYaw_m]           = Kp*(ref[RShYaw_m]-MBSdata->q[RShYaw_id])-Kd*MBSdata->qd[RShYaw_id];
+        voltage[RElbj_m]            = Kp*(ref[RElbj_m]-MBSdata->q[RElbj_id])-Kd*MBSdata->qd[RElbj_id];
+        voltage[RForearmPlate_m]    = Kp*(ref[RForearmPlate_m]-MBSdata->q[RForearmPlate_id])-Kd*MBSdata->qd[RForearmPlate_id];
+        voltage[RWrj1_m]            = Kp*(ref[RWrj1_m]-MBSdata->q[RWrj1_id])-Kd*MBSdata->qd[RWrj1_id];
+        voltage[RWrj2_m]            = Kp*(ref[RWrj2_m]-MBSdata->q[RWrj2_id])-Kd*MBSdata->qd[RWrj2_id];
+
+
+
 
         switch (Act_order) {
           case 1:
@@ -56,34 +78,34 @@ void user_Derivative(MBSdataStruct *MBSdata)
             // Motor (electrical) ODE
             // need a map from index i=0:4 to real joint indices
             // ux:current, uxd: current derivatives:
-            rho = 100;// MBSdata->user_IO->actuatorsStruct->acs[M_FR]->GearRatio;
-            R_M = 1;// MBSdata->user_IO->actuatorsStruct->acs[M_FR]->Resistance;
-            K_W = 0.1; //MBSdata->user_IO->actuatorsStruct->acs[M_FR]->Kbemf;
-            L_M = 0.0001; //MBSdata->user_IO->actuatorsStruct->acs[M_FR]->Inductance;
 
-            // Front Right Motor ***********
-            MBSdata->uxd[Waist_m]= (1.0/L_M)*(voltage[Waist_m] -R_M*MBSdata->ux[Waist_m]-K_W*rho* MBSdata->qd[Waist_id]);
-// THE FOLLOWING LINES WILL BE REPLACED LATER WITH A MAP ITERATION
-//            rho = MBSdata->user_IO->acs[M_FL]->GearRatio;
-//            R_M = MBSdata->user_IO->acs[M_FL]->Resistance;
-//            K_W = MBSdata->user_IO->acs[M_FL]->Kbemf;
-//            L_M = MBSdata->user_IO->acs[M_FL]->Inductance;
-            // Front Left Motor ***********
-            MBSdata->uxd[DWL_m]= (1.0/L_M)*(voltage[DWL_m] -R_M*MBSdata->ux[DWL_m]-K_W*rho* MBSdata->qd[DWL_id]);
+            // Torso
 
-//            rho = MBSdata->user_IO->acs[M_RR]->GearRatio;
-//            R_M = MBSdata->user_IO->acs[M_RR]->Resistance;
-//            K_W = MBSdata->user_IO->acs[M_RR]->Kbemf;
-//            L_M = MBSdata->user_IO->acs[M_RR]->Inductance;
-            // Rear Right Motor ***********
-            MBSdata->uxd[DWS_m]= (1.0/L_M)*(voltage[DWS_m] - R_M*MBSdata->ux[DWS_m]-K_W*rho* MBSdata->qd[DWS_id]);
+            rho = 100;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->GearRatio;
+            R_M = 1;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Resistance;
+            K_W = 0.04; //MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Kbemf;
+            L_M = 0.0001; //MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Inductance;
 
-//            rho = MBSdata->user_IO->acs[M_RL]->GearRatio;
-//            R_M = MBSdata->user_IO->acs[M_RL]->Resistance;
-//            K_W = MBSdata->user_IO->acs[M_RL]->Kbemf;
-//            L_M = MBSdata->user_IO->acs[M_RL]->Inductance;
-            // Rear Left Motor ***********
-            //MBSdata->uxd[M_RL]= (1.0/L_M)*(voltage[M_RL] -R_M*MBSdata->ux[M_RL]-K_W*rho* MBSdata->qd[R2_RL]);
+            MBSdata->uxd[Waist_m]   = (1.0/L_M)*(voltage[Waist_m] -R_M*MBSdata->ux[Waist_m]-K_W*rho* MBSdata->qd[Waist_id]);
+            MBSdata->uxd[DWL_m]     = (1.0/L_M)*(voltage[DWL_m] -R_M*MBSdata->ux[DWL_m]-K_W*rho* MBSdata->qd[DWL_id]);
+            MBSdata->uxd[DWS_m]     = (1.0/L_M)*(voltage[DWS_m] - R_M*MBSdata->ux[DWS_m]-K_W*rho* MBSdata->qd[DWS_id]);
+
+            // Right Arm
+
+            rho = 100;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->GearRatio;
+            R_M = 1;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Resistance;
+            K_W = 0.004; //MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Kbemf;
+            L_M = 0.0001; //MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Inductance;
+
+            MBSdata->uxd[RShSag_m]  = (1.0/L_M)*(voltage[RShSag_m] - R_M*MBSdata->ux[RShSag_m]-K_W*rho*MBSdata->qd[RShSag_id]);
+            MBSdata->uxd[RShLat_m]  = (1.0/L_M)*(voltage[RShLat_m] - R_M*MBSdata->ux[RShLat_m]-K_W*rho*MBSdata->qd[RShLat_id]);
+            MBSdata->uxd[RShYaw_m]  = (1.0/L_M)*(voltage[RShYaw_m] - R_M*MBSdata->ux[RShYaw_m]-K_W*rho*MBSdata->qd[RShYaw_id]);
+            MBSdata->uxd[RElbj_m]   = (1.0/L_M)*(voltage[RElbj_m] - R_M*MBSdata->ux[RElbj_m]-K_W*rho*MBSdata->qd[RElbj_id]);
+            MBSdata->uxd[RForearmPlate_m]   = (1.0/L_M)*(voltage[RForearmPlate_m] - R_M*MBSdata->ux[RForearmPlate_m]-K_W*rho*MBSdata->qd[RForearmPlate_id]);
+            MBSdata->uxd[RWrj1_m]   = (1.0/L_M)*(voltage[RWrj1_m] - R_M*MBSdata->ux[RWrj1_m]-K_W*rho*MBSdata->qd[RWrj1_id]);
+            MBSdata->uxd[RWrj2_m]   = (1.0/L_M)*(voltage[RWrj2_m] - R_M*MBSdata->ux[RWrj2_m]-K_W*rho*MBSdata->qd[RWrj2_id]);
+
+
            break;
 //            case 2:
 //            // Motor (Mechanical) ODE

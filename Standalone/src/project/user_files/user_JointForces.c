@@ -26,7 +26,7 @@ double* user_JointForces(MBSdataStruct *MBSdata, double tsim)
         MBSdata->Qq[i+6]=-200*(MBSdata->q[i+6]-0.0)-10*MBSdata->qd[i+6];
 
     MBSdata->Qq[30]=-200*(MBSdata->q[30]+1.4) -10*MBSdata->qd[30];
-    MBSdata->Qq[23]=-200*(MBSdata->q[23]-1.4) -10*MBSdata->qd[23];
+    //MBSdata->Qq[23]=-200*(MBSdata->q[23]-1.4) -10*MBSdata->qd[23];
 
 
     // Actuated Joints:
@@ -36,24 +36,37 @@ double* user_JointForces(MBSdataStruct *MBSdata, double tsim)
         switch (Act_order) {
           case 1:
             justElectrical:
-            MBSdata->Qq[Waist_id] = rho* KT * MBSdata->ux[Waist_m];
-            MBSdata->Qq[DWL_id] = rho* KT * MBSdata->ux[DWL_m];
-            MBSdata->Qq[DWS_id] = rho* KT * MBSdata->ux[DWS_m];
+
+            // Torso
+            MBSdata->Qq[Waist_id]   = rho* KT * MBSdata->ux[Waist_m];
+            MBSdata->Qq[DWL_id]     = rho* KT * MBSdata->ux[DWL_m];
+            MBSdata->Qq[DWS_id]     = rho* KT * MBSdata->ux[DWS_m];
+
+            // Right Arm
+            MBSdata->Qq[RShSag_id]  = rho* KT * MBSdata->ux[RShSag_m];
+            MBSdata->Qq[RShLat_id]  = rho* KT * MBSdata->ux[RShLat_m];
+            MBSdata->Qq[RShYaw_id]  = rho* KT * MBSdata->ux[RShYaw_m];
+            MBSdata->Qq[RElbj_id]   = rho* KT * MBSdata->ux[RElbj_m];
+            MBSdata->Qq[RForearmPlate_id]   = rho* KT * MBSdata->ux[RForearmPlate_m];
+            MBSdata->Qq[RWrj1_id]   = rho* KT * MBSdata->ux[RWrj1_m];
+            MBSdata->Qq[RWrj2_id]   = rho* KT * MBSdata->ux[RWrj2_m];
+
+
           break;
 
-          case 2:
-            justMechanical:
+//          case 2:
+//            justMechanical:
 
-            MBSdata->Qq[Waist_id]=Ks*(MBSdata->ux[Waist_m]-MBSdata->q[Waist_id])+Ds*(MBSdata->uxd[Waist_m]-MBSdata->qd[Waist_id]);
-            MBSdata->Qq[DWL_id]=Ks*(MBSdata->ux[DWL_m]-MBSdata->q[DWL_id])+Ds*(MBSdata->uxd[DWL_m]-MBSdata->qd[DWL_id]);
-            MBSdata->Qq[DWS_id]=Ks*(MBSdata->ux[DWS_m]-MBSdata->q[DWS_id])+Ds*(MBSdata->uxd[DWS_m]-MBSdata->qd[DWS_id]);
+//            MBSdata->Qq[Waist_id]=Ks*(MBSdata->ux[Waist_m]-MBSdata->q[Waist_id])+Ds*(MBSdata->uxd[Waist_m]-MBSdata->qd[Waist_id]);
+//            MBSdata->Qq[DWL_id]=Ks*(MBSdata->ux[DWL_m]-MBSdata->q[DWL_id])+Ds*(MBSdata->uxd[DWL_m]-MBSdata->qd[DWL_id]);
+//            MBSdata->Qq[DWS_id]=Ks*(MBSdata->ux[DWS_m]-MBSdata->q[DWS_id])+Ds*(MBSdata->uxd[DWS_m]-MBSdata->qd[DWS_id]);
 
             
-          break;
+//          break;
 
-          case 3:
-            goto justMechanical;
-          break;
+//          case 3:
+//            goto justMechanical;
+//          break;
 
           default:
             printf("detault actuator order (1) selected \n");

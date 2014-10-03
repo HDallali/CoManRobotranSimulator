@@ -46,12 +46,39 @@
 #define  DWL_m   14
 #define  DWS_m 	 15
 
+// Right Arm
+#define RShSag_m 16
+#define RShLat_m 17
+#define RShYaw_m 18
+#define RElbj_m  19
+#define RForearmPlate_m 20
+#define RWrj1_m  21
+#define RWrj2_m  22
+
 // ---- Actuated Joints Indices ---- //
 
 // Torso
 #define Waist_id 19
 #define DWL_id	 20
-#define DWS_id 21
+#define DWS_id   21
+
+// Right Arm
+#define RShSag_id 22
+#define RShLat_id 23
+#define RShYaw_id 24
+#define RElbj_id  25
+#define RForearmPlate_id 26
+#define RWrj1_id  27
+#define RWrj2_id  28
+
+// Left Arm
+#define LShSag_id 29
+#define LShLat_id 30
+#define LShYaw_id 31
+#define LElbj_id  32
+#define LForearmPlate_id 33
+#define LWrj1_id  34
+#define LWrj2_id  35
 
 
 
