@@ -36,17 +36,17 @@ double* user_JointForces(MBSdataStruct *MBSdata, double tsim)
         switch (Act_order) {
           case 1:
             justElectrical:
-            MBSdata->Qq[R2_FR] = rho* KT * MBSdata->ux[M_FR];
-            MBSdata->Qq[R2_FL] = rho* KT * MBSdata->ux[M_FL];
-            MBSdata->Qq[R2_RR] = rho* KT * MBSdata->ux[M_RR];
+            MBSdata->Qq[Waist_id] = rho* KT * MBSdata->ux[Waist_m];
+            MBSdata->Qq[DWL_id] = rho* KT * MBSdata->ux[DWL_m];
+            MBSdata->Qq[DWS_id] = rho* KT * MBSdata->ux[DWS_m];
           break;
 
           case 2:
             justMechanical:
 
-            MBSdata->Qq[R2_FR]=Ks*(MBSdata->ux[M_FR]-MBSdata->q[R2_FR])+Ds*(MBSdata->uxd[M_FR]-MBSdata->qd[R2_FR]);
-            MBSdata->Qq[R2_FL]=Ks*(MBSdata->ux[M_FL]-MBSdata->q[R2_FL])+Ds*(MBSdata->uxd[M_FL]-MBSdata->qd[R2_FL]);
-            MBSdata->Qq[R2_RR]=Ks*(MBSdata->ux[M_RR]-MBSdata->q[R2_RR])+Ds*(MBSdata->uxd[M_RR]-MBSdata->qd[R2_RR]);
+            MBSdata->Qq[Waist_id]=Ks*(MBSdata->ux[Waist_m]-MBSdata->q[Waist_id])+Ds*(MBSdata->uxd[Waist_m]-MBSdata->qd[Waist_id]);
+            MBSdata->Qq[DWL_id]=Ks*(MBSdata->ux[DWL_m]-MBSdata->q[DWL_id])+Ds*(MBSdata->uxd[DWL_m]-MBSdata->qd[DWL_id]);
+            MBSdata->Qq[DWS_id]=Ks*(MBSdata->ux[DWS_m]-MBSdata->q[DWS_id])+Ds*(MBSdata->uxd[DWS_m]-MBSdata->qd[DWS_id]);
 
             
           break;

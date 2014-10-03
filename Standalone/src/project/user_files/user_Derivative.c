@@ -46,16 +46,9 @@ void user_Derivative(MBSdataStruct *MBSdata)
     if (Act_type==1) //SEA
     {
         // PD control law
-
-//        voltage[M_FR] = Kp*(ref[M_FR]-MBSdata->q[R2_FR])-Kd*MBSdata->qd[R2_FR];
-//        voltage[M_FL] = Kp*(-MBSdata->q[R2_FL])-Kd*MBSdata->qd[R2_FL];
-//        voltage[M_RR] = Kp*(0-MBSdata->q[R2_RR])-Kd*MBSdata->qd[R2_RR];
-
-        voltage[M_FR] = Kp*(ref[M_FR]-MBSdata->q[R2_FR])-Kd*MBSdata->qd[R2_FR];
-        voltage[M_FL] = Kp*(ref[M_FL]-MBSdata->q[R2_FL])-Kd*MBSdata->qd[R2_FL];
-        voltage[M_RR] = Kp*(ref[M_RR]-MBSdata->q[R2_RR])-Kd*MBSdata->qd[R2_RR];
-        //voltage[M_RL] = Kp*(ref[M_RL]-MBSdata->q[R2_RL])-Kd*MBSdata->qd[R2_RL];
-
+        voltage[Waist_m] = Kp*(ref[Waist_m]-MBSdata->q[Waist_id])-Kd*MBSdata->qd[Waist_id];
+        voltage[DWL_m] = Kp*(ref[DWL_m]-MBSdata->q[DWL_id])-Kd*MBSdata->qd[DWL_id];
+        voltage[DWS_m] = Kp*(ref[DWS_m]-MBSdata->q[DWS_id])-Kd*MBSdata->qd[DWS_id];
 
         switch (Act_order) {
           case 1:
@@ -69,21 +62,21 @@ void user_Derivative(MBSdataStruct *MBSdata)
             L_M = 0.0001; //MBSdata->user_IO->actuatorsStruct->acs[M_FR]->Inductance;
 
             // Front Right Motor ***********
-            MBSdata->uxd[M_FR]= (1.0/L_M)*(voltage[M_FR] -R_M*MBSdata->ux[M_FR]-K_W*rho* MBSdata->qd[R2_FR]);
+            MBSdata->uxd[Waist_m]= (1.0/L_M)*(voltage[Waist_m] -R_M*MBSdata->ux[Waist_m]-K_W*rho* MBSdata->qd[Waist_id]);
 // THE FOLLOWING LINES WILL BE REPLACED LATER WITH A MAP ITERATION
 //            rho = MBSdata->user_IO->acs[M_FL]->GearRatio;
 //            R_M = MBSdata->user_IO->acs[M_FL]->Resistance;
 //            K_W = MBSdata->user_IO->acs[M_FL]->Kbemf;
 //            L_M = MBSdata->user_IO->acs[M_FL]->Inductance;
             // Front Left Motor ***********
-            MBSdata->uxd[M_FL]= (1.0/L_M)*(voltage[M_FL] -R_M*MBSdata->ux[M_FL]-K_W*rho* MBSdata->qd[R2_FL]);
+            MBSdata->uxd[DWL_m]= (1.0/L_M)*(voltage[DWL_m] -R_M*MBSdata->ux[DWL_m]-K_W*rho* MBSdata->qd[DWL_id]);
 
 //            rho = MBSdata->user_IO->acs[M_RR]->GearRatio;
 //            R_M = MBSdata->user_IO->acs[M_RR]->Resistance;
 //            K_W = MBSdata->user_IO->acs[M_RR]->Kbemf;
 //            L_M = MBSdata->user_IO->acs[M_RR]->Inductance;
             // Rear Right Motor ***********
-            MBSdata->uxd[M_RR]= (1.0/L_M)*(voltage[M_RR] - R_M*MBSdata->ux[M_RR]-K_W*rho* MBSdata->qd[R2_RR]);
+            MBSdata->uxd[DWS_m]= (1.0/L_M)*(voltage[DWS_m] - R_M*MBSdata->ux[DWS_m]-K_W*rho* MBSdata->qd[DWS_id]);
 
 //            rho = MBSdata->user_IO->acs[M_RL]->GearRatio;
 //            R_M = MBSdata->user_IO->acs[M_RL]->Resistance;

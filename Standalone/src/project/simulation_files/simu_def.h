@@ -39,33 +39,22 @@
 #define IMPEDANCE_VEL_CTRL 6
 
 
+// ---- Motor Indices ---- //
 
-// motor indices
+// Torso
 #define  Waist_m 13
 #define  DWL_m   14
 #define  DWS_m 	 15
-//#define  M_RL 4
 
-#define  M_FR Waist_m
-#define  M_FL DWL_m
-#define  M_RR DWS_m
+// ---- Actuated Joints Indices ---- //
 
-//
+// Torso
 #define Waist_id 19
 #define DWL_id	 20
 #define DWS_id 21
 
-// actuated joints (4 legs)
-#define R2_FR Waist_id
-#define R2_FL DWL_id
-#define R2_RR DWS_id
-#define R2_RL 22
 
-//spring joints
-#define Spring_FR 8
-#define Spring_FL 10
-#define Spring_RR 12
-#define Spring_RL 14
+
 
 //GCM
 #define RFOOT_FSENS_ID 1
