@@ -39,7 +39,7 @@ void RobotranYarpMotionControl::updateFromYarp(MBSdataStruct *MBSdata)
     for(unsigned int i=0; i<numberOfJoints; i++)
     {
         //std::cout << "index " << i << " ref " << desiredPosition[i] << std::endl;
-        MBSdata->user_IO->refs[motorID_map[i]]  = (encoder[i] * convertDegreesToRadians(desiredPosition[i])) - zero[i];
+        MBSdata->user_IO->refs[motorID_map[i]]  = (encoder[i] * convertDegreesToRadians(desiredPosition[i]- zero[i]));
         MBSdata->user_IO->servo_type[motorID_map[i]] = controlMode[i];
     }
 
