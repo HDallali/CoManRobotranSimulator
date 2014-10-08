@@ -89,7 +89,6 @@ bool RobotranYarpMotionControl::open(yarp::os::Searchable& config)
         return false;
     }
     yarp::os::Bottle & jointID = config.findGroup("robotran_joint_id");
-
     jointID_map.resize(numberOfJoints);
     for(int i=0; i< jointID.size()-1; i++)
     {
@@ -97,9 +96,14 @@ bool RobotranYarpMotionControl::open(yarp::os::Searchable& config)
         printf("jointID_map[%d] = %d \n", i, jointID_map[i]);
     }
 
+    // Get motor id
+    if(!config.check("robotran_motor_id"))
+    {
+        std::cout << "robotran_motor_id parameter is not specified in config file " << std::endl;
+        return false;
+    }
     yarp::os::Bottle & motorID = config.findGroup("robotran_motor_id");
     motorID_map.resize(numberOfJoints);
-
     for(int i=0; i< motorID.size()-1; i++)
     {
         motorID_map[i] = motorID.get(i+1).asInt();

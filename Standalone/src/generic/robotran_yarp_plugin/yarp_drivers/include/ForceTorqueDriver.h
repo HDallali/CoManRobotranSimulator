@@ -17,6 +17,7 @@
 
 #include <yarp/dev/DeviceDriver.h>
 #include <yarp/dev/IAnalogSensor.h>
+#include <yarp/dev/Wrapper.h>
 
 #include <yarp/os/Semaphore.h>
 #include <string>
@@ -35,6 +36,7 @@
 
 #include "MBSdataStruct.h"
 #include <yarp/dev/PolyDriverList.h>
+#include <common.h>
 
 namespace yarp{
     namespace dev{
@@ -42,30 +44,17 @@ namespace yarp{
     }
 }
 
-namespace robotran {
-    class RobotranYarpForceTorque;
-}
 
-#define _CLEAN_WAY_
-
-class IRobotran
-{
-public:
-    virtual void onUpdate(const MBSdataStruct * /*_info*/) = 0;// update forcetorque_data with the simulation data
-};
+enum part_types {LEFT_LEG, RIGHT_LEG};
 
 typedef int AnalogDataFormat;
-/*! class yarp::dev::fakebotFTsensor
+/*! class yarp::dev::RobotranYarpForceTorqueDriver
  *
  */
 class yarp::dev::RobotranYarpForceTorqueDriver:
-                                      public yarp::dev::IAnalogSensor,
-#ifdef _CLEAN_WAY_
                                       public yarp::dev::DeviceDriver,
-#else
-                                      public yarp::dev::PolyDriver,
-#endif
-                                      public IRobotran
+                                      public yarp::dev::IAnalogSensor,
+                                      public robotran::IRobotran
 {
 private:
 
@@ -73,12 +62,14 @@ private:
     // parameters
     int             _channels;
     short           _useCalibration;
-
+    yarp::os::ConstString partName;
+    part_types part;
     short status;
 
     double timeStamp;
     yarp::os::Semaphore mutex;
     yarp::sig::Vector data;
+    yarp::dev::PolyDriver* wrap;
 
     //yarp::sig::Vector forcetorque_data; //buffer for forcetorque sensor data
 
@@ -86,6 +77,13 @@ private:
     yarp::os::Bottle speedMsg;
     yarp::os::Bottle closeMsg;
     std::string deviceIdentifier;
+
+    yarp::sig::VectorOf<int> jointID_map;
+    yarp::sig::VectorOf<int> motorID_map;
+    yarp::sig::VectorOf<int> newtonToSensor;
+
+
+    bool _verbose;
 
     // Read useful data from config and check fir correctness
     bool fromConfig(yarp::os::Searchable &config);
@@ -97,10 +95,6 @@ public:
 
     bool open(yarp::os::Searchable &config);
     bool close();
-
-    void onUpdate(const MBSdataStruct * /*_info*/);// update forcetorque_data with the simulation data
-    //void onUpdate(const MBSdataStruct MBSdata );// update forcetorque_data with the simulation data
-    // robotran is a namespace. it should have some
 
     //IAnalogSensor interface
     virtual int read(yarp::sig::Vector &out);
@@ -121,6 +115,10 @@ public:
     {
         return deviceIdentifier;
     }
+
+    // IRobotran interface
+    void updateToYarp(const MBSdataStruct * MBSdata);
+    void updateFromYarp(MBSdataStruct *MBSdata);
 };
 
 

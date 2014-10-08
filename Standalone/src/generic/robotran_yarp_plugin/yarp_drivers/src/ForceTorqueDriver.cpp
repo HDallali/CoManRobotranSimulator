@@ -59,21 +59,11 @@ static inline bool validate(Bottle &input, Bottle &out, const std::string &key1,
     return true;
 }
 
-bool RobotranYarpForceTorqueDriver::fromConfig(yarp::os::Searchable &_config)
-{
-    return true;
-}
 
-bool RobotranYarpForceTorqueDriver::close()
+RobotranYarpForceTorqueDriver::RobotranYarpForceTorqueDriver() : _verbose(false),
+                                                                 _useCalibration(0),
+                                                                 _channels(0)
 {
-    return true;
-}
-
-RobotranYarpForceTorqueDriver::RobotranYarpForceTorqueDriver()
-{
-    _useCalibration=0;
-    _channels=6;
-    data.resize(_channels);
 
     status=IAnalogSensor::AS_OK;
 }
@@ -85,19 +75,171 @@ RobotranYarpForceTorqueDriver::~RobotranYarpForceTorqueDriver()
 
 bool RobotranYarpForceTorqueDriver::open(yarp::os::Searchable &config)
 {
-    Property prop;
-//    std::string str=config.toString().c_str();
+    if(config.check("verbose"))
+    {
+        std::cout << "INFO: verbose output enabled" << std::endl;
+        _verbose = true;
+    }
 
-//    if(!fromConfig(config))
-//        return false;
+    if(_verbose)
+        std::cout << "RobotranYarpForceTorqueDriver::open with parameters \n " << config.toString().c_str() << std::endl;
 
-//    prop.fromString(str.c_str());
 
-    data.resize(30); // number of DoFs
+    if(!fromConfig(config))
+        return false;
+
+
+     // opening Wrapper, if needed
+     if(!config.check("useWrapper"))
+     {
+         std::cout << "\nNOT USING WRAPPERS!\n" << std::endl;
+         return true;
+     }
+
+     std::cout << "\nForceTorque WRAPPERS!\n" << std::endl;
+
+     yarp::dev::IMultipleWrapper* iWrap;
+     wrap = new yarp::dev::PolyDriver();
+     yarp::os::Property wrapProp;
+     wrapProp.fromString(config.toString());
+     yarp::os::ConstString partName, robotName, wholeName;
+     partName = config.find("name").asString();
+     robotName = config.find("robot").asString();
+     wrapProp.unput("device");
+     wrapProp.put("device", "analogServer");
+     wrapProp.unput("name");
+
+     wholeName = robotName + "/" + partName;
+     wrapProp.put("name", wholeName);
+
+
+     std::cout << "robotName is " << robotName << "; partName is " << partName << "; wholeName is " << wholeName << std::endl;
+
+     std::cout << "\n*********\n before wrapper " << wrapProp.toString() << "\n***********\n" << std::endl;
+
+     wrap->open(wrapProp);
+     if (!wrap->isValid())
+         fprintf(stderr, "RobotranYarpForceTorqueDriver: wrapper did not open\n");
+     else
+         fprintf(stderr, "RobotranYarpForceTorqueDriver: wrapper opened correctly\n");
+
+     if (!wrap->view(iWrap)) {
+         printf("RobotranYarpForceTorqueDriver Wrapper interface not found\n");
+     }
+
+    yarp::dev::PolyDriverList polyList;
+    yarp::os::Bottle *netList = config.find("networks").asList();
+    if (netList == NULL) {
+        printf("RobotranYarpForceTorqueDriver ERROR, net list to attach to was not found, exiting\n");
+        wrap->close();
+        return false;
+    }
+    std::cout << "Analog list found " << netList->toString() << "!!" << std::endl;
+
+    polyList.push((yarp::dev::PolyDriver*) this, netList->get(0).asString().c_str() );
+    if(!iWrap->attachAll(polyList) )
+    {
+        std::cout << "\n\n\nERROR while attching\n\n\n" << std::endl;
+        return false;
+     }
+    else
+    {
+        std::cout << "\n ATTACH WAS OK\n" << std::endl;
+    }
 
     return true;
 }
 
+
+bool RobotranYarpForceTorqueDriver::fromConfig(yarp::os::Searchable &_config)
+{
+//    if(!_config.check("channels"))
+//    {
+//        std::cout << "ERROR: the number of channels is missing" << std::endl;
+//        return false;
+//    }
+//    _channels = _config.find("channels").asInt();
+
+    _channels = 6;
+    data.resize(_channels); // number of DoFs
+
+//    // Get joints id
+//    if(!_config.check("robotran_joint_id"))
+//    {
+//        std::cout << "robotran joints id not specified in config file " << std::endl;
+//        return false;
+//    }
+//    yarp::os::Bottle & jointID = _config.findGroup("robotran_joint_id");
+//    jointID_map.resize(_channels);
+//    for(int i=0; i< jointID.size()-1; i++)
+//    {
+//        jointID_map[i] = jointID.get(i+1).asInt();
+//        printf("jointID_map[%d] = %d \n", i, jointID_map[i]);
+//    }
+
+//    // Get motor id
+//    if(!_config.check("robotran_motor_id"))
+//    {
+//        std::cout << "robotran_motor_id parameter is not specified in config file " << std::endl;
+//        return false;
+//    }
+//    yarp::os::Bottle & motorID = _config.findGroup("robotran_motor_id");
+//    motorID_map.resize(_channels);
+//    for(int i=0; i< motorID.size()-1; i++)
+//    {
+//        motorID_map[i] = motorID.get(i+1).asInt();
+//        printf("motorID_map[%d] = %d \n", i, motorID_map[i]);
+//    }
+
+    if(!_config.check("deviceId"))
+    {
+        std::cout << "ERROR: please insert deviceId as left_leg or right_leg" << std::endl;
+        return false;
+    }
+    partName = _config.find("deviceId").asString();
+
+    if( partName == ("left_leg"))
+    {
+        part = LEFT_LEG;
+    }
+    else if(partName == ("right_leg"))
+    {
+        part = LEFT_LEG;
+    }
+    else
+    {
+        std::cout << "part " << partName << " provided is not supported yet" << std::endl;
+        return false;
+    }
+
+
+    // newtonsToSensor scaling factor
+    newtonToSensor.resize(_channels);
+    if(!_config.check("newtonsToSensor"))
+    {
+        for(int i=0; i< _channels; i++)
+        {
+            std::cout << "warning: robotran newtonsToSensor joints values not specified in config file, using '+1' as a default value " << std::endl;
+            newtonToSensor[i] = 1.0;
+            printf("newtonToSensor[%d] = %d \n", i, newtonToSensor[i]);
+        }
+    }
+    else
+    {
+        yarp::os::Bottle & newtonToSensorBottle = _config.findGroup("newtonsToSensor");
+        for(int i=0; i< newtonToSensorBottle.size()-1; i++)
+        {
+            newtonToSensor[i] = newtonToSensorBottle.get(i+1).asInt();
+            printf("encoder[%d] = %d \n", i, newtonToSensor[i]);
+        }
+    }
+    return true;
+}
+
+bool RobotranYarpForceTorqueDriver::close()
+{
+    return true;
+}
 
 /*! Read a vector from the sensor.
  * @param out a vector containing the sensor's last readings.
@@ -109,8 +251,6 @@ int RobotranYarpForceTorqueDriver::read(yarp::sig::Vector &out)
 
     mutex.wait();
     status = AS_OK;
-
-    //data=MBSdataStruct.Qq[];
 
     out.resize(data.size());
 
@@ -150,14 +290,46 @@ int RobotranYarpForceTorqueDriver::calibrateChannel(int ch, double v)
     return AS_OK;
 }
 
-void RobotranYarpForceTorqueDriver::onUpdate(const MBSdataStruct * MBSdata)
-{
-    // output going to the forcetorque_data with the simulation data
-    // input coming from robotran::UpdateSensor
-    for (int i =1; i<30; i++)
-        data[i] = MBSdata->Qq[i];
 
-    return ;
+void RobotranYarpForceTorqueDriver::updateToYarp(const MBSdataStruct * MBSdata)
+{
+    switch(part)
+    {
+        case LEFT_LEG:
+        {
+            for (int i=0; i<3; i++)
+                data[i] = MBSdata->user_IO->GRF_l[i+1];
+
+            for (int i=0; i<3; i++)
+                data[3+i] = MBSdata->user_IO->GRM_l[i+1];
+
+            break;
+        }
+
+        case RIGHT_LEG:
+        {
+            for (int i=0; i<3; i++)
+                data[i] = MBSdata->user_IO->GRF_r[i+1];
+
+            for (int i=0; i<3; i++)
+                data[3+i] = MBSdata->user_IO->GRM_r[i+1];
+
+            break;
+        }
+
+        default:
+        {
+            std::cerr << "Wrong part name " << partName << ". Check your config file" << std::endl;
+            break;
+        }
+    }
 }
+
+void RobotranYarpForceTorqueDriver::updateFromYarp(MBSdataStruct *MBSdata)
+{
+
+}
+
+
 
 #endif

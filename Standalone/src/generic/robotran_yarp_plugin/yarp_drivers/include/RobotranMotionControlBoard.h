@@ -43,7 +43,9 @@ class yarp::dev::RobotranYarpMotionControl:
     public IEncodersTimed,
     public IControlMode,
     public IPositionDirect,
-    public IControlLimits2
+    public IControlLimits2,
+    public robotran::IRobotran
+
 {
 public:
     
@@ -52,7 +54,7 @@ public:
     virtual ~RobotranYarpMotionControl();
 
     /**
-     * robotran stuff
+     *   IRobotran interface
      */
     bool robotran_init();
     void updateToYarp(const MBSdataStruct * MBSdata);

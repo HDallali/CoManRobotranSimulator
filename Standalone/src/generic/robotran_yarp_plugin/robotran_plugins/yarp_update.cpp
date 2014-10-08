@@ -14,32 +14,23 @@ void updateDataFromYarp(void* RobotranYarp_interface, MBSdataStruct * MBSdata)
 
 	//cout << "update data from yarp " << endl;
     yarp::dev::PolyDriverList *controlBoardList = (yarp::dev::PolyDriverList*)RobotranYarp_interface;  // convert back into object
+    robotran::IRobotran                         *RobotranPlugin          	= NULL;
 
-    yarp::dev::RobotranYarpMotionControl        *RobotranControlBoardType 	= NULL;
-    yarp::dev::RobotranYarpForceTorqueDriver    *RobotranForceTorqueType 	= NULL;
-    yarp::os::RateThread                        *Thread = NULL;
 
     if(controlBoardList == NULL)
         return;
 
     for(int i=0; i < controlBoardList->size(); i++)
     {
-        (*controlBoardList)[i]->poly->view(RobotranControlBoardType);
-        if(RobotranControlBoardType)
+        (*controlBoardList)[i]->poly->view(RobotranPlugin);
+        if(RobotranPlugin)
         {
-            //printf("I found a control Board driver at %d \n\n", i);
-            RobotranControlBoardType->updateFromYarp(MBSdata);
+//            printf("I found a valid plugin at %d \n\n", i);
+            RobotranPlugin->updateFromYarp(MBSdata);
         }
 
-        (*controlBoardList)[i]->poly->view(Thread);
-        if(Thread)
-        {
-            //printf("I found a control Board driver at %d \n\n", i);
-            Thread->run();
-        }
-
+        // for controller too?
     }
-
 }
 
 // here should come the update from simulator to yarp
@@ -47,30 +38,20 @@ void updateDataFromYarp(void* RobotranYarp_interface, MBSdataStruct * MBSdata)
 // - sensor_driver.Update()
 void updateDataToYarp(void* RobotranYarp_interface, const MBSdataStruct * MBSdata)
 {
-
 	yarp::dev::PolyDriverList *controlBoardList = (yarp::dev::PolyDriverList*)RobotranYarp_interface;  // convert back into object
-
-	yarp::dev::RobotranYarpMotionControl* 		RobotranControlBoardType 	= NULL;
-	yarp::dev::RobotranYarpForceTorqueDriver* 	RobotranForceTorqueType 	= NULL;
+    robotran::IRobotran                         *RobotranPlugin          	= NULL;
 
     if(controlBoardList == NULL)
         return;
 
 	for(int i=0; i < controlBoardList->size(); i++)
     {
-        (*controlBoardList)[i]->poly->view(RobotranControlBoardType);
-        if(RobotranControlBoardType) 
+        (*controlBoardList)[i]->poly->view(RobotranPlugin);
+        if(RobotranPlugin)
         {
-        	//printf("I found a control Board driver at %d \n\n", i);
-        	RobotranControlBoardType->updateToYarp(MBSdata);
-    	}
-
-    	//(*controlBoardList)[i]->poly->view(RobotranForceTorqueType);
-    	//else if(RobotranForceTorqueType)
-    	//{
-    	//	printf("I found a force torque driver at %d \n\n", i);
-    	//}
-
+//            printf("I found a valid plugin at %d \n\n", i);
+            RobotranPlugin->updateToYarp(MBSdata);
+        }
     }
 }
 

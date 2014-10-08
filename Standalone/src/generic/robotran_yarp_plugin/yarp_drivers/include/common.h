@@ -28,5 +28,18 @@ inline double convertDegreesToRadians(double degrees) { return degrees / 180.0 *
 inline double convertRadiansToDegrees(double radians) { return radians * 180.0 / pi; }
 
 
+namespace robotran {
+    class RobotranYarpForceTorque;
+    class IRobotran;
+}
+
+class robotran::IRobotran
+{
+public:
+    // interface with Robotran
+    virtual void updateToYarp(const MBSdataStruct * MBSdata) = 0;
+    virtual void updateFromYarp(MBSdataStruct *MBSdata) = 0;
+
+};
 
 #endif
