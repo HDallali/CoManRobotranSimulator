@@ -54,6 +54,7 @@
         </base_body>
       </x2D>
       <x3D>
+        <x3D_frame />
         <x3D_shapes>
           <box>
             <name>New_Shape</name>
@@ -95,12 +96,7 @@
       <joint>
         <jointname>Joint_0</jointname>
         <type>T1</type>
-        <nature>driven</nature>
-        <symbols>
-          <q />
-          <qd />
-          <qdd />
-        </symbols>
+        <nature>independent</nature>
         <graphics>
           <x2D>
             <position>
@@ -114,12 +110,7 @@
       <joint>
         <jointname>Joint_1</jointname>
         <type>T2</type>
-        <nature>driven</nature>
-        <symbols>
-          <q />
-          <qd />
-          <qdd />
-        </symbols>
+        <nature>independent</nature>
         <graphics>
           <x2D>
             <position>
@@ -133,15 +124,10 @@
       <joint>
         <jointname>Joint_2</jointname>
         <type>T3</type>
-        <nature>driven</nature>
+        <nature>independent</nature>
         <initialvalue>
           <q>0.54</q>
         </initialvalue>
-        <symbols>
-          <q />
-          <qd />
-          <qdd />
-        </symbols>
         <graphics>
           <x2D>
             <position>
@@ -155,12 +141,7 @@
       <joint>
         <jointname>Joint_3</jointname>
         <type>R1</type>
-        <nature>driven</nature>
-        <symbols>
-          <q />
-          <qd />
-          <qdd />
-        </symbols>
+        <nature>independent</nature>
         <graphics>
           <x2D>
             <position>
@@ -174,12 +155,7 @@
       <joint>
         <jointname>Joint_4</jointname>
         <type>R2</type>
-        <nature>driven</nature>
-        <symbols>
-          <q />
-          <qd />
-          <qdd />
-        </symbols>
+        <nature>independent</nature>
         <graphics>
           <x2D>
             <position>
@@ -193,12 +169,7 @@
       <joint>
         <jointname>Joint_5</jointname>
         <type>R3</type>
-        <nature>driven</nature>
-        <symbols>
-          <q />
-          <qd />
-          <qdd />
-        </symbols>
+        <nature>independent</nature>
         <graphics>
           <x2D>
             <position>
@@ -2093,13 +2064,8 @@
       <joint>
         <jointname>WaistLat</jointname>
         <type>R1</type>
-        <nature>driven</nature>
+        <nature>independent</nature>
         <actuated />
-        <symbols>
-          <q />
-          <qd />
-          <qdd />
-        </symbols>
         <graphics>
           <x2D>
             <position>
@@ -2254,13 +2220,8 @@
       <joint>
         <jointname>WaistSag</jointname>
         <type>R2</type>
-        <nature>driven</nature>
+        <nature>independent</nature>
         <actuated />
-        <symbols>
-          <q />
-          <qd />
-          <qdd />
-        </symbols>
         <graphics>
           <x2D>
             <position>
@@ -2370,13 +2331,8 @@
       <joint>
         <jointname>WaistYaw</jointname>
         <type>R3</type>
-        <nature>driven</nature>
+        <nature>independent</nature>
         <actuated />
-        <symbols>
-          <q />
-          <qd />
-          <qdd />
-        </symbols>
         <graphics>
           <x2D>
             <position>
@@ -2587,13 +2543,8 @@
       <joint>
         <jointname>RShSag</jointname>
         <type>R2</type>
-        <nature>driven</nature>
+        <nature>independent</nature>
         <actuated />
-        <symbols>
-          <q />
-          <qd />
-          <qdd />
-        </symbols>
         <graphics>
           <x2D>
             <position>
@@ -2718,13 +2669,8 @@
       <joint>
         <jointname>RShLat</jointname>
         <type>R1</type>
-        <nature>driven</nature>
+        <nature>independent</nature>
         <actuated />
-        <symbols>
-          <q />
-          <qd />
-          <qdd />
-        </symbols>
         <graphics>
           <x2D>
             <position>
