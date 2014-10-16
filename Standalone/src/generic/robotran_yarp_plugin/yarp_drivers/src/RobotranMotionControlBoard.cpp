@@ -11,6 +11,11 @@
 
 using namespace yarp::dev;
 
+static inline bool NOT_YET_IMPLEMENTED(const char *txt)
+{
+    std::cout << txt << " is not yet implemented for robotran yarp plugin";
+    return false;
+}
 
 /**
  * robotran stuff
@@ -27,6 +32,7 @@ void RobotranYarpMotionControl::updateToYarp(const MBSdataStruct * MBSdata)
     for(unsigned int i=0; i<pos.size();i++)
     {
         pos[i] = zero[i] + (encoder[i] * convertRadiansToDegrees(MBSdata->q[jointID_map[i]]) );
+        torque[i] = MBSdata->Qq[jointID_map[i]];
     }
 
     //update time
@@ -81,6 +87,12 @@ bool RobotranYarpMotionControl::open(yarp::os::Searchable& config)
 
     desiredPosition.resize(numberOfJoints);
     desiredPosition.zero();
+
+    torque.resize(numberOfJoints);
+    torque.zero();
+
+    current.resize(numberOfJoints);
+    current.zero();
 
     // Get joints id
     if(!config.check("robotran_joint_id"))
@@ -585,5 +597,187 @@ bool  RobotranYarpMotionControl::getLimits (int axis, double *min, double *max) 
     *max = max_pos[axis];
     return true;
 }
+
+bool RobotranYarpMotionControl::setTorqueMode()
+{
+    return NOT_YET_IMPLEMENTED("setTorqueMode");
+}
+
+bool RobotranYarpMotionControl::getRefTorques(double *t)
+{
+    return NOT_YET_IMPLEMENTED("getRefTorques");
+}
+
+bool RobotranYarpMotionControl::getRefTorque(int j, double *t)
+{
+    return NOT_YET_IMPLEMENTED("getRefTorque");
+}
+
+bool RobotranYarpMotionControl::setRefTorques(const double *t)
+{
+    return NOT_YET_IMPLEMENTED("setRefTorques");
+}
+
+bool RobotranYarpMotionControl::setRefTorque(int j, double t)
+{
+    return NOT_YET_IMPLEMENTED("setRefTorque");
+}
+
+bool RobotranYarpMotionControl::getBemfParam(int j, double *bemf)
+{
+    return NOT_YET_IMPLEMENTED("getBemfParam");
+}
+
+bool RobotranYarpMotionControl::setBemfParam(int j, double bemf)
+{
+    return NOT_YET_IMPLEMENTED("setBemfParam");
+}
+
+bool RobotranYarpMotionControl::setTorquePid(int j, const Pid &pid)
+{
+    return NOT_YET_IMPLEMENTED("setTorquePid");
+}
+
+bool RobotranYarpMotionControl::getTorque(int j, double *t)
+{
+    *t = torque[j];
+    return true;
+}
+
+bool RobotranYarpMotionControl::getTorques(double *t)
+{
+    bool ret = true;
+    for(int j=0; j<numberOfJoints; j++)
+        ret = ret && getTorque(j, &t[j]);
+    return true;
+}
+
+bool RobotranYarpMotionControl::getTorqueRange(int j, double *min, double *max)
+{
+    return NOT_YET_IMPLEMENTED("getTorqueRange");
+}
+
+bool RobotranYarpMotionControl::getTorqueRanges(double *min, double *max)
+{
+    return NOT_YET_IMPLEMENTED("getTorqueRanges");
+}
+
+bool RobotranYarpMotionControl::setTorquePids(const Pid *pids)
+{
+    return NOT_YET_IMPLEMENTED("setTorquePids");
+}
+
+bool RobotranYarpMotionControl::setTorqueErrorLimit(int j, double limit)
+{
+    return NOT_YET_IMPLEMENTED("setTorqueErrorLimit");
+}
+
+bool RobotranYarpMotionControl::setTorqueErrorLimits(const double *limits)
+{
+    return NOT_YET_IMPLEMENTED("setTorqueErrorLimits");
+}
+
+bool RobotranYarpMotionControl::getTorqueError(int j, double *err)
+{
+    return NOT_YET_IMPLEMENTED("getTorqueError");
+}
+
+bool RobotranYarpMotionControl::getTorqueErrors(double *errs)
+{
+    return NOT_YET_IMPLEMENTED("getTorqueErrors");
+}
+
+bool RobotranYarpMotionControl::getTorquePidOutput(int j, double *out)
+{
+    return NOT_YET_IMPLEMENTED("getTorquePidOutput");
+}
+
+bool RobotranYarpMotionControl::getTorquePidOutputs(double *outs)
+{
+    return NOT_YET_IMPLEMENTED("getTorquePidOutputs");
+}
+
+bool RobotranYarpMotionControl::getTorquePid(int j, Pid *pid)
+{
+    return NOT_YET_IMPLEMENTED("getTorquePid");
+}
+
+bool RobotranYarpMotionControl::getTorquePids(Pid *pids)
+{
+    return NOT_YET_IMPLEMENTED("getTorquePids");
+}
+
+bool RobotranYarpMotionControl::getTorqueErrorLimit(int j, double *limit)
+{
+    return NOT_YET_IMPLEMENTED("getTorqueErrorLimit");
+}
+
+bool RobotranYarpMotionControl::getTorqueErrorLimits(double *limits)
+{
+    return NOT_YET_IMPLEMENTED("getTorqueErrorLimits");
+}
+
+bool RobotranYarpMotionControl::resetTorquePid(int j)
+{
+    return NOT_YET_IMPLEMENTED("resetTorquePid");
+}
+
+bool RobotranYarpMotionControl::disableTorquePid(int j)
+{
+    return NOT_YET_IMPLEMENTED("disableTorquePid");
+}
+
+bool RobotranYarpMotionControl::enableTorquePid(int j)
+{
+    return NOT_YET_IMPLEMENTED("enableTorquePid");
+}
+
+bool RobotranYarpMotionControl::setTorqueOffset(int j, double v)
+{
+    return NOT_YET_IMPLEMENTED("setTorqueOffset");
+}
+
+
+
+bool RobotranYarpMotionControl::enableAmp(int j)
+{
+    return NOT_YET_IMPLEMENTED("enableAmp");
+}
+
+bool RobotranYarpMotionControl::disableAmp(int j)
+{
+    return NOT_YET_IMPLEMENTED("disableAmp");
+}
+
+bool RobotranYarpMotionControl::getCurrents(double *vals)
+{
+    bool ret = true;
+    for(int j=0; j<numberOfJoints; j++)
+        ret = ret && getCurrent(j, &vals[j]);
+    return true;
+}
+
+bool RobotranYarpMotionControl::getCurrent(int j, double *val)
+{
+        *val = current[j];
+        return true;
+}
+
+bool RobotranYarpMotionControl::setMaxCurrent(int j, double v)
+{
+    return NOT_YET_IMPLEMENTED("setMaxCurrent");
+}
+
+bool RobotranYarpMotionControl::getAmpStatus(int *st)
+{
+    return NOT_YET_IMPLEMENTED("getAmpStatus");
+}
+
+bool RobotranYarpMotionControl::getAmpStatus(int j, int *st)
+{
+    return NOT_YET_IMPLEMENTED("getAmpStatus");
+}
+
+
 
 #endif

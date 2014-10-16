@@ -42,10 +42,15 @@ class yarp::dev::RobotranYarpMotionControl:
     public IVelocityControl,
     public IEncodersTimed,
     public IControlMode,
+// public IControlMode2,
+// public IPidControl,
+// public IImpedanceControl,
+// public IInteractionMode,
+    public IAmplifierControl,
     public IPositionDirect,
     public IControlLimits2,
-    public robotran::IRobotran
-
+    public robotran::IRobotran,
+    public ITorqueControl
 {
 public:
     
@@ -177,11 +182,49 @@ public:
     bool setPositions(const double *refs);
 
     // ICONTROLLIMITS2
-    bool  setVelLimits (int axis, double min, double max) {return false;};
-    bool  getVelLimits (int axis, double *min, double *max) {return false;};
-    bool  setLimits (int axis, double min, double max) {return false;};
-    bool  getLimits (int axis, double *min, double *max); 
+    bool  setVelLimits (int axis, double min, double max) {return false;}
+    bool  getVelLimits (int axis, double *min, double *max) {return false;}
+    bool  setLimits (int axis, double min, double max) {return false;}
+    bool  getLimits (int axis, double *min, double *max);
     
+    // TORQUE
+    bool setTorqueMode();
+    bool getRefTorques(double *t);
+    bool getRefTorque(int j, double *t);
+    bool setRefTorques(const double *t);
+    bool setRefTorque(int j, double t);
+    bool getBemfParam(int j, double *bemf);
+    bool setBemfParam(int j, double bemf);
+    bool setTorquePid(int j, const Pid &pid);
+    bool getTorque(int j, double *t);
+    bool getTorques(double *t);
+    bool getTorqueRange(int j, double *min, double *max);
+    bool getTorqueRanges(double *min, double *max);
+    bool setTorquePids(const Pid *pids);
+    bool setTorqueErrorLimit(int j, double limit);
+    bool setTorqueErrorLimits(const double *limits);
+    bool getTorqueError(int j, double *err);
+    bool getTorqueErrors(double *errs);
+    bool getTorquePidOutput(int j, double *out);
+    bool getTorquePidOutputs(double *outs);
+    bool getTorquePid(int j, Pid *pid);
+    bool getTorquePids(Pid *pids);
+    bool getTorqueErrorLimit(int j, double *limit);
+    bool getTorqueErrorLimits(double *limits);
+    bool resetTorquePid(int j);
+    bool disableTorquePid(int j);
+    bool enableTorquePid(int j);
+    bool setTorqueOffset(int j, double v);
+
+    // IAmplifierControl
+    bool enableAmp(int j);
+    bool disableAmp(int j);
+    bool getCurrents(double *vals);
+    bool getCurrent(int j, double *val);
+    bool setMaxCurrent(int j, double v);
+    bool getAmpStatus(int *st);
+    bool getAmpStatus(int j, int *st);
+
 private:
 	
     /* PID structures */
@@ -221,7 +264,7 @@ private:
      */
     yarp::sig::Vector zeroPosition;
 
-    yarp::sig::Vector vel, speed, acc, amp, torque;
+    yarp::sig::Vector vel, speed, acc, amp, torque, current;
     yarp::os::Semaphore pos_lock;
     yarp::sig::Vector referenceSpeed, referencePosition, referenceAcceleraton, referenceTorque;
 
