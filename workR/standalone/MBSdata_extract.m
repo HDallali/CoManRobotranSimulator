@@ -2,7 +2,7 @@
 % Nicolas Van der Noot & Allan Barrea - 09/11/2013
 %
 % Function to generate an intermediate file containing the elements of the
-% mbs_data structure. This intermediate file is then red by the 
+% mbs_data structure. This intermediate file is then read by the 
 % C standalone model to initialize the MBSdata struct.
 
 function [] = MBSdata_extract(mbs_data, filename, pathname)
