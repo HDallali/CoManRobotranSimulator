@@ -33,6 +33,7 @@ void RobotranYarpMotionControl::updateToYarp(const MBSdataStruct * MBSdata)
     {
         pos[i] = zero[i] + (encoder[i] * convertRadiansToDegrees(MBSdata->q[jointID_map[i]]) );
         torque[i] = MBSdata->Qq[jointID_map[i]];
+        current[i] = MBSdata->user_IO->currents[jointID_map[i]];
     }
 
     //update time
@@ -779,5 +780,45 @@ bool RobotranYarpMotionControl::getAmpStatus(int j, int *st)
 }
 
 
+
+bool RobotranYarpMotionControl::setControlMode(const int j, const int mode)
+{
+    controlMode[j] = mode;
+}
+bool RobotranYarpMotionControl::setControlModes(const int n_joint, const int *joints, int *modes)
+{
+    for(int j=0; j<n_joint; j++)
+        setControlMode(joints[j], modes[j]);
+    return true;
+}
+
+bool RobotranYarpMotionControl::setControlModes(int *modes)
+{
+    for(int j=0; j<numberOfJoints; j++)
+        setControlMode(j, modes[j]);
+    // some control modes such as torque control, velocity control are not implemented yet.
+    return true;
+}
+
+bool RobotranYarpMotionControl::getControlMode(int j, int *mode)
+{
+    *mode =controlMode[j];
+    return true;
+}
+
+bool RobotranYarpMotionControl::getControlModes(int *modes)
+{
+    for(int j=0; j<numberOfJoints; j++)
+        getControlMode(j, &modes[j]);
+    return true;
+}
+
+bool RobotranYarpMotionControl::getControlModes(const int n_joint, const int *joints, int *modes)
+{
+    for(int j=0; j<n_joint; j++)
+        getControlMode(joints[j], &modes[j]);
+    // some control modes such as torque control, velocity control are not implemented yet.
+    return true;
+}
 
 #endif

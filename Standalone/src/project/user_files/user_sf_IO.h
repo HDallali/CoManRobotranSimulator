@@ -20,7 +20,8 @@
  
 #include "userDef.h"
 #include "ControllersStruct.h"
- 
+#include "ActuatorsDefinitions.h"
+
 typedef struct UserIOStruct 
 {
     double GRF_r[3+1];
@@ -84,6 +85,7 @@ typedef struct UserIOStruct
     double output2[29+1];
     double Voltage[29+1];
     double refs[29+1];
+    double *currents;
     int servo_type[29+1];
     ControllerStruct *cvs;
     SimbodyStruct *simbodyStruct;
