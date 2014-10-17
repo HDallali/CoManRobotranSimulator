@@ -188,6 +188,15 @@ void printMbsData(MBSdataStruct *MBSdata)
     printf("nqlocked = %d\n",MBSdata->nqlocked);
     printf("ndriven = %d\n",MBSdata->nqdriven);
     printf("nqa = %d\n",MBSdata->nqa);
+    printf("nqv = %d\n",MBSdata->nqv);
+    printf("nhu = %d\n",MBSdata->nhu);
+    printf("nxfrc = %d\n",MBSdata->Nxfrc);
+    printf("nloopc = %d\n",MBSdata->Nloopc);
+    printf("ncons = %d\n",MBSdata->Ncons);
+    printf("nuserc = %d\n",MBSdata->Nuserc);
+    printf("Nlink = %d\n",MBSdata->Nlink);
+    printf("Nlink3D = %d\n",MBSdata->Nlink3D);
+    printf("Nsensor = %d\n",MBSdata->Nsensor);
 
     //qu
     printf("qu = [\n");
@@ -229,6 +238,22 @@ void printMbsData(MBSdataStruct *MBSdata)
     }
     printf("] \n\n");
 
+    //qv
+    printf("qv = [\n");
+    for(i = 1;  i <= MBSdata->nqv; i++){
+        printf("%d \t", MBSdata->qv[i]);
+        if((i%5)==0) printf("\n");
+    }
+    printf("] \n\n");
+
+    //hu
+    printf("hu = [\n");
+    for(i = 1;  i <= MBSdata->nhu; i++){
+        printf("%d \t", MBSdata->hu[i]);
+        if((i%5)==0) printf("\n");
+    }
+    printf("] \n\n");
+
     // q[]
     printf("q = [\n");
     for(i = 1;  i <= MBSdata->njoint; i++){
@@ -250,6 +275,60 @@ void printMbsData(MBSdataStruct *MBSdata)
     for(i = 1;  i <= MBSdata->njoint; i++){
         printf("%f \t", MBSdata->qdd[i]);
         if((i%5)==0) printf("\n");
+    }
+    printf("] \n\n");
+
+    // qmin[] and qmax not yet implemented in xml reading
+
+    // frc
+    printf("frc = [\n");
+    for(i = 1;  i <= MBSdata->nbody; i++){
+        printf("%f \t", MBSdata->frc[1][i]);
+        printf("%f \t", MBSdata->frc[2][i]);
+        printf("%f \n", MBSdata->frc[3][i]);
+    }
+    printf("] \n\n");
+
+    // trq
+    printf("trq = [\n");
+    for(i = 1;  i <= MBSdata->nbody; i++){
+        printf("%f \t", MBSdata->trq[1][i]);
+        printf("%f \t", MBSdata->trq[2][i]);
+        printf("%f \n", MBSdata->trq[3][i]);
+    }
+    printf("] \n\n");
+
+    // Qq[]
+    printf("Qq = [\n");
+    for(i = 1;  i <= MBSdata->njoint; i++){
+        printf("%f \t", MBSdata->Qq[i]);
+        if((i%5)==0) printf("\n");
+    }
+    printf("] \n\n");
+
+    // tsim
+    printf("tsim = %f\n\n",MBSdata->tsim);
+
+    //lrod not yet implemented in xml reading
+
+    //lambda not yet implemented in xml reading
+
+    //user_constraints not yet implemented in xml reading
+
+    // Z, Zd, Fl not implemented yet
+
+    //SWr
+    printf("SWr = [\n");
+    for(i = 1;  i <= MBSdata->Nxfrc; i++){
+        printf("%f \t", MBSdata->SWr[i][1]);
+        printf("%f \t", MBSdata->SWr[i][2]);
+        printf("%f \t", MBSdata->SWr[i][3]);
+        printf("%f \t", MBSdata->SWr[i][4]);
+        printf("%f \t", MBSdata->SWr[i][5]);
+        printf("%f \t", MBSdata->SWr[i][6]);
+        printf("%f \t", MBSdata->SWr[i][7]);
+        printf("%f \t", MBSdata->SWr[i][8]);
+        printf("%f \n", MBSdata->SWr[i][9]);
     }
     printf("] \n\n");
 
