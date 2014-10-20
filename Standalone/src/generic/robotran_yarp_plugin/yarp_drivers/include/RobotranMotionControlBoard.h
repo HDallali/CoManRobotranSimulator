@@ -41,8 +41,8 @@ class yarp::dev::RobotranYarpMotionControl:
     public IPositionControl2,
     public IVelocityControl,
     public IEncodersTimed,
-    public IControlMode,
-// public IControlMode2,
+    //public IControlMode,
+    public IControlMode2,
 // public IPidControl,
 // public IImpedanceControl,
 // public IInteractionMode,
@@ -133,16 +133,22 @@ public:
     
     //CONTROL MODE
     virtual bool setPositionMode(int j); //WORKS    
-    virtual bool setVelocityMode(int j){return false;}; //WORKS
-    virtual bool getControlMode(int j, int *mode){ *mode =controlMode[j]; return true;} //WORKS
+    virtual bool setVelocityMode(int j){return false;} //WORKS
+    virtual bool getControlMode(int j, int *mode); //WORKS
     
-    virtual bool setTorqueMode(int j){return false;}; //NOT TESTED 
-    virtual bool getControlModes(int *modes){return false;}; //NOT TESTED
-    
-    virtual bool setImpedancePositionMode(int j){return false;};//NOT IMPLEMENTED
-    virtual bool setImpedanceVelocityMode(int j){return false;}; //NOT IMPLEMENTED
-    virtual bool setOpenLoopMode(int j){return false;}; //NOT IMPLEMENTED
-    
+    virtual bool setTorqueMode(int j){return false;} //NOT TESTED
+    virtual bool getControlModes(int *modes); //NOT TESTED
+
+    virtual bool setImpedancePositionMode(int j){return false;}//NOT IMPLEMENTED
+    virtual bool setImpedanceVelocityMode(int j){return false;} //NOT IMPLEMENTED
+    virtual bool setOpenLoopMode(int j){return false;} //NOT IMPLEMENTED
+
+    // IControlMode2
+    bool getControlModes(const int n_joint, const int *joints, int *modes);
+    bool setControlMode(const int j, const int mode);
+    bool setControlModes(const int n_joint, const int *joints, int *modes);
+    bool setControlModes(int *modes);
+
 
     /*IMPEDANCE CTRL
     virtual bool getImpedance(int j, double *stiffness, double *damping); // [Nm/deg] & [Nm*sec/deg]
@@ -224,6 +230,7 @@ public:
     bool setMaxCurrent(int j, double v);
     bool getAmpStatus(int *st);
     bool getAmpStatus(int j, int *st);
+
 
 private:
 	

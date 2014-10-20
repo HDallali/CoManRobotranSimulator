@@ -380,6 +380,12 @@ UserIOStruct * initUserIO(MBSdataStruct *s)
         uvs->servo_type[i] = 0;
     }
 
+    // currents:
+      if (Act_order ==1)
+        uvs->currents = &s->ux[1] ;
+      if (Act_order ==2 || Act_order ==3)
+        uvs->currents = &s->ux[29*2+1];
+
     // cvs //
     uvs->cvs = init_ControllerStruct();
 
