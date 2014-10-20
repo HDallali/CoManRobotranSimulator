@@ -165,34 +165,73 @@ if (FLAG_GENERATE)
 	# input .txt files
 	set(CONTROL_VAR_TXT ${PROJECT_SOURCE_DIR}/src/project/varState/control_variables.txt)
 	set(SIMU_VAR_TXT ${PROJECT_SOURCE_DIR}/src/project/varState/simu_variables.txt)
+	
+	# checking files
+	set(CHECK_CTRL ${PROJECT_SOURCE_DIR}/src/project/varState/update_check/ctrl_check.txt)
+	set(CHECK_SIMU ${PROJECT_SOURCE_DIR}/src/project/varState/update_check/simu_check.txt)
 
 	# re-generate ControllersStruct.h/.c
 	add_custom_command (
-	  OUTPUT ${CONTROLLERSSTRCT_H} ${CONTROLLERSSTRCT_C}
+	  OUTPUT ${CHECK_CTRL}
 	  COMMAND Gen_state_var ctrl
 	  DEPENDS ${CONTROL_VAR_TXT}
 	)
 
 	# re-generate user_sf_IO.h/.c
 	add_custom_command (
-	  OUTPUT ${USER_SF_IO_H} ${USER_SF_IO_C}
+	  OUTPUT ${CHECK_SIMU}
 	  COMMAND Gen_state_var simu
 	  DEPENDS ${SIMU_VAR_TXT}
 	)
 
 	# check if re-generation needed
 	add_custom_target(CheckGeneration ALL 
-		DEPENDS ${CONTROLLERSSTRCT_H} ${USER_SF_IO_H})
+		DEPENDS ${CHECK_CTRL} ${CHECK_SIMU})
 	
 endif (FLAG_GENERATE)
 
 ## ---- CUSTOM FUNCTIONS ---- ##
 
+## ---- AUTOMATIC GENERATION  ('user_all_id.h' and 'UserModelStruct.h/.c')  ---- ##
+## change for mds_user
 
-# These files will not be compiled or included in the project
-set(CUR_ITEM "")	
+	# # UserModelStruct.h/.c
+	# set(USER_MODELS_H ${PROJECT_SOURCE_DIR}/src/project/user_files/UserModelStruct.h)
+	# set(USER_MODELS_C ${PROJECT_SOURCE_DIR}/src/project/user_files/UserModelStruct.c)
+	# set(USER_ALL_ID_H ${PROJECT_SOURCE_DIR}/src/project/user_files/user_all_id.h)
 
-# function to return 1 if the element 'CUR_ITEM' is present in list 'HEADERS_NOT_INCLUDED'
+	# # input .mbs file
+	# file(GLOB MBS_FILE "${PROJECT_SOURCE_DIR}/../dataR/*.mbs")
+	
+	# # checking files
+	# set(CHECK_USER_MODELS ${CMAKE_CURRENT_BINARY_DIR}/src/project/user_files/update_check/user_models_check.txt) # these files are actually not created.
+	# set(CHECK_USER_ALL_ID ${CMAKE_CURRENT_BINARY_DIR}/src/project/user_files/update_check/user_all_id_check.txt) # can't use .c/.h as they are deleted at 'clean'
+
+	# # re-generate user_models.h/.c
+	# add_custom_command (
+	#   OUTPUT ${CHECK_USER_MODELS}
+	#   COMMAND Gen_mds_user user_models
+	#   DEPENDS ${MBS_FILE}
+	# )
+	
+	# # re-generate user_all_id.h/.c
+	# add_custom_command (
+	#   OUTPUT ${CHECK_USER_ALL_ID}
+	#   COMMAND Gen_mds_user user_all_id
+	#   DEPENDS ${MBS_FILE}
+	# )
+	
+	# # check if re-generation needed
+	# add_custom_target(CheckGeneration_2 ALL 
+	# 	DEPENDS ${CHECK_USER_ALL_ID} ${CHECK_USER_MODELS})
+
+	
+## ---- CUSTOM FUNCTIONS ---- ##
+ 
+ 
+ set(CUR_ITEM "")
+ 
+ # function to return 1 if the element 'CUR_ITEM' is present in list 'HEADERS_NOT_INCLUDED'
 function(header_present_in_list FOUND_IN_LIST)
 	set(FOUND_IN_LIST 0 PARENT_SCOPE)
 	foreach(LIST_ITEM ${HEADERS_NOT_INCLUDED})
@@ -300,6 +339,18 @@ endif(LIBXML2_FOUND)
 
 message("      -> INC : ${LIBXML2_INCLUDE_PATH}")
 message("      -> LIB : ${LIBXML2_LIBRARIES}\n")
+
+# GSL library
+find_package(GSL REQUIRED)
+if (GSL_FOUND)
+	include_directories(${GSL_INCLUDE_DIR})
+	message( "\n  >> GSL found")
+else(GSL_FOUND)
+	message( "\n  >> GSL not found, modify src/other/conf/FindGSL.cmake")
+endif(GSL_FOUND)
+
+message("      -> INC : ${GSL_INCLUDE_DIR}")
+message("      -> LIB : ${GSL_LIBRARIES}\n")
 
 # dirdynared or accelred
 if (FLAG_DIRDYNARED)
