@@ -87,11 +87,14 @@ if (UNIX)
 	set(FLAG_SIMBODYVIZ OFF)
 endif (UNIX)
 
-
 if (NOT FLAG_REAL_TIME)
 	set(FLAG_SDL OFF)
 	set(FLAG_JNI OFF)
 endif (NOT FLAG_REAL_TIME)
+
+if (FLAG_YARP)
+	set(FLAG_CXX ON)
+endif (FLAG_YARP)
 
 ## ---- PROJECT MAIN CONFIGURATIONS ---- ##
 
