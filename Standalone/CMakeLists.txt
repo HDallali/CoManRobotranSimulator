@@ -18,10 +18,6 @@ option(FLAG_YARP
 option (FLAG_CXX  
         "Use C++" OFF) 
 
-IF(FLAG_YARP)
-	SET(FLAG_CXX)
-ENDIF()
-
 # let the use choose the compiler
 option (FLAG_COMPILER  
         "Modify compilers properties" OFF) 
