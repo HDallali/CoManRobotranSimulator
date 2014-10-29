@@ -22,9 +22,7 @@
 #include "simbody_functions.h"
 #endif
 
-
 // ---- Constants & Macros ---- //
-
 
 // Control Type
 #define IDLE_CTRL 0   //maybe using an enum would be cleaner
@@ -37,87 +35,162 @@
 
 
 // ---- Motor Indices ---- //
+// replaced with typedef enum
+//// Right Leg
+//#define RHipSag_m 1
+//#define RHipLat_m 2
+//#define RHipYaw_m 3
+//#define RKneeSag_m 4
+//#define RAnkLat_m 5
+//#define RAnkSag_m 6
 
-// Torso
-#define  Waist_m 13
-#define  DWL_m   14
-#define  DWS_m 	 15
+//// Left Leg
+//#define LHipSag_m 7
+//#define LHipLat_m 8
+//#define LHipYaw_m 9
+//#define LKneeSag_m 10
+//#define LAnkLat_m 11
+//#define LAnkSag_m 12
 
-// Right Arm
-#define RShSag_m 16
-#define RShLat_m 17
-#define RShYaw_m 18
-#define RElbj_m  19
-#define RForearmPlate_m 20
-#define RWrj1_m  21
-#define RWrj2_m  22
+//// Torso
+//#define  Waist_m 13
+//#define  DWL_m   14
+//#define  DWS_m 	 15
 
-// Left Arm
-#define LShSag_m 23
-#define LShLat_m 24
-#define LShYaw_m 25
-#define LElbj_m  26
-#define LForearmPlate_m 27
-#define LWrj1_m  28
-#define LWrj2_m  29
+//// Right Arm
+//#define RShSag_m 16
+//#define RShLat_m 17
+//#define RShYaw_m 18
+//#define RElbj_m  19
+//#define RForearmPlate_m 20
+//#define RWrj1_m  21
+//#define RWrj2_m  22
 
-// Right Leg
-#define RHipSag_m 1
-#define RHipLat_m 2
-#define RHipYaw_m 3
-#define RKneeSag_m 4
-#define RAnkLat_m 5
-#define RAnkSag_m 6
+//// Left Arm
+//#define LShSag_m 23
+//#define LShLat_m 24
+//#define LShYaw_m 25
+//#define LElbj_m  26
+//#define LForearmPlate_m 27
+//#define LWrj1_m  28
+//#define LWrj2_m  29
 
-// Left Leg
-#define LHipSag_m 7
-#define LHipLat_m 8
-#define LHipYaw_m 9
-#define LKneeSag_m 10
-#define LAnkLat_m 11
-#define LAnkSag_m 12
+// replaced with typedef enum
+//// Right Leg
+//#define RHipSag_id 7
+//#define RHipLat_id 8
+//#define RHipYaw_id 9
+//#define RKneeSag_id 10
+//#define RAnkLat_id 11
+//#define RAnkSag_id 12
+
+//// Left Leg
+//#define LHipSag_id 13
+//#define LHipLat_id 14
+//#define LHipYaw_id 15
+//#define LKneeSag_id 16
+//#define LAnkLat_id 17
+//#define LAnkSag_id 18
+
+//// Torso
+//#define Waist_id 19
+//#define DWL_id	 20
+//#define DWS_id   21
+
+//// Right Arm
+//#define RShSag_id 22
+//#define RShLat_id 23
+//#define RShYaw_id 24
+//#define RElbj_id  25
+//#define RForearmPlate_id 26
+//#define RWrj1_id  27
+//#define RWrj2_id  28
+
+//// Left Arm
+//#define LShSag_id 29
+//#define LShLat_id 30
+//#define LShYaw_id 31
+//#define LElbj_id  32
+//#define LForearmPlate_id 33
+//#define LWrj1_id  34
+//#define LWrj2_id  35
+
+typedef enum{
+RHipSag_m =1,
+RHipLat_m = 2,
+RHipYaw_m = 3,
+RKneeSag_m = 4,
+RAnkLat_m = 5,
+RAnkSag_m = 6,
+
+LHipSag_m = 7,
+LHipLat_m = 8,
+LHipYaw_m = 9,
+LKneeSag_m = 10,
+LAnkLat_m = 11,
+LAnkSag_m = 12,
+
+Waist_m = 13,
+DWL_m  = 14,
+DWS_m 	= 15,
+
+RShSag_m = 16,
+RShLat_m = 17,
+RShYaw_m = 18,
+RElbj_m  = 19,
+RForearmPlate_m = 20,
+RWrj1_m  = 21,
+RWrj2_m  = 22,
+LShSag_m = 23,
+LShLat_m = 24,
+LShYaw_m = 25,
+LElbj_m  = 26,
+LForearmPlate_m = 27,
+LWrj1_m  = 28,
+LWrj2_m  = 29
+} motorIds;
 
 // ---- Actuated Joints Indices ---- //
+typedef enum{
+    // Right Leg
+    RHipSag_id =  7,
+      RHipLat_id =  8,
+      RHipYaw_id =  9,
+      RKneeSag_id =  10,
+      RAnkLat_id =  11,
+      RAnkSag_id =  12,
 
-// Torso
-#define Waist_id 19
-#define DWL_id	 20
-#define DWS_id   21
+    // Left Leg
+      LHipSag_id =  13,
+      LHipLat_id =  14,
+      LHipYaw_id =  15,
+      LKneeSag_id =  16,
+      LAnkLat_id =  17,
+      LAnkSag_id =  18,
 
-// Right Arm
-#define RShSag_id 22
-#define RShLat_id 23
-#define RShYaw_id 24
-#define RElbj_id  25
-#define RForearmPlate_id 26
-#define RWrj1_id  27
-#define RWrj2_id  28
+    // Torso
+      Waist_id =  19,
+      DWL_id = 20,
+      DWS_id =    21,
 
-// Left Arm
-#define LShSag_id 29
-#define LShLat_id 30
-#define LShYaw_id 31
-#define LElbj_id  32
-#define LForearmPlate_id 33
-#define LWrj1_id  34
-#define LWrj2_id  35
+    // Right Arm
+      RShSag_id =  22,
+      RShLat_id =  23,
+      RShYaw_id =  24,
+      RElbj_id =   25,
+      RForearmPlate_id =  26,
+      RWrj1_id =   27,
+      RWrj2_id =   28,
 
-// Right Leg
-#define RHipSag_id 7
-#define RHipLat_id 8
-#define RHipYaw_id 9
-#define RKneeSag_id 10
-#define RAnkLat_id 11
-#define RAnkSag_id 12
-
-// Left Leg
-#define LHipSag_id 13
-#define LHipLat_id 14
-#define LHipYaw_id 15
-#define LKneeSag_id 16
-#define LAnkLat_id 17
-#define LAnkSag_id 18
-
+    // Left Arm
+      LShSag_id =  29,
+      LShLat_id =  30,
+      LShYaw_id =  31,
+      LElbj_id =   32,
+      LForearmPlate_id =  33,
+      LWrj1_id =   34,
+      LWrj2_id =   35
+} jointIds;
 
 
 //GCM

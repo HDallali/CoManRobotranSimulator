@@ -58,16 +58,16 @@ void init_SEActuatorStruct(SEActuatorStruct **acs)
         acs[i] = (SEActuatorStruct*) malloc(sizeof(SEActuatorStruct));
 
         switch (type) {
-          case 1:
-            (*acs[i]).Resistance=0.70;
-            (*acs[i]).GearRatio=100;
-            (*acs[i]).Damping=1;
-            (*acs[i]).Inductance=0.000265;
-            (*acs[i]).Inertia= 0.01;
-            (*acs[i]).Kbemf= 0.00261;
-            (*acs[i]).SeriesDamping=0.0;
-            (*acs[i]).SeriesSpring=1000.0;
-            (*acs[i]).TrqConst=1.0;
+          case 1: //Kollmorgen RBE1211_CSD17 (Values reflected after gearbox)
+            (*acs[i]).Resistance=0.664;
+            (*acs[i]).GearRatio=100.0;
+            (*acs[i]).Damping=25.5;//1;
+            (*acs[i]).Inductance= 0.00032;// 0.000265;
+            (*acs[i]).Inertia=  0.1387;
+            (*acs[i]).Kbemf= 0.041;//0.00261;
+            (*acs[i]).SeriesDamping=0.0015;
+            (*acs[i]).SeriesSpring=390.0;
+            (*acs[i]).TrqConst=0.041;
             (*acs[i]).Isaturation=50;
             (*acs[i]).Vsaturation=40;
             //sprintf((*acs[i]).type,"Medium");
@@ -75,7 +75,7 @@ void init_SEActuatorStruct(SEActuatorStruct **acs)
             break;
           case 2:
             (*acs[i]).Resistance=1.0;
-            (*acs[i]).GearRatio=1.0;
+            (*acs[i]).GearRatio=100.0;
             (*acs[i]).Damping=1.0;
             (*acs[i]).Inductance=0.002;
             (*acs[i]).Inertia= 0.01;
@@ -90,7 +90,7 @@ void init_SEActuatorStruct(SEActuatorStruct **acs)
             break;
           default:
             (*acs[i]).Resistance=1.0;
-            (*acs[i]).GearRatio=100;
+            (*acs[i]).GearRatio=100.0;
             (*acs[i]).Damping=1.0;
             (*acs[i]).Inductance=0.002;
             (*acs[i]).Inertia= 0.01;

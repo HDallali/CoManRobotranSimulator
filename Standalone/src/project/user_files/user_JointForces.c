@@ -20,78 +20,48 @@ double* user_JointForces(MBSdataStruct *MBSdata, double tsim)
     double Ds = MBSdata->user_IO->actuatorsStruct->acs[0]->SeriesDamping;
 
     double *ref = MBSdata->user_IO->refs;
+    const int n = NB_ACTUATED_JOINTS;
 
-    // default no actuator model
-    for (i=1; i<=29; i++)
-        MBSdata->Qq[i+6]=-200*(MBSdata->q[i+6]-0.0)-10*MBSdata->qd[i+6];
+    // order is important:
+    int MotorIds[NB_ACTUATED_JOINTS]={ RHipSag_m, RHipLat_m, RHipYaw_m, RKneeSag_m, RAnkLat_m, RAnkSag_m,
+                                       LHipSag_m,  LHipLat_m,  LHipYaw_m,  LKneeSag_m, LAnkLat_m, LAnkSag_m,
+                                       Waist_m ,        DWL_m  ,      DWS_m ,
+                                       RShSag_m, RShLat_m, RShYaw_m , RElbj_m, RForearmPlate_m, RWrj1_m,  RWrj2_m,
+                                       LShSag_m, LShLat_m, LShYaw_m,  LElbj_m, LForearmPlate_m, LWrj1_m,  LWrj2_m };
 
-    MBSdata->Qq[30]=-200*(MBSdata->q[30]+1.4) -10*MBSdata->qd[30];
-    //MBSdata->Qq[23]=-200*(MBSdata->q[23]-1.4) -10*MBSdata->qd[23];
+    int JointIds[NB_ACTUATED_JOINTS]={ RHipSag_id, RHipLat_id, RHipYaw_id, RKneeSag_id, RAnkLat_id, RAnkSag_id,
+                                       LHipSag_id,  LHipLat_id,  LHipYaw_id,  LKneeSag_id, LAnkLat_id, LAnkSag_id,
+                                       Waist_id ,        DWL_id  ,      DWS_id ,
+                                       RShSag_id, RShLat_id, RShYaw_id , RElbj_id, RForearmPlate_id, RWrj1_id,  RWrj2_id,
+                                       LShSag_id, LShLat_id, LShYaw_id,  LElbj_id, LForearmPlate_id, LWrj1_id,  LWrj2_id };
+
 
 
     // Actuated Joints:
     if (Act_type==1) //SEA
     {
-
         switch (Act_order) {
           case 1:
             justElectrical:
-
-            // Torso
-            MBSdata->Qq[Waist_id]   = rho* KT * MBSdata->ux[Waist_m];
-            MBSdata->Qq[DWL_id]     = rho* KT * MBSdata->ux[DWL_m];
-            MBSdata->Qq[DWS_id]     = rho* KT * MBSdata->ux[DWS_m];
-
-            // Right Arm
-            MBSdata->Qq[RShSag_id]  = rho* KT * MBSdata->ux[RShSag_m];
-            MBSdata->Qq[RShLat_id]  = rho* KT * MBSdata->ux[RShLat_m];
-            MBSdata->Qq[RShYaw_id]  = rho* KT * MBSdata->ux[RShYaw_m];
-            MBSdata->Qq[RElbj_id]   = rho* KT * MBSdata->ux[RElbj_m];
-            MBSdata->Qq[RForearmPlate_id]   = rho* KT * MBSdata->ux[RForearmPlate_m];
-            MBSdata->Qq[RWrj1_id]   = rho* KT * MBSdata->ux[RWrj1_m];
-            MBSdata->Qq[RWrj2_id]   = rho* KT * MBSdata->ux[RWrj2_m];
-
-            // Left Arm
-            MBSdata->Qq[LShSag_id]  = rho* KT * MBSdata->ux[LShSag_m];
-            MBSdata->Qq[LShLat_id]  = rho* KT * MBSdata->ux[LShLat_m];
-            MBSdata->Qq[LShYaw_id]  = rho* KT * MBSdata->ux[LShYaw_m];
-            MBSdata->Qq[LElbj_id]   = rho* KT * MBSdata->ux[LElbj_m];
-            MBSdata->Qq[LForearmPlate_id]   = rho* KT * MBSdata->ux[LForearmPlate_m];
-            MBSdata->Qq[LWrj1_id]   = rho* KT * MBSdata->ux[LWrj1_m];
-            MBSdata->Qq[LWrj2_id]   = rho* KT * MBSdata->ux[LWrj2_m];
-
-            // Right Leg
-            MBSdata->Qq[RHipSag_id]  = rho* KT * MBSdata->ux[RHipSag_m];
-            MBSdata->Qq[RHipLat_id]  = rho* KT * MBSdata->ux[RHipLat_m];
-            MBSdata->Qq[RHipYaw_id]  = rho* KT * MBSdata->ux[RHipYaw_m];
-            MBSdata->Qq[RKneeSag_id] = rho* KT * MBSdata->ux[RKneeSag_m];
-            MBSdata->Qq[RAnkLat_id]  = rho* KT * MBSdata->ux[RAnkLat_m];
-            MBSdata->Qq[RAnkSag_id]  = rho* KT * MBSdata->ux[RAnkSag_m];
-
-            // Left Leg
-            MBSdata->Qq[LHipSag_id]  = rho* KT * MBSdata->ux[LHipSag_m];
-            MBSdata->Qq[LHipLat_id]  = rho* KT * MBSdata->ux[LHipLat_m];
-            MBSdata->Qq[LHipYaw_id]  = rho* KT * MBSdata->ux[LHipYaw_m];
-            MBSdata->Qq[LKneeSag_id] = rho* KT * MBSdata->ux[LKneeSag_m];
-            MBSdata->Qq[LAnkLat_id]  = rho* KT * MBSdata->ux[LAnkLat_m];
-            MBSdata->Qq[LAnkSag_id]  = rho* KT * MBSdata->ux[LAnkSag_m];
-
+            //iterating over motor and joint ids
+            for (i=0; i<n; i++)
+            {   rho = MBSdata->user_IO->actuatorsStruct->acs[MotorIds[i]-1]->GearRatio;
+                KT = MBSdata->user_IO->actuatorsStruct->acs[MotorIds[i]-1]->TrqConst;
+                MBSdata->Qq[JointIds[i]]   = rho* KT * MBSdata->ux[MotorIds[i]];
+            }
+          break;
+          case 2:
+            justMechanical:
+            for (i=0; i<n; i++)
+            {
+                MBSdata->Qq[JointIds[i]]=Ks*(MBSdata->ux[MotorIds[i]]-MBSdata->q[JointIds[i]]);
+                MBSdata->Qq[JointIds[i]]+=Ds*(MBSdata->uxd[MotorIds[i]]-MBSdata->qd[JointIds[i]]);
+            }
 
           break;
-
-//          case 2:
-//            justMechanical:
-
-//            MBSdata->Qq[Waist_id]=Ks*(MBSdata->ux[Waist_m]-MBSdata->q[Waist_id])+Ds*(MBSdata->uxd[Waist_m]-MBSdata->qd[Waist_id]);
-//            MBSdata->Qq[DWL_id]=Ks*(MBSdata->ux[DWL_m]-MBSdata->q[DWL_id])+Ds*(MBSdata->uxd[DWL_m]-MBSdata->qd[DWL_id]);
-//            MBSdata->Qq[DWS_id]=Ks*(MBSdata->ux[DWS_m]-MBSdata->q[DWS_id])+Ds*(MBSdata->uxd[DWS_m]-MBSdata->qd[DWS_id]);
-
-            
-//          break;
-
-//          case 3:
-//            goto justMechanical;
-//          break;
+          case 3:
+            goto justMechanical;
+          break;
 
           default:
             printf("detault actuator order (1) selected \n");
@@ -99,7 +69,6 @@ double* user_JointForces(MBSdataStruct *MBSdata, double tsim)
           break;
         }
     }
-
 
    	return MBSdata->Qq;
 

@@ -40,70 +40,45 @@ void user_Derivative(MBSdataStruct *MBSdata)
 
     double *ref = MBSdata->user_IO->refs;
 
+    // order is important:
+    int MotorIds[NB_ACTUATED_JOINTS]={ RHipSag_m, RHipLat_m, RHipYaw_m, RKneeSag_m, RAnkLat_m, RAnkSag_m,
+                                       LHipSag_m,  LHipLat_m,  LHipYaw_m,  LKneeSag_m, LAnkLat_m, LAnkSag_m,
+                                       Waist_m ,        DWL_m  ,      DWS_m ,
+                                       RShSag_m, RShLat_m, RShYaw_m , RElbj_m, RForearmPlate_m, RWrj1_m,  RWrj2_m,
+                                       LShSag_m, LShLat_m, LShYaw_m,  LElbj_m, LForearmPlate_m, LWrj1_m,  LWrj2_m };
+
+    int JointIds[NB_ACTUATED_JOINTS]={ RHipSag_id, RHipLat_id, RHipYaw_id, RKneeSag_id, RAnkLat_id, RAnkSag_id,
+                                       LHipSag_id,  LHipLat_id,  LHipYaw_id,  LKneeSag_id, LAnkLat_id, LAnkSag_id,
+                                       Waist_id ,        DWL_id  ,      DWS_id ,
+                                       RShSag_id, RShLat_id, RShYaw_id , RElbj_id, RForearmPlate_id, RWrj1_id,  RWrj2_id,
+                                       LShSag_id, LShLat_id, LShYaw_id,  LElbj_id, LForearmPlate_id, LWrj1_id,  LWrj2_id };
 
     uvs = MBSdata->user_IO;
 
     if (Act_type==1) //SEA
     {
         // PD control law
+        // NEED Different values for various Joints (TO BE done by the config.ini files)
 
-        // Torso
+        switch (Act_order) {
+          case 1:
+            Kp=5;
+            Kd=0.01;
+          break;
+        case 2:
+            Kp=10;
+            Kd=0.1;
+          break;
+        case 3:
+            Kp=150;
+            Kd=1;
+          break;
+        }
 
-        Kp=20;
-        Kd=1;
-
-        voltage[Waist_m]    = Kp*(ref[Waist_m]-MBSdata->q[Waist_id])-Kd*MBSdata->qd[Waist_id];
-        voltage[DWL_m]      = Kp*(ref[DWL_m]-MBSdata->q[DWL_id])-Kd*MBSdata->qd[DWL_id];
-        voltage[DWS_m]      = Kp*(ref[DWS_m]-MBSdata->q[DWS_id])-Kd*MBSdata->qd[DWS_id];
-
-        // Right Arm
-        Kp=5;
-        Kd=0.0; //0.1;
-
-        voltage[RShSag_m]           = Kp*(ref[RShSag_m]-MBSdata->q[RShSag_id])-Kd*MBSdata->qd[RShSag_id];
-        voltage[RShLat_m]           = Kp*(ref[RShLat_m]-MBSdata->q[RShLat_id])-Kd*MBSdata->qd[RShLat_id];
-        voltage[RShYaw_m]           = Kp*(ref[RShYaw_m]-MBSdata->q[RShYaw_id])-Kd*MBSdata->qd[RShYaw_id];
-        voltage[RElbj_m]            = Kp*(ref[RElbj_m]-MBSdata->q[RElbj_id])-Kd*MBSdata->qd[RElbj_id];
-        voltage[RForearmPlate_m]    = Kp*(ref[RForearmPlate_m]-MBSdata->q[RForearmPlate_id])-Kd*MBSdata->qd[RForearmPlate_id];
-        voltage[RWrj1_m]            = Kp*(ref[RWrj1_m]-MBSdata->q[RWrj1_id])-Kd*MBSdata->qd[RWrj1_id];
-        voltage[RWrj2_m]            = Kp*(ref[RWrj2_m]-MBSdata->q[RWrj2_id])-Kd*MBSdata->qd[RWrj2_id];
-
-        // Left Arm
-        Kp=5;
-        Kd=0.0; //0.1;
-
-        voltage[LShSag_m]           = Kp*(ref[LShSag_m]-MBSdata->q[LShSag_id])-Kd*MBSdata->qd[LShSag_id];
-        voltage[LShLat_m]           = Kp*(ref[LShLat_m]-MBSdata->q[LShLat_id])-Kd*MBSdata->qd[LShLat_id];
-        voltage[LShYaw_m]           = Kp*(ref[LShYaw_m]-MBSdata->q[LShYaw_id])-Kd*MBSdata->qd[LShYaw_id];
-        voltage[LElbj_m]            = Kp*(ref[LElbj_m]-MBSdata->q[LElbj_id])-Kd*MBSdata->qd[LElbj_id];
-        voltage[LForearmPlate_m]    = Kp*(ref[LForearmPlate_m]-MBSdata->q[LForearmPlate_id])-Kd*MBSdata->qd[LForearmPlate_id];
-        voltage[LWrj1_m]            = Kp*(ref[LWrj1_m]-MBSdata->q[LWrj1_id])-Kd*MBSdata->qd[LWrj1_id];
-        voltage[LWrj2_m]            = Kp*(ref[LWrj2_m]-MBSdata->q[LWrj2_id])-Kd*MBSdata->qd[LWrj2_id];
-
-        // Right Leg
-        Kp=5;
-        Kd=0.0; //0.1;
-
-        voltage[RHipSag_m]           = Kp*(ref[RHipSag_m]-MBSdata->q[RHipSag_id])-Kd*MBSdata->qd[RHipSag_id];
-        voltage[RHipLat_m]           = Kp*(ref[RHipLat_m]-MBSdata->q[RHipLat_id])-Kd*MBSdata->qd[RHipLat_id];
-        voltage[RHipYaw_m]           = Kp*(ref[RHipYaw_m]-MBSdata->q[RHipYaw_id])-Kd*MBSdata->qd[RHipYaw_id];
-        voltage[RKneeSag_m]          = Kp*(ref[RKneeSag_m]-MBSdata->q[RKneeSag_id])-Kd*MBSdata->qd[RKneeSag_id];
-        voltage[RAnkLat_m]           = Kp*(ref[RAnkLat_m]-MBSdata->q[RAnkLat_id])-Kd*MBSdata->qd[RAnkLat_id];
-        voltage[RAnkSag_m]           = Kp*(ref[RAnkSag_m]-MBSdata->q[RAnkSag_id])-Kd*MBSdata->qd[RAnkSag_id];
-
-        // Left Leg
-        Kp=5;
-        Kd=0.0; //0.1;
-
-        voltage[LHipSag_m]           = Kp*(ref[LHipSag_m]-MBSdata->q[LHipSag_id])-Kd*MBSdata->qd[LHipSag_id];
-        voltage[LHipLat_m]           = Kp*(ref[LHipLat_m]-MBSdata->q[LHipLat_id])-Kd*MBSdata->qd[LHipLat_id];
-        voltage[LHipYaw_m]           = Kp*(ref[LHipYaw_m]-MBSdata->q[LHipYaw_id])-Kd*MBSdata->qd[LHipYaw_id];
-        voltage[LKneeSag_m]          = Kp*(ref[LKneeSag_m]-MBSdata->q[LKneeSag_id])-Kd*MBSdata->qd[LKneeSag_id];
-        voltage[LAnkLat_m]           = Kp*(ref[LAnkLat_m]-MBSdata->q[LAnkLat_id])-Kd*MBSdata->qd[LAnkLat_id];
-        voltage[LAnkSag_m]           = Kp*(ref[LAnkSag_m]-MBSdata->q[LAnkSag_id])-Kd*MBSdata->qd[LAnkSag_id];
-
-
-
+        for (i=0; i<n; i++)
+        {
+            voltage[MotorIds[i]]    = Kp*(ref[MotorIds[i]]-MBSdata->q[JointIds[i]])-Kd*MBSdata->qd[JointIds[i]];
+        }
 
         switch (Act_order) {
           case 1:
@@ -112,143 +87,78 @@ void user_Derivative(MBSdataStruct *MBSdata)
             // need a map from index i=0:4 to real joint indices
             // ux:current, uxd: current derivatives:
 
-            // Torso
-            rho = 100;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->GearRatio;
-            R_M = 1;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Resistance;
-            K_W = 0.04; //MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Kbemf;
-            L_M = 0.0001; //MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Inductance;
-
-            MBSdata->uxd[Waist_m]   = (1.0/L_M)*(voltage[Waist_m] -R_M*MBSdata->ux[Waist_m]-K_W*rho* MBSdata->qd[Waist_id]);
-            MBSdata->uxd[DWL_m]     = (1.0/L_M)*(voltage[DWL_m] -R_M*MBSdata->ux[DWL_m]-K_W*rho* MBSdata->qd[DWL_id]);
-            MBSdata->uxd[DWS_m]     = (1.0/L_M)*(voltage[DWS_m] - R_M*MBSdata->ux[DWS_m]-K_W*rho* MBSdata->qd[DWS_id]);
-
-            // Right Arm
-            rho = 100;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->GearRatio;
-            R_M = 1;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Resistance;
-            K_W = 0.004; //MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Kbemf;
-            L_M = 0.0001; //MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Inductance;
-
-            MBSdata->uxd[RShSag_m]  = (1.0/L_M)*(voltage[RShSag_m] - R_M*MBSdata->ux[RShSag_m]-K_W*rho*MBSdata->qd[RShSag_id]);
-            MBSdata->uxd[RShLat_m]  = (1.0/L_M)*(voltage[RShLat_m] - R_M*MBSdata->ux[RShLat_m]-K_W*rho*MBSdata->qd[RShLat_id]);
-            MBSdata->uxd[RShYaw_m]  = (1.0/L_M)*(voltage[RShYaw_m] - R_M*MBSdata->ux[RShYaw_m]-K_W*rho*MBSdata->qd[RShYaw_id]);
-            MBSdata->uxd[RElbj_m]   = (1.0/L_M)*(voltage[RElbj_m] - R_M*MBSdata->ux[RElbj_m]-K_W*rho*MBSdata->qd[RElbj_id]);
-            MBSdata->uxd[RForearmPlate_m]   = (1.0/L_M)*(voltage[RForearmPlate_m] - R_M*MBSdata->ux[RForearmPlate_m]-K_W*rho*MBSdata->qd[RForearmPlate_id]);
-            MBSdata->uxd[RWrj1_m]   = (1.0/L_M)*(voltage[RWrj1_m] - R_M*MBSdata->ux[RWrj1_m]-K_W*rho*MBSdata->qd[RWrj1_id]);
-            MBSdata->uxd[RWrj2_m]   = (1.0/L_M)*(voltage[RWrj2_m] - R_M*MBSdata->ux[RWrj2_m]-K_W*rho*MBSdata->qd[RWrj2_id]);
-
-
-            // Left Arm
-            rho = 100;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->GearRatio;
-            R_M = 1;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Resistance;
-            K_W = 0.004; //MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Kbemf;
-            L_M = 0.0001; //MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Inductance;
-
-            MBSdata->uxd[LShSag_m]  = (1.0/L_M)*(voltage[LShSag_m] - R_M*MBSdata->ux[LShSag_m]-K_W*rho*MBSdata->qd[LShSag_id]);
-            MBSdata->uxd[LShLat_m]  = (1.0/L_M)*(voltage[LShLat_m] - R_M*MBSdata->ux[LShLat_m]-K_W*rho*MBSdata->qd[LShLat_id]);
-            MBSdata->uxd[LShYaw_m]  = (1.0/L_M)*(voltage[LShYaw_m] - R_M*MBSdata->ux[LShYaw_m]-K_W*rho*MBSdata->qd[LShYaw_id]);
-            MBSdata->uxd[LElbj_m]   = (1.0/L_M)*(voltage[LElbj_m] - R_M*MBSdata->ux[LElbj_m]-K_W*rho*MBSdata->qd[RElbj_id]);
-            MBSdata->uxd[LForearmPlate_m]   = (1.0/L_M)*(voltage[LForearmPlate_m] - R_M*MBSdata->ux[LForearmPlate_m]-K_W*rho*MBSdata->qd[LForearmPlate_id]);
-            MBSdata->uxd[LWrj1_m]   = (1.0/L_M)*(voltage[LWrj1_m] - R_M*MBSdata->ux[LWrj1_m]-K_W*rho*MBSdata->qd[LWrj1_id]);
-            MBSdata->uxd[LWrj2_m]   = (1.0/L_M)*(voltage[LWrj2_m] - R_M*MBSdata->ux[LWrj2_m]-K_W*rho*MBSdata->qd[LWrj2_id]);
-
-            // Right Leg
-            rho = 100;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->GearRatio;
-            R_M = 1;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Resistance;
-            K_W = 0.004; //MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Kbemf;
-            L_M = 0.0001; //MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Inductance;
-
-            MBSdata->uxd[RHipSag_m]  = (1.0/L_M)*(voltage[RHipSag_m] - R_M*MBSdata->ux[RHipSag_m]-K_W*rho*MBSdata->qd[RHipSag_id]);
-            MBSdata->uxd[RHipLat_m]  = (1.0/L_M)*(voltage[RHipLat_m] - R_M*MBSdata->ux[RHipLat_m]-K_W*rho*MBSdata->qd[RHipLat_id]);
-            MBSdata->uxd[RHipYaw_m]  = (1.0/L_M)*(voltage[RHipYaw_m] - R_M*MBSdata->ux[RHipYaw_m]-K_W*rho*MBSdata->qd[RHipYaw_id]);
-            MBSdata->uxd[RKneeSag_m] = (1.0/L_M)*(voltage[RKneeSag_m] - R_M*MBSdata->ux[RKneeSag_m]-K_W*rho*MBSdata->qd[RKneeSag_id]);
-            MBSdata->uxd[RAnkLat_m]  = (1.0/L_M)*(voltage[RAnkLat_m] - R_M*MBSdata->ux[RAnkLat_m]-K_W*rho*MBSdata->qd[RAnkLat_id]);
-            MBSdata->uxd[RAnkSag_m]  = (1.0/L_M)*(voltage[RAnkSag_m] - R_M*MBSdata->ux[RAnkSag_m]-K_W*rho*MBSdata->qd[RAnkSag_id]);
-
-            // Left Leg
-            rho = 100;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->GearRatio;
-            R_M = 1;// MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Resistance;
-            K_W = 0.004; //MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Kbemf;
-            L_M = 0.0001; //MBSdata->user_IO->actuatorsStruct->acs[Waist_m]->Inductance;
-
-            MBSdata->uxd[LHipSag_m]  = (1.0/L_M)*(voltage[LHipSag_m] - R_M*MBSdata->ux[LHipSag_m]-K_W*rho*MBSdata->qd[LHipSag_id]);
-            MBSdata->uxd[LHipLat_m]  = (1.0/L_M)*(voltage[LHipLat_m] - R_M*MBSdata->ux[LHipLat_m]-K_W*rho*MBSdata->qd[LHipLat_id]);
-            MBSdata->uxd[LHipYaw_m]  = (1.0/L_M)*(voltage[LHipYaw_m] - R_M*MBSdata->ux[LHipYaw_m]-K_W*rho*MBSdata->qd[LHipYaw_id]);
-            MBSdata->uxd[LKneeSag_m] = (1.0/L_M)*(voltage[LKneeSag_m] - R_M*MBSdata->ux[LKneeSag_m]-K_W*rho*MBSdata->qd[LKneeSag_id]);
-            MBSdata->uxd[LAnkLat_m]  = (1.0/L_M)*(voltage[LAnkLat_m] - R_M*MBSdata->ux[LAnkLat_m]-K_W*rho*MBSdata->qd[LAnkLat_id]);
-            MBSdata->uxd[LAnkSag_m]  = (1.0/L_M)*(voltage[LAnkSag_m] - R_M*MBSdata->ux[LAnkSag_m]-K_W*rho*MBSdata->qd[LAnkSag_id]);
-
+            // All robot joints
+            for (i=0; i<n; i++)
+            {
+                rho = uvs->actuatorsStruct->acs[MotorIds[i]-1]->GearRatio;
+                R_M = uvs->actuatorsStruct->acs[MotorIds[i]-1]->Resistance;
+                K_W = uvs->actuatorsStruct->acs[MotorIds[i]-1]->Kbemf;
+                L_M = uvs->actuatorsStruct->acs[MotorIds[i]-1]->Inductance;
+                MBSdata->uxd[MotorIds[i]]   = (1.0/L_M)*(voltage[MotorIds[i]] -R_M*MBSdata->ux[MotorIds[i]]-K_W*rho* MBSdata->qd[JointIds[i]]);
+            }
 
 
            break;
-//            case 2:
-//            // Motor (Mechanical) ODE
-//            // ux:motor position, velocity, uxd: motor velocity, acceleration
-//            //update motor velocities:
-//            for (i=0; i<n; i++)
-//            {
-//                MBSdata->uxd[i]=MBSdata->ux[i+n];
-//            }
+           case 2:
+            // Motor (Mechanical) ODE
+            // ux:motor position, velocity, uxd: motor velocity, acceleration
+            for (i=0; i<n; i++)
+            {
+                //update motor velocities:
+                MBSdata->uxd[MotorIds[i]]=MBSdata->ux[MotorIds[i]+n];
 
-//            J_M = MBSdata->user_IO->actuatorsStruct->acs[M_RR]->Inertia;
-//            VT  = rho*(KT)/R_M;
-//            D_M = MBSdata->user_IO->actuatorsStruct->acs[M_RR]->Damping;
-//            Ks  = MBSdata->user_IO->actuatorsStruct->acs[M_RR]->SeriesSpring;
-//            Ds  = MBSdata->user_IO->actuatorsStruct->acs[M_RR]->SeriesDamping;
+                rho = uvs->actuatorsStruct->acs[MotorIds[i]-1]->GearRatio;
+                R_M = uvs->actuatorsStruct->acs[MotorIds[i]-1]->Resistance;
+                KT = uvs->actuatorsStruct->acs[MotorIds[i]-1]->TrqConst;
+                J_M = uvs->actuatorsStruct->acs[MotorIds[i]-1]->Inertia;
+                VT  = rho*(KT)/R_M;
+                D_M = uvs->actuatorsStruct->acs[MotorIds[i]-1]->Damping;
+                Ks  = uvs->actuatorsStruct->acs[MotorIds[i]-1]->SeriesSpring;
+                Ds  = uvs->actuatorsStruct->acs[MotorIds[i]-1]->SeriesDamping;
 
-//            // computing the transmission torque (coupling between motor and load)
-//            Cpl[M_FR]=Ks*(MBSdata->ux[M_FR]-MBSdata->q[R2_FR])+Ds*(MBSdata->uxd[M_FR]-MBSdata->qd[R2_FR]);
-//            Cpl[M_FL]=Ks*(MBSdata->ux[M_FL]-MBSdata->q[R2_FL])+Ds*(MBSdata->uxd[M_FL]-MBSdata->qd[R2_FL]);
-//            Cpl[M_RR]=Ks*(MBSdata->ux[M_RR]-MBSdata->q[R2_RR])+Ds*(MBSdata->uxd[M_RR]-MBSdata->qd[R2_RR]);
-//            //Cpl[M_RL]=Ks*(MBSdata->ux[M_RL]-MBSdata->q[R2_RL])+Ds*(MBSdata->uxd[M_RL]-MBSdata->qd[R2_RL]);
+                // computing the transmission torque (coupling between motor and load)
+                Cpl[MotorIds[i]] = Ks*(MBSdata->ux[MotorIds[i]]-MBSdata->q[JointIds[i]]);
+                Cpl[MotorIds[i]]+= Ds*(MBSdata->uxd[MotorIds[i]]-MBSdata->qd[JointIds[i]]);
 
-//            //update motor accelerations:
-//            MBSdata->uxd[M_FR]= (1.0/J_M)*(VT*voltage[M_FR] -D_M*MBSdata->ux[n+M_FR]-Cpl[M_FR]);
-//            MBSdata->uxd[M_FL]= (1.0/J_M)*(VT*voltage[M_FL] -D_M*MBSdata->ux[n+M_FL]-Cpl[M_FL]);
-//            MBSdata->uxd[M_RR]= (1.0/J_M)*(VT*voltage[M_RR] -D_M*MBSdata->ux[n+M_RR]-Cpl[M_RR]);
-//            //MBSdata->uxd[M_RL]= (1.0/J_M)*(VT*voltage[M_RL] -D_M*MBSdata->ux[n+M_RL]-Cpl[M_RL]);
-//           break;
-//            case 3:
-//            // Motor (Electrical+Mechanical) ODE
-//            // ux:motor position, velocity, current uxd: motor velocity, acceleration, current derivative
-//            //update motor velocities:
-//            for (i=0; i<n; i++)
-//            {
-//                MBSdata->uxd[i]=MBSdata->ux[i+n];
-//            }
+                //update motor accelerations:
+                MBSdata->uxd[MotorIds[i]]= (1.0/J_M)*(VT*voltage[MotorIds[i]] -D_M*MBSdata->ux[n+MotorIds[i]]-Cpl[MotorIds[i]]);
+            }
 
-//            rho = MBSdata->user_IO->actuatorsStruct->acs[M_FR]->GearRatio;
-//            R_M = MBSdata->user_IO->actuatorsStruct->acs[M_FR]->Resistance;
-//            K_W = MBSdata->user_IO->actuatorsStruct->acs[M_FR]->Kbemf;
-//            L_M = MBSdata->user_IO->actuatorsStruct->acs[M_FR]->Inductance;
-//            KT = K_W;
+           break;
+            case 3:
+            // Motor (Electrical+Mechanical) ODE
+            // ux:motor position, velocity, current uxd: motor velocity, acceleration, current derivative
+            //update motor velocities:
+            for (i=0; i<n; i++)
+            {
+                MBSdata->uxd[MotorIds[i]]=MBSdata->ux[MotorIds[i]+n];
 
-//            J_M = MBSdata->user_IO->actuatorsStruct->acs[M_RR]->Inertia;
-//            VT  = rho*(KT)/R_M;
-//            D_M = MBSdata->user_IO->actuatorsStruct->acs[M_RR]->Damping;
-//            Ks  = MBSdata->user_IO->actuatorsStruct->acs[M_RR]->SeriesSpring;
-//            Ds  = MBSdata->user_IO->actuatorsStruct->acs[M_RR]->SeriesDamping;
+                rho = uvs->actuatorsStruct->acs[MotorIds[i]-1]->GearRatio;
+                R_M = uvs->actuatorsStruct->acs[MotorIds[i]-1]->Resistance;
+                K_W = uvs->actuatorsStruct->acs[MotorIds[i]-1]->Kbemf;
+                L_M = uvs->actuatorsStruct->acs[MotorIds[i]-1]->Inductance;
+                KT = K_W;
 
-//            // computing the transmission torque (coupling between motor and load)
-//            Cpl[M_FR]=Ks*(MBSdata->ux[M_FR]-MBSdata->q[R2_FR])+Ds*(MBSdata->uxd[M_FR]-MBSdata->qd[R2_FR]);
-//            Cpl[M_FL]=Ks*(MBSdata->ux[M_FL]-MBSdata->q[R2_FL])+Ds*(MBSdata->uxd[M_FL]-MBSdata->qd[R2_FL]);
-//            Cpl[M_RR]=Ks*(MBSdata->ux[M_RR]-MBSdata->q[R2_RR])+Ds*(MBSdata->uxd[M_RR]-MBSdata->qd[R2_RR]);
-//            //Cpl[M_RL]=Ks*(MBSdata->ux[M_RL]-MBSdata->q[R2_RL])+Ds*(MBSdata->uxd[M_RL]-MBSdata->qd[R2_RL]);
-//            // update motor acceleration:
-//            MBSdata->uxd[M_FR+n]= (1.0/J_M)*(KT*MBSdata->ux[2*n+R2_FR] -D_M*MBSdata->ux[n+M_FR]-Cpl[M_FR]);
-//            MBSdata->uxd[M_FL+n]= (1.0/J_M)*(KT*MBSdata->ux[2*n+R2_FL] -D_M*MBSdata->ux[n+M_FL]-Cpl[M_FL]);
-//            MBSdata->uxd[M_RR+n]= (1.0/J_M)*(KT*MBSdata->ux[2*n+R2_RR] -D_M*MBSdata->ux[n+M_RR]-Cpl[M_RR]);
-//            //MBSdata->uxd[M_RL+n]= (1.0/J_M)*(KT*MBSdata->ux[2*n+R2_RL] -D_M*MBSdata->ux[n+M_RL]-Cpl[M_RL]);
+                J_M = uvs->actuatorsStruct->acs[MotorIds[i]-1]->Inertia;
+                VT  = rho*(KT)/R_M;
+                D_M = uvs->actuatorsStruct->acs[MotorIds[i]-1]->Damping;
+                Ks  = uvs->actuatorsStruct->acs[MotorIds[i]-1]->SeriesSpring;
+                Ds  = uvs->actuatorsStruct->acs[MotorIds[i]-1]->SeriesDamping;
 
-//            // update current derivative:
-//            MBSdata->uxd[M_FR+2*n]=(1.0/L_M)*(voltage[M_FR] -R_M*MBSdata->ux[2*n+M_FR]-K_W*rho* MBSdata->qd[R2_FR]);
-//            MBSdata->uxd[M_FL+2*n]=(1.0/L_M)*(voltage[M_FL] -R_M*MBSdata->ux[2*n+M_FL]-K_W*rho* MBSdata->qd[R2_FL]);
-//            MBSdata->uxd[M_RR+2*n]=(1.0/L_M)*(voltage[M_RR] -R_M*MBSdata->ux[2*n+M_RR]-K_W*rho* MBSdata->qd[R2_RR]);
-//            //MBSdata->uxd[M_RL+2*n]=(1.0/L_M)*(voltage[M_RL] -R_M*MBSdata->ux[2*n+M_RL]-K_W*rho* MBSdata->qd[R2_RL]);
-//           break;
-//            default:
-//            printf("detault actuator order (1) selected \n");
-//            goto justElectrical;
-//           break;
+                // computing the transmission torque (coupling between motor and load)
+                Cpl[MotorIds[i]]  = Ks*(MBSdata->ux[MotorIds[i]]-MBSdata->q[JointIds[i]]);
+                Cpl[MotorIds[i]] += Ds*(MBSdata->uxd[MotorIds[i]]-MBSdata->qd[JointIds[i]]);
+                // update motor acceleration:
+                MBSdata->uxd[MotorIds[i]+n]= (1.0/J_M)*(KT*MBSdata->ux[2*n+MotorIds[i]] -D_M*MBSdata->ux[n+MotorIds[i]]-Cpl[MotorIds[i]]);
+
+                // update current derivative:
+                MBSdata->uxd[MotorIds[i]+2*n]=(1.0/L_M)*(voltage[MotorIds[i]] -R_M*MBSdata->ux[2*n+MotorIds[i]]-K_W*rho* MBSdata->qd[JointIds[i]]);
+            }
+           break;
+            default:
+            printf("detault actuator order (1) selected \n");
+            goto justElectrical;
+           break;
             }
     }
 
