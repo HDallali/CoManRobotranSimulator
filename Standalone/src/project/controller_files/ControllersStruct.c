@@ -11,7 +11,16 @@
 
 
 // ---- Controllers initialization ---- //
- 
+
+// init PID values
+
+ControllerPIDs * init_ControllerPIDs(void)
+{
+     ControllerPIDs *cvs;
+     cvs = (ControllerPIDs*) malloc(sizeof(ControllerPIDs));
+
+}
+
 // ControllerInputsStruct
 ControllerInputsStruct * init_ControllerInputsStruct(void)
 {
@@ -62,6 +71,8 @@ ControllerStruct * init_ControllerStruct(void)
 
     cvs->Outputs = init_ControllerOutputsStruct();
 
+    cvs->PIDs = init_ControllerPIDs();
+
     return cvs;
 }
 
@@ -79,12 +90,19 @@ void free_ControllerOutputsStruct(ControllerOutputsStruct *cvs)
     free(cvs);
 }
 
+void free_ControllerPIDs(ControllerPIDs *cvs)
+{
+    free(cvs);
+}
+
 // ControllerStruct
 void free_ControllerStruct(ControllerStruct *cvs)
 {
     free_ControllerInputsStruct(cvs->Inputs);
 
     free_ControllerOutputsStruct(cvs->Outputs);
+
+    free_ControllerPIDs(cvs->PIDs);
 
     free(cvs);
 }

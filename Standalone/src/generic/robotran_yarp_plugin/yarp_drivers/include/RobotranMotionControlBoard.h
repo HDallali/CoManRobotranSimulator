@@ -20,6 +20,8 @@
 #include <yarp/dev/IControlLimits2.h>
 #include <yarp/dev/Wrapper.h>
 
+#include <vector>
+
 //Robotran info
 #include "MBSdataStruct.h"
 #include "simu_def.h"
@@ -43,7 +45,7 @@ class yarp::dev::RobotranYarpMotionControl:
     public IEncodersTimed,
     //public IControlMode,
     public IControlMode2,
-// public IPidControl,
+    public IPidControl,
 // public IImpedanceControl,
 // public IInteractionMode,
     public IAmplifierControl,
@@ -158,9 +160,8 @@ public:
     virtual bool getCurrentImpedanceLimit(int j, double *min_stiff, double *max_stiff, double *min_damp, double *max_damp);
     */
 
-    /*
-     * IPidControl Interface methods
-     *
+
+     // IPidControl Interface methods
     virtual bool setPid (int j, const Pid &pid);
     virtual bool setPids (const Pid *pids);
     virtual bool setReference (int j, double ref);
@@ -179,7 +180,9 @@ public:
     virtual bool disablePid (int j);
     virtual bool enablePid (int j);
     virtual bool setOffset (int j, double v);
-    */
+    virtual bool getOutput(int j, double *out);
+    virtual bool getOutputs(double *outs);
+
 
     // IPOSITION DIRECT
     bool setPositionDirectMode();
@@ -231,9 +234,10 @@ public:
     bool getAmpStatus(int *st);
     bool getAmpStatus(int j, int *st);
 
+    bool parsePidsGroup(yarp::os::Bottle& pidsGroup, yarp::dev::Pid *myPid);
 
 private:
-	
+
     /* PID structures */
     struct PID {
         double p;
@@ -242,10 +246,13 @@ private:
         double maxInt;
         double maxOut;
     };
-    
+
+    bool initialized = false;
+
     yarp::dev::PolyDriver* wrap;
     unsigned int numberOfJoints;
-
+    bool extractGroup(yarp::os::Bottle &input, yarp::os::Bottle &out, const std::string &key1, const std::string &txt, int size);
+    bool _initialPidConfigFound= false;
     /**
      * The ROBOTRAN position of each joints, readonly from MBSdataStruct
      */
@@ -274,6 +281,9 @@ private:
     yarp::sig::Vector vel, speed, acc, amp, torque, current;
     yarp::os::Semaphore pos_lock;
     yarp::sig::Vector referenceSpeed, referencePosition, referenceAcceleraton, referenceTorque;
+
+    std::vector<yarp::dev::Pid> _posPids;
+    //yarp::dev::Pid *_posPids;
 
 };
 

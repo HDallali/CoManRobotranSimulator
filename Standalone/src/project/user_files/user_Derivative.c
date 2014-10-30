@@ -32,8 +32,8 @@ void user_Derivative(MBSdataStruct *MBSdata)
     const int n = NB_ACTUATED_JOINTS;
 
     // PD control !!! the gains should change depending on the actuator order and servo_type
-    double Kp=20;
-    double Kd=1;
+    double Kp=0;
+    double Kd=0;
 
     double voltage[NB_ACTUATED_JOINTS]={0.0};
     double Cpl[NB_ACTUATED_JOINTS]={0.0};
@@ -58,26 +58,13 @@ void user_Derivative(MBSdataStruct *MBSdata)
     if (Act_type==1) //SEA
     {
         // PD control law
-        // NEED Different values for various Joints (TO BE done by the config.ini files)
-
-        switch (Act_order) {
-          case 1:
-            Kp=5;
-            Kd=0.01;
-          break;
-        case 2:
-            Kp=10;
-            Kd=0.1;
-          break;
-        case 3:
-            Kp=150;
-            Kd=1;
-          break;
-        }
-
         for (i=0; i<n; i++)
         {
-            voltage[MotorIds[i]]    = Kp*(ref[MotorIds[i]]-MBSdata->q[JointIds[i]])-Kd*MBSdata->qd[JointIds[i]];
+            // PID structure for each joint is initialized with YARP Conf if YARP flag is set
+            // or by the default values if YARP flag is off.
+            Kp = MBSdata->user_IO->cvs->PIDs->p[MotorIds[i]];
+            Kd = MBSdata->user_IO->cvs->PIDs->d[MotorIds[i]];
+            voltage[MotorIds[i]] = Kp*(ref[MotorIds[i]]-MBSdata->q[JointIds[i]])-Kd*MBSdata->qd[JointIds[i]];
         }
 
         switch (Act_order) {

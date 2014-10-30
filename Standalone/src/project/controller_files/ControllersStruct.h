@@ -28,12 +28,23 @@ typedef struct ControllerOutputsStruct
 
 } ControllerOutputsStruct;
 
+// Defining PID struct (Joint Specific)
+/* PID structures used with/without YARP in Simulation*/
+typedef struct ControllerPIDs
+{
+    double p[30];
+    double i[30];
+    double d[30];
+    double maxInt[30];
+    double maxOut[30];
+} ControllerPIDs ;
 
 // ControllerStructStruc
 typedef struct ControllerStruct
 {
     struct ControllerInputsStruct *Inputs;
     struct ControllerOutputsStruct *Outputs;
+    struct ControllerPIDs *PIDs;
 
 } ControllerStruct;
 
@@ -45,6 +56,9 @@ void free_ControllerInputsStruct(ControllerInputsStruct *cvs);
 
 ControllerOutputsStruct * init_ControllerOutputsStruct(void);
 void free_ControllerOutputsStruct(ControllerOutputsStruct *cvs);
+
+ControllerPIDs *init_ControllerPIDs(void);
+void free_ControllerPIDs(ControllerPIDs *cvs);
 
 ControllerStruct * init_ControllerStruct(void);
 void free_ControllerStruct(ControllerStruct *cvs);

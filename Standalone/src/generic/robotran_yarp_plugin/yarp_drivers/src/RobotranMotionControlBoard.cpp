@@ -10,6 +10,31 @@
 
 
 using namespace yarp::dev;
+using namespace yarp::os;
+using namespace yarp::sig;
+
+//generic function that check is key1 is present in input bottle and that the result has size elements
+// return true/false
+bool RobotranYarpMotionControl::extractGroup(Bottle &input, Bottle &out, const std::string &key1, const std::string &txt, int size)
+{
+    Bottle &tmp=input.findGroup(key1.c_str(), txt.c_str());
+    if (tmp.isNull())
+    {
+        //yError () << key1.c_str() << " not found\n"; //yError() will be included in the next version of yarp.
+        std::cout << key1.c_str() << " not found\n";
+        return false;
+    }
+
+    if(tmp.size()!=size)
+    {
+       // yError () << key1.c_str() << " incorrect number of entries";
+        std::cout << key1.c_str() << " incorrect number of entries";
+        return false;
+    }
+
+    out=tmp;
+    return true;
+}
 
 static inline bool NOT_YET_IMPLEMENTED(const char *txt)
 {
@@ -43,11 +68,26 @@ void RobotranYarpMotionControl::updateToYarp(const MBSdataStruct * MBSdata)
 
 void RobotranYarpMotionControl::updateFromYarp(MBSdataStruct *MBSdata)
 {
+
     for(unsigned int i=0; i<numberOfJoints; i++)
     {
+        if((!initialized) && _initialPidConfigFound)
+        {
+            //initialized the pid simulation structure with the yarp read conf.
+            // converting to SI units/sign used in the user_Derivative.c for low level PD control
+            MBSdata->user_IO->cvs->PIDs->p[motorID_map[i]]= -(_posPids[i].kp/1000);
+            MBSdata->user_IO->cvs->PIDs->d[motorID_map[i]]= -(_posPids[i].kd/1000);
+            MBSdata->user_IO->cvs->PIDs->i[motorID_map[i]]= -(_posPids[i].ki/1000);
+            std::cout<< "PID intiliazed from YARP"<< std::endl;
+        }
         //std::cout << "index " << i << " ref " << desiredPosition[i] << std::endl;
         MBSdata->user_IO->refs[motorID_map[i]]  = (encoder[i] * convertDegreesToRadians(desiredPosition[i]- zero[i]));
         MBSdata->user_IO->servo_type[motorID_map[i]] = controlMode[i];
+    }
+
+    if (_initialPidConfigFound)
+    {
+        initialized = true;
     }
 
 }
@@ -94,6 +134,8 @@ bool RobotranYarpMotionControl::open(yarp::os::Searchable& config)
 
     current.resize(numberOfJoints);
     current.zero();
+
+    _posPids.resize(numberOfJoints);
 
     // Get joints id
     if(!config.check("robotran_joint_id"))
@@ -176,10 +218,40 @@ bool RobotranYarpMotionControl::open(yarp::os::Searchable& config)
         controlMode[i] = VOCAB_CM_POSITION;  //by default init to pos control
     }
 
-
+      ////// POSITION PIDS  - optional
+      yarp::os::Bottle posPidsGroup;
+      posPidsGroup=config.findGroup("POS_PIDS", "Position Pid parameters");
+      if (posPidsGroup.isNull()==false)
+      {
+          if (!parsePidsGroup(posPidsGroup, _posPids.data() ))
+         {
+            // yError() << "POS_PIDS section: error detected in parameters syntax\n";
+             std::cout << "POS_PIDS section: error detected in parameters syntax\n";
+             return false;
+         }
+         else
+         {
+           //  yDebug() << "Position Pids successfully loaded\n";
+             std::cout << "Position Pids successfully loaded\n";
+             std::cout  << "Using the following values for Position PID (all joints)" << std::endl;
+             for (int i=0; i< numberOfJoints; i++)
+             {
+                 std::cout  << "PID Joint " << i << std::endl;
+                 std::cout  << "\tkp is " << _posPids[i].kp << std::endl;
+                 std::cout  << "\tki is " << _posPids[i].ki << std::endl;
+                 std::cout  << "\tkd is " << _posPids[i].kd << "\n" << std::endl;
+             }
+             _initialPidConfigFound = true;
+         }
+      }
+      else
+      {
+        //  yWarning() << "POS_PIDS group not found, using defaults from boards!!\n";
+            std::cout << "POS_PIDS group not found, using defaults from boards!!\n";
+      }
 
 //    yarp::os::Property wrapProp;
-////    yarp::os::Property &mmm =wrapProp.addGroup();
+////  yarp::os::Property &mmm =wrapProp.addGroup();
 
 //    wrapProp.put("device","controlboardwrapper2");
 //    yarp::os::Property  &net = wrapProp.addGroup(networks);
@@ -257,6 +329,7 @@ bool RobotranYarpMotionControl::close()
     std::cout << "RobotranYarpMotionControl::close" << std::endl;
     if(wrap)
         wrap->close();
+
     return true;
 }
 
@@ -820,5 +893,159 @@ bool RobotranYarpMotionControl::getControlModes(const int n_joint, const int *jo
     // some control modes such as torque control, velocity control are not implemented yet.
     return true;
 }
+
+ bool RobotranYarpMotionControl::setPid (int j, const Pid &pid)
+ {
+     return NOT_YET_IMPLEMENTED("setPid");
+ }
+ bool RobotranYarpMotionControl::setPids (const Pid *pids)
+ {
+     return NOT_YET_IMPLEMENTED("setPids");
+ }
+ bool RobotranYarpMotionControl::setReference (int j, double ref)
+ {
+     return NOT_YET_IMPLEMENTED("setReference");
+ }
+ bool RobotranYarpMotionControl::setReferences (const double *refs){
+     return NOT_YET_IMPLEMENTED("setReferences");
+ }
+ bool RobotranYarpMotionControl::setErrorLimit (int j, double limit)
+ {
+     return NOT_YET_IMPLEMENTED("setErrorLimit");
+ }
+ bool RobotranYarpMotionControl::setErrorLimits (const double *limits)
+ {
+     return NOT_YET_IMPLEMENTED("setErrorLimits");
+ }
+ bool RobotranYarpMotionControl::getError (int j, double *err)
+ {
+     return NOT_YET_IMPLEMENTED("getError");
+ }
+ bool RobotranYarpMotionControl::getErrors (double *errs)
+ {
+     return NOT_YET_IMPLEMENTED("getErrors");
+ }
+ bool RobotranYarpMotionControl::getPid (int j, Pid *pid)
+ {
+     return NOT_YET_IMPLEMENTED("getPid");
+ }
+ bool RobotranYarpMotionControl::getPids (Pid *pids)
+ {
+     return NOT_YET_IMPLEMENTED("getPids");
+ }
+ bool RobotranYarpMotionControl::getReference (int j, double *ref)
+ {
+     return NOT_YET_IMPLEMENTED("getReference");
+ }
+ bool RobotranYarpMotionControl::getReferences (double *refs)
+ {
+     return NOT_YET_IMPLEMENTED("getReferences");
+ }
+ bool RobotranYarpMotionControl::getErrorLimit (int j, double *limit)
+ {
+     return NOT_YET_IMPLEMENTED("getErrorLimit");
+ }
+ bool RobotranYarpMotionControl::getErrorLimits (double *limits)
+ {
+     return NOT_YET_IMPLEMENTED("getErrorLimits");
+ }
+ bool RobotranYarpMotionControl::resetPid (int j)
+ {
+     return NOT_YET_IMPLEMENTED("resetPid");
+ }
+ bool RobotranYarpMotionControl::disablePid (int j)
+ {
+     return NOT_YET_IMPLEMENTED("disablePid");
+ }
+ bool RobotranYarpMotionControl::enablePid (int j)
+ {
+     return NOT_YET_IMPLEMENTED("enablePid");
+ }
+ bool RobotranYarpMotionControl::setOffset (int j, double v)
+ {
+     return NOT_YET_IMPLEMENTED("setOffset");
+ }
+
+ bool RobotranYarpMotionControl::getOutput(int j, double *out)
+ {
+     return NOT_YET_IMPLEMENTED("getOutput");
+ }
+
+ bool RobotranYarpMotionControl::getOutputs(double *outs)
+ {
+     return NOT_YET_IMPLEMENTED("getOutputs");
+ }
+
+bool RobotranYarpMotionControl::parsePidsGroup(yarp::os::Bottle& pidsGroup , yarp::dev::Pid myPid[])
+{
+    int j=0;
+    yarp::os::Bottle xtmp;
+
+    if (!extractGroup(pidsGroup, xtmp, "kp", "kp parameter", numberOfJoints+1))  return false;
+    else
+    {
+        for (j=0; j<numberOfJoints; j++)
+            myPid[j].kp = xtmp.get(j+1).asDouble();
+    }
+
+    if (!extractGroup(pidsGroup, xtmp, "kd", "kd parameter", numberOfJoints+1))  return false;
+    else
+    {
+        for (j=0; j<numberOfJoints; j++)
+            myPid[j].kd = xtmp.get(j+1).asDouble();
+    }
+
+    if (!extractGroup(pidsGroup, xtmp, "ki", "ki parameter", numberOfJoints+1))  return false;
+    else
+    {
+        for (j=0; j<numberOfJoints; j++)
+            myPid[j].ki = xtmp.get(j+1).asDouble();
+    }
+
+    if (!extractGroup(pidsGroup, xtmp, "maxInt", "maxInt parameter", numberOfJoints+1))  return false;
+    else
+    {
+        for (j=0; j<numberOfJoints; j++)
+            myPid[j].max_int = xtmp.get(j+1).asDouble();
+    }
+
+    if (!extractGroup(pidsGroup, xtmp, "maxPwm", "maxPwm parameter", numberOfJoints+1))   return false;
+    else
+    {
+        for (j=0; j<numberOfJoints; j++)
+            myPid[j].max_output = xtmp.get(j+1).asDouble();
+    }
+
+    if (!extractGroup(pidsGroup, xtmp, "shift", "scale parameter", numberOfJoints+1))     return false;
+    else
+    {
+        for (j=0; j<numberOfJoints; j++)
+            myPid[j].scale = xtmp.get(j+1).asDouble();
+    }
+
+    if (!extractGroup(pidsGroup, xtmp, "ko", "pid offset parameter", numberOfJoints+1))   return false;
+    else
+    {
+        for (j=0; j<numberOfJoints; j++)
+            myPid[j].offset = xtmp.get(j+1).asDouble();
+    }
+
+    if (!extractGroup(pidsGroup, xtmp, "stictionUp", "stictionUp parameter", numberOfJoints+1))    return false;
+    else
+    {
+        for (j=0; j<numberOfJoints; j++)
+            myPid[j].stiction_up_val = xtmp.get(j+1).asDouble();
+    }
+
+    if (!extractGroup(pidsGroup, xtmp, "stictionDwn", "stictionDwn parameter", numberOfJoints+1))  return false;
+    else
+    {
+        for (j=0; j<numberOfJoints; j++)
+            myPid[j].stiction_down_val = xtmp.get(j+1).asDouble();
+    }
+
+    return true;
+}
+
 
 #endif
