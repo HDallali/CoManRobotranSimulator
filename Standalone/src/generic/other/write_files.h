@@ -34,6 +34,8 @@ int write_out_files(Write_files* write_files, const char generic_fileout[50]);
 // configure
 void update_write_files(Write_files *write_files, MBSdataStruct *MBSdata);
 
+void printMbsData(MBSdataStruct *MBSdata);
+
 #endif
 
 #endif
