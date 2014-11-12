@@ -19,6 +19,18 @@ ControllerPIDs * init_ControllerPIDs(void)
      ControllerPIDs *cvs;
      cvs = (ControllerPIDs*) malloc(sizeof(ControllerPIDs));
 
+     int i;
+
+     for (i=0;i<30;i++)
+     {
+         cvs->p[i] = 0.0;
+         cvs->d[i] = 0.0;
+         cvs->i[i] = 0.0;
+         cvs->maxInt[i] = 0.0;
+         cvs->maxOut[i]= 0.0;
+     }
+
+     return cvs;
 }
 
 // ControllerInputsStruct
