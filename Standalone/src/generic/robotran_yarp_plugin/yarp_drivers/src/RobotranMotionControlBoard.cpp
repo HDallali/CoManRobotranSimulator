@@ -63,7 +63,14 @@ void RobotranYarpMotionControl::updateToYarp(const MBSdataStruct * MBSdata)
 
     //update time
     simu_time = MBSdata->tsim;
-
+    ms_time = modf (simu_time , &sec_time);
+    ms_time = 1000*ms_time;
+    yarp::os::Bottle& b = clockport.prepare();
+    b.clear();
+    b.addInt(sec_time);
+    b.addInt(ms_time);
+    //std::cout << "writing " << b.toString().c_str() << std::endl;
+    clockport.write();
 }
 
 void RobotranYarpMotionControl::updateFromYarp(MBSdataStruct *MBSdata)
@@ -136,6 +143,11 @@ bool RobotranYarpMotionControl::open(yarp::os::Searchable& config)
     current.zero();
 
     _posPids.resize(numberOfJoints);
+
+    //open the clock port
+    clockport.open("/clock");
+
+
 
     // Get joints id
     if(!config.check("robotran_joint_id"))

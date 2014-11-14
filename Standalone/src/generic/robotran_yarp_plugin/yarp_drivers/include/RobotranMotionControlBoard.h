@@ -263,6 +263,7 @@ private:
     yarp::sig::VectorOf<int> zero;
     yarp::sig::Vector max_pos, min_pos;
     double simu_time;
+    double ms_time, sec_time;
     yarp::sig::VectorOf<int> controlMode;
 
     //Contains the parameters of the device contained in the yarpConfigurationFile .ini file
@@ -284,6 +285,8 @@ private:
 
     std::vector<yarp::dev::Pid> _posPids;
     //yarp::dev::Pid *_posPids;
+    // a clock port is needed for synchronizing drc modules with Robotran.
+    yarp::os::BufferedPort<yarp::os::Bottle> clockport;
 
 };
 
