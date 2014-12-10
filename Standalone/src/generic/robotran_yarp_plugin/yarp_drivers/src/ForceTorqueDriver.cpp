@@ -238,6 +238,9 @@ bool RobotranYarpForceTorqueDriver::fromConfig(yarp::os::Searchable &_config)
 
 bool RobotranYarpForceTorqueDriver::close()
 {
+    std::cout << "RobotranYarpForceTorqueDriver::close" << std::endl;
+    if(wrap)
+        wrap->close();
     return true;
 }
 
